@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{khutil}
+
+\usepackage{adjustbox}
+
+\newcommand{\fitbox}[1]{\begin{tabular}{l}#1\end{tabular}}
+
+\newcommand{\pad}[2]{\makebox[#1][l]{#2}}
+
+\newcommand{\rhsnote}[2][0.5]{\hfill\makebox[#1\linewidth][l]{#2}}
+
+\newcommand{\sidebyside}[3][.5]{{%
+	\def\gap{0.01}
+	\def\lwidth{\fpeval{#1-\gap/2}\linewidth}%
+	\def\rwidth{\fpeval{1-\gap/2-#1}\linewidth}%
+	\adjustbox{minipage=\lwidth,valign=t}{#2}%
+	\hspace{\gap\linewidth}
+	\adjustbox{minipage=\rwidth,valign=t}{#3}%
+}}
+
+%\newcommand\thefontsize[1]{{#1 The current font size is: \f@size pt\par}}

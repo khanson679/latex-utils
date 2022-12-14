@@ -1,0 +1,74 @@
+\documentclass{article}
+
+\usepackage[tiny,nospace]{khtitle}
+\usepackage{erewhon}
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage[small]{titlesec}
+\usepackage[listings]{tcolorbox}
+
+\newtcblisting{examplebox}{%
+    sidebyside,
+    text and listing,
+    colframe=black,
+    colback=white,
+    boxrule=\fboxrule
+}
+
+\begin{document}
+
+\begin{center}
+\LARGE Test Document for \texttt{khtitle.sty}
+\vspace{1em}
+\end{center}
+
+
+\section*{Default output for \textbackslash titleblock}
+
+\begin{examplebox}
+\titleblock
+\end{examplebox}
+
+
+\section*{After setting info}
+
+\begin{examplebox}
+\title{Title}
+\author{Author}
+\date{\today}
+\titleblock
+\end{examplebox}
+
+
+\section*{With subtitle and pre-title}
+
+\begin{examplebox}
+\pretitle{Pretitle}
+\title{Title}
+\subtitle{Subtitle}
+\author{Author}
+\date{\today}
+\titleblock
+\end{examplebox}
+
+
+\section*{Multi-line title}
+
+\begin{examplebox}
+\title{This is a\\Multi-line Title}
+\author{Author}
+\date{\today}
+\titleblock
+\end{examplebox}
+
+
+\section*{Author with email}
+\begin{examplebox}
+\title{Title}
+\author{Author}
+\email{person@place.org}
+\date{\today}
+\titleblock
+\end{examplebox}
+
+\end{document}

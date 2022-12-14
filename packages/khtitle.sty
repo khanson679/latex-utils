@@ -1,0 +1,163 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{khtitle}
+
+\RequirePackage{etoolbox}
+
+% Default formatting
+
+\newcommand{\@titlesize}{\LARGE}
+\newcommand{\@pretitlesize}{\large}
+\newcommand{\@subtitlesize}{\large}
+\newcommand{\@authorsize}{\large}
+\newcommand{\@datesize}{\large}
+
+\newcommand{\@titleweight}{\mdseries}
+\newcommand{\@pretitleweight}{\mdseries}
+\newcommand{\@subtitleweight}{\mdseries}
+\newcommand{\@authorweight}{\mdseries}
+\newcommand{\@dateweight}{\mdseries}
+
+% space between items in title block
+\newlength{\@titleblocksep}
+\setlength{\@titleblocksep}{1em}
+
+% reduce linespread in title in larger sizes
+\newcommand{\@titlespread}{0.9}
+
+% extra space after title, to balance large line height
+\newlength{\@posttitleadjust}
+\setlength{\@posttitleadjust}{0.3em}
+
+\newlength{\@titleblocktmargin}
+\setlength{\@titleblocktmargin}{2em}
+
+\newlength{\@titleblockbmargin}
+\setlength{\@titleblockbmargin}{2em}
+
+
+% Options to change defaults
+
+\DeclareOption{small}{
+	\renewcommand{\@titlesize}{\Large}
+	\renewcommand{\@pretitlesize}{\normalsize}
+	\renewcommand{\@subtitlesize}{\normalsize}
+	\renewcommand{\@authorsize}{\normalsize}
+	\renewcommand{\@datesize}{\normalsize}
+	\renewcommand{\@titlespread}{0.95}
+	\setlength{\@posttitleadjust}{0.2em}}
+\DeclareOption{tiny}{
+	\renewcommand{\@titlesize}{\normalsize}
+	\renewcommand{\@titleweight}{\bfseries}
+	\renewcommand{\@pretitlesize}{\normalsize}
+	\renewcommand{\@subtitlesize}{\normalsize}
+	\renewcommand{\@authorsize}{\normalsize}
+	\renewcommand{\@datesize}{\normalsize}
+	\renewcommand{\@titlespread}{1.0}
+	\setlength{\@posttitleadjust}{0em}}
+\DeclareOption{compact}{
+	\renewcommand{\@titleblocksep}{0.4em}
+	\setlength{\@titleblocktmargin}{1em}
+	\setlength{\@titleblockbmargin}{1em}}
+\DeclareOption{tight}{
+	\renewcommand{\@titleblocksep}{0.2em}
+	\setlength{\@titleblocktmargin}{1em}
+	\setlength{\@titleblockbmargin}{1em}}
+\DeclareOption{nospace}{
+	\renewcommand{\@titleblocksep}{0em}
+	\setlength{\@titleblocktmargin}{1em}
+	\setlength{\@titleblockbmargin}{1em}}
+\ProcessOptions\relax
+
+
+% Overwrite \title, \author, and \date commands to allow
+% default title and blank author/date
+
+\renewcommand{\@title}{Untitled}
+\renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
+
+\renewcommand{\author}[1]{\def\@author{#1}}
+
+\let\@date\relax
+\renewcommand{\date}[1]{\def\@date{#1}}
+
+% Add support for email, which appears after author
+\newcommand{\email}[1]{\def\@email{#1}}
+
+% Add support for subtitle, which appears between title and author
+\newcommand{\subtitle}[1]{\def\@subtitle{#1}}
+
+% Add support for "pretitle", which appears before title
+\newcommand{\pretitle}[1]{\def\@pretitle{#1}}
+
+% Add support for "short title" for use in header/footer/etc.
+\newcommand{\shorttitle}[1]{\def\@shorttitle{#1}}
+
+
+% Access commands
+
+\newcommand{\thetitle}{%
+	\ifdefvoid{\@title}
+		{\PackageError{khtitle}{No \textbackslash title given.}{}}
+		{\@title}}
+\newcommand{\thepretitle}{%
+	\ifdefvoid{\@pretitle}
+		{\PackageError{khtitle}{No \textbackslash pretitle given.}{}}
+		{\@pretitle}}
+\newcommand{\thesubtitle}{%
+	\ifdefvoid{\@subtitle}
+		{\PackageError{khtitle}{No \textbackslash subtitle given.}{}}
+		{\@subtitle}}
+\newcommand{\theauthor}{%
+	\ifdefvoid{\@author}
+		{\PackageError{khtitle}{No \textbackslash author given.}{}}
+		{\@author}}
+\newcommand{\theemail}{%
+	\ifdefvoid{\@email}
+		{\PackageError{khtitle}{No \textbackslash email given.}{}}
+		{\@email}}
+\newcommand{\thedate}{%
+	\ifdefvoid{\@date}
+		{\PackageError{khtitle}{No \textbackslash date given.}{}}
+		{\@date}}
+\newcommand{\theshorttitle}{%
+	\ifdefvoid{\@shorttitle}
+		{\PackageError{khtitle}{No \textbackslash shorttitle given.}{}}
+		{\@shorttitle}}
+
+
+% \titleblock
+% Print the title, subtitle, author, and date, omitting the latter three if empty
+
+\newcommand{\titleblock}{{%
+	\centering
+	\setlength{\parskip}{\@titleblocksep}
+	\ifdefvoid{\@pretitle}{}{\@formatpretitle}
+	\@formattitle
+	\ifdefvoid{\@subtitle}{}{\@formatsubtitle}
+	\ifdefvoid{\@author}{}{\@formatauthor}
+	\ifdefvoid{\@email}{}{\@formatemail}
+	\ifdefvoid{\@date}{}{\@formatdate}
+}}
+
+\newcommand{\@formatpretitle}{%
+	{\@pretitlesize\@pretitleweight\@pretitle \par}}
+\newcommand{\@formattitle}{%
+	{\@titlesize\linespread{\@titlespread}\@titleweight\@title \par}
+	\vspace{\@posttitleadjust}}
+\newcommand{\@formatsubtitle}{%
+	{\@subtitlesize\@subtitleweight\@subtitle \par}}
+\newcommand{\@formatauthor}{%
+	{\@authorsize\@authorweight\@author \par}}
+\newcommand{\@formatemail}{%
+	{\@authorsize\@authorweight\texttt\@email \par}}
+\newcommand{\@formatdate}{%
+	{\@datesize\@dateweight\@date \par}}
+
+
+% Overwrite \maketitle
+
+\renewcommand{\maketitle}{%
+	\vspace*{\@titleblocktmargin}
+	\titleblock
+	\vspace{\@titleblockbmargin}
+}

@@ -1,0 +1,16 @@
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\tikzset{labelarrow/.style={->,>=latex,thick,font=\scriptsize}}
+\tikzset{deparrow/.style={->,>={Latex[scale=0.7]},structure}}
+\newcommand{\labelarrow}[1]{\;\tikz{\draw[labelarrow] (0,0) to [align=center,edge label=#1] +(3em,0);}\;}
+\newcommand{\labelvarrow}[1]{\;\tikz{\draw[labelarrow] (0,0) to [align=center,edge label=#1] +(0,-3em);}\;}
+\newcommand{\pathstring}[1]{
+	\foreach \n [count=\i] in {#1} {\ifnum\i=1 \n \else \,$\cdot$\,\n \fi}}
+
+\newcommand{\tzmark}[2]{%
+	\tikz[remember picture,baseline]
+		\node[anchor=base,inner sep=0pt](#1){#2};}
+\newcommand{\deparrow}[2]{%
+	\tikz[remember picture,overlay, shorten >=1pt, shorten <=3pt]
+		\draw[deparrow,thick,color=hl](#1.base) -- +(0,-1.8ex) -- ($(#2.base) + (0,-1.8ex)$) -- (#2.base);}

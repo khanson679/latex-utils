@@ -1,0 +1,46 @@
+\ProvidesPackage{khlingsym}
+\RequirePackage{xspace}
+\RequirePackage{pifont}
+
+\newcommand{\emptystr}{$\varepsilon$\xspace}
+\newcommand{\lrarrow}{$\leftrightarrow$\xspace}
+\newcommand{\larrow}{$\leftarrow$\xspace}
+\newcommand{\rarrow}{$\rightarrow$\xspace}
+\newcommand{\zero}{$\varnothing$\xspace}
+\newcommand{\gap}{\textunderscore\textunderscore\xspace}
+
+\newcommand{\chkmark}{\ding{51}\xspace}
+\newcommand{\xmark}{\ding{55}\xspace}
+
+% MGs
+\newcommand{\mgli}[2]{#1 :: \texttt{#2}}
+\newcommand{\mgflist}[1]{$\langle$#1$\rangle$}
+\newcommand{\mgfstr}[1]{\texttt{#1}}
+\newcommand{\aeq}{$\approx$\xspace}
+\newcommand{\mergedot}{$\circ$}
+
+% matched brackets
+\newcommand{\setof}[1]{\{#1\}}
+\newcommand{\tuple}[1]{$\langle$#1$\rangle$}
+
+% syntactic categories
+\newcommand{\emptyD}{\zero{}\sub{D}\xspace}
+\newcommand{\emptyT}{\zero{}\sub{T}\xspace}
+\newcommand{\lv}{\textit{\rmfamily v}\xspace}
+\newcommand{\lvb}{\textit{\rmfamily v}$'$\xspace}
+\newcommand{\lvp}{\textit{\rmfamily v}P\xspace}
+\newcommand{\Tpast}{\textsc{past}\sub{T}\xspace}
+\newcommand{\Tpres}{\textsc{pres}\sub{T}\xspace}
+
+% formal grammars
+\newcommand{\ledge}{\ensuremath{\rtimes}}
+\newcommand{\redge}{\ensuremath{\ltimes}}
+\newcommand{\tedge}{\ensuremath{\dtimes}}
+\newcommand{\bedge}{\ensuremath{\utimes}}
+
+\newcommand{\pdom}{\triangleleft^+}
+\newcommand{\rdom}{\triangleleft^*}
+\newcommand{\tiermother}{\triangleleft_T}
+\newcommand{\tierprec}{\prec_T}
+
+\newcommand{\slot}{$\Box$}

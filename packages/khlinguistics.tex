@@ -1,0 +1,71 @@
+%!TeX program=pdflatex
+
+\documentclass{kharticle}
+\usepackage{newtx}
+
+\usepackage{parskip}
+\usepackage[small]{titlesec}
+\usepackage[listings]{tcolorbox}
+
+\usepackage{khlinguistics}
+
+\newtcblisting{examplebox}{%
+    sidebyside,
+    text and listing,
+    colframe=black,
+    colback=white,
+    boxrule=\fboxrule}
+
+\title{Test document for \texttt{khlinguistics.sty}}
+
+\begin{document}
+
+\maketitle
+
+\section{Brackets}
+
+\begin{examplebox}
+\anglebr{cat} \{abc\} [abc] (abc)
+\end{examplebox}
+
+\begin{examplebox}
+\bigsqbr{aaa,bbb,ccc}
+\bigcurlybr{aaa,bbb,ccc}
+\end{examplebox}
+
+
+\section{Phonology}
+
+\begin{examplebox}
+\ur{kat} \par
+\sr{k$^\text{h}$at}
+\end{examplebox}
+
+
+\section{Syntax}
+
+\begin{examplebox}
+\psbr{\psbr{The cat} \psbr{is \psbr{very fat}}}
+\end{examplebox}
+
+\begin{examplebox}
+\psbr[NP]{The cat} is \psbr[AP]{very fat}
+\end{examplebox}
+
+
+\section{Semantics}
+
+\begin{examplebox}
+\semtype{a, \semtype{b, c}} \par
+\semet \par
+\semeet \par
+\semett \par
+\semetet
+\end{examplebox}
+
+\begin{examplebox}
+\denot{cat}
+\denot[w]{cat}
+\end{examplebox}
+
+\end{document}

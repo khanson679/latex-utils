@@ -1,0 +1,75 @@
+\documentclass[12pt]{khplain}
+\geometry{margin=1in}
+
+\usepackage{khcolor}
+\usepackage{newtx}
+\usepackage{pgffor}
+\usepackage{parskip}
+\usepackage[tiny,compact]{titlesec}
+\title{Test Document for \texttt{khcolor.sty}}
+
+\begin{document}
+
+\maketitle
+
+\begin{testcolors}[cmyk]
+	\testcolor{magenta}
+	\testcolor{red}
+	\testcolor{redorange}
+	\testcolor{orange}
+	\testcolor{gold}
+	\testcolor{yellow}
+	\testcolor{lime}
+	\testcolor{green}
+	\testcolor{teal}
+	\testcolor{cyan}
+	\testcolor{azure}
+	\testcolor{blue}
+	\testcolor{blueviolet}
+	\testcolor{violet}
+	\testcolor{purple}
+	\testcolor{pink}
+	\testcolor{brown}
+	\testcolor{olive}
+	\testcolor{black}
+	\testcolor{darkgray}
+	\testcolor{gray}
+	\testcolor{lightgray}
+\end{testcolors}
+
+\bigskip
+
+\newcommand{\colorlist}{%
+	magenta,red,orange,gold,yellow,lime,%
+	green,teal,cyan,blue,violet,purple}
+
+\newcommand{\cboxstrut}{\rule[-0.15\baselineskip]{0pt}{\dimexpr\baselineskip-3pt}}
+
+\section*{Colored text}
+
+\foreach \c in \colorlist {%
+	\textcolor{\c}{\sffamily\bfseries \c} }
+
+\section*{Colored text, darkened 15\%}
+
+\foreach \c in \colorlist {%
+	\textcolor{\c!85!black}{\sffamily\bfseries \c} }
+
+\section*{Colored text background}
+
+\foreach \c in \colorlist {%
+	\colorbox{\c}{\cboxstrut \color{white}\sffamily\bfseries \c} }
+
+\section*{Colored text background, lightened 70\%}
+
+\foreach \c in \colorlist {%
+	\colorbox{\c!30}{\cboxstrut \sffamily\bfseries \c} }
+
+\section*{Colored frame}
+
+\foreach \c in \colorlist {%
+	\setlength{\fboxsep}{1pt}%
+	\setlength{\fboxrule}{1pt}%
+	\fcolorbox{\c}{white}{\,\cboxstrut\sffamily\c\,} }
+
+\end{document}

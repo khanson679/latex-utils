@@ -1,0 +1,19 @@
+\documentclass{kharticle}
+\usepackage{khphonorule}
+\usepackage{newtx}
+\usepackage{gb4e}
+
+\title{Test Document for \texttt{khphonorule.sty}}
+
+\begin{document}
+
+\maketitle
+
+\begin{exe}
+\ex \phonorule{x}{y}
+\ex \phonorulec{x}{y}{z \phold w}
+\ex x \parrow y \penv z \phold w
+\ex x \parrow y \penv \oneof{a \phold b \\ c \phold d}
+\end{exe}
+
+\end{document}

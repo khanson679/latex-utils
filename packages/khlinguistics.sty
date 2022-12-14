@@ -1,0 +1,107 @@
+% khling.sty
+% Macros for linguistics
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{khlinguistics}
+
+\RequirePackage{xspace}   % adds a space except when preceded by punctuation.
+\RequirePackage{amsmath}
+%\RequirePackage{amssymb}
+\RequirePackage[only,llbracket,rrbracket]{stmaryrd} % for double brackets
+\RequirePackage{etoolbox}
+
+% fix for recent version of Latex
+% see https://tex.stackexchange.com/questions/364163/incompatibility-between-siunitx-and-gb4e
+%\def\new@fontshape{}
+%\RequirePackage{gb4e}
+
+%
+% Symbols
+%
+
+%\renewcommand{\emptyset}{$\varnothing$}
+%\newcommand{\rarrow}{$\rightarrow$\xspace}
+%\newcommand{\longunder}{\textunderscore\textunderscore\space}
+
+%
+% Trace command
+%
+
+
+%
+% gb4e shortcuts
+%
+
+%% Make a single automatically numbered gb4e example
+%\newcommand*{\gbex}[1]{\begin{exe}\ex{#1}\end{exe}}
+%
+%% Make a single manually numbered gb4e example
+%\newcommand*{\gbexi}[2][]{\begin{exe}\exi{#1}{#2}\end{exe}}
+%
+%% Put square brackets around some text
+%% with an optional label on the left bracket
+%\newcommand*{\gbr}[2][]{\lb{#1} #2 \rb{}}
+
+%
+% Bracket shortcuts
+%
+
+% Add angle brackets around argument
+\newcommand{\anglebr}[1]{$\langle$#1$\rangle$}
+\newcommand{\dblsqbr}[1]{$\llbracket$#1$\rrbracket$}
+
+%
+% Big brackets
+%
+% Create single column array in big brackets from a
+% comma-separated list
+%
+
+\newcommand*{\textmatrixline}[1]{\text{#1}\\}
+
+\newcommand*{\bigsqbr}[1]{%
+  \(%
+    \begin{matrix}%
+      \forcsvlist{\textmatrixline}{#1}%
+    \end{bmatrix}%
+  \)%
+}
+
+\newcommand*{\bigcurlybr}[1]{%
+  \(%
+    \begin{Bmatrix}%
+      \forcsvlist{\textmatrixline}{#1}%
+    \end{Bmatrix}%
+  \)%
+}
+
+
+%
+% Phonology
+%
+
+\newcommand{\ur}[1]{/#1/}
+\newcommand{\sr}[1]{[#1]}
+
+%
+% Syntax
+%
+
+% PS brackets with optional labels
+\newcommand{\sqbr}[2][]{[$_{\text{\tiny #1}}$\hspace{.08em}#2\hspace{.08em}]}
+
+% Properly formatted trace with an optional index
+\newcommand*{\tr}[1][]{\textit{t}\textsubscript{#1}\xspace}
+
+%
+% Semantics
+%
+
+\newcommand{\semtype}[1]{\ensuremath{\langle#1\rangle}}
+\newcommand{\semet}{\semtype{e,t}}
+\newcommand{\semeet}{\semtype{e,\semtype{e,t}}}
+\newcommand{\semett}{\semtype{\semtype{e,t},t}}
+\newcommand{\semetet}{\semtype{\semtype{e,t},\semtype{e,t}}}
+
+\newcommand{\denot}[2][]{\dblsqbr{#2}$^{#1}$}
