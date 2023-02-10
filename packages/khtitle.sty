@@ -8,12 +8,14 @@
 \newcommand{\@titlesize}{\LARGE}
 \newcommand{\@pretitlesize}{\large}
 \newcommand{\@subtitlesize}{\large}
+\newcommand{\@keywordsize}{\large}
 \newcommand{\@authorsize}{\large}
 \newcommand{\@datesize}{\large}
 
 \newcommand{\@titleweight}{\mdseries}
 \newcommand{\@pretitleweight}{\mdseries}
 \newcommand{\@subtitleweight}{\mdseries}
+\newcommand{\@keywordweight}{\mdseries}
 \newcommand{\@authorweight}{\mdseries}
 \newcommand{\@dateweight}{\mdseries}
 
@@ -41,6 +43,7 @@
 	\renewcommand{\@titlesize}{\Large}
 	\renewcommand{\@pretitlesize}{\normalsize}
 	\renewcommand{\@subtitlesize}{\normalsize}
+	\renewcommand{\@keywordsize}{\normalsize}
 	\renewcommand{\@authorsize}{\normalsize}
 	\renewcommand{\@datesize}{\normalsize}
 	\renewcommand{\@titlespread}{0.95}
@@ -50,6 +53,7 @@
 	\renewcommand{\@titleweight}{\bfseries}
 	\renewcommand{\@pretitlesize}{\normalsize}
 	\renewcommand{\@subtitlesize}{\normalsize}
+	\renewcommand{\@keywordsize}{\normalsize}
 	\renewcommand{\@authorsize}{\normalsize}
 	\renewcommand{\@datesize}{\normalsize}
 	\renewcommand{\@titlespread}{1.0}
@@ -92,6 +96,9 @@
 % Add support for "short title" for use in header/footer/etc.
 \newcommand{\shorttitle}[1]{\def\@shorttitle{#1}}
 
+% Add support for keywords
+\newcommand{\keywords}[1]{\def\@keywords{#1}}
+
 
 % Access commands
 
@@ -128,7 +135,8 @@
 % \titleblock
 % Print the title, subtitle, author, and date, omitting the latter three if empty
 
-\newcommand{\titleblock}{{%
+\newcommand{\titleblock}{%
+	\begingroup
 	\centering
 	\setlength{\parskip}{\@titleblocksep}
 	\ifdefvoid{\@pretitle}{}{\@formatpretitle}
@@ -137,7 +145,9 @@
 	\ifdefvoid{\@author}{}{\@formatauthor}
 	\ifdefvoid{\@email}{}{\@formatemail}
 	\ifdefvoid{\@date}{}{\@formatdate}
-}}
+	\ifdefvoid{\@keywords}{}{\@formatkeywords}
+	\endgroup
+}
 
 \newcommand{\@formatpretitle}{%
 	{\@pretitlesize\@pretitleweight\@pretitle \par}}
@@ -146,6 +156,8 @@
 	\vspace{\@posttitleadjust}}
 \newcommand{\@formatsubtitle}{%
 	{\@subtitlesize\@subtitleweight\@subtitle \par}}
+\newcommand{\@formatkeywords}{%
+	{Keywords: \@keywordsize\@keywordweight\@keywords \par}}
 \newcommand{\@formatauthor}{%
 	{\@authorsize\@authorweight\@author \par}}
 \newcommand{\@formatemail}{%
