@@ -216,20 +216,20 @@
 % Misc. adjustments
 
 % preserve paragraph indentation and spacing in minipage
-\let\oldminipage\minipage
-\let\endoldminipage\endminipage
-\newlength{\currparskip}
-\newlength{\currparindent}
-\renewenvironment{minipage}{%
-    \setlength{\currparskip}{\parskip}
-    \setlength{\currparindent}{\parindent}
-    \newcommand{\@minipagerestore}{%
-        \setlength{\parskip}{\currparskip}
-        \setlength{\parindent}{\currparindent}
-    }%
-    \begin{oldminipage}%
-%    \setlength{\parskip}{\currparskip}
-%    \setlength{\parindent}{\currparindent}
-}{%
-    \end{oldminipage}%
-}
+%\let\oldminipage\minipage
+%\let\endoldminipage\endminipage
+%\newlength{\currparskip}
+%\newlength{\currparindent}
+%\renewenvironment{minipage}{%
+%    \setlength{\currparskip}{\parskip}
+%    \setlength{\currparindent}{\parindent}
+%    \newcommand{\@minipagerestore}{%
+%        \setlength{\parskip}{\currparskip}
+%        \setlength{\parindent}{\currparindent}
+%    }%
+%    \begin{oldminipage}%
+%%    \setlength{\parskip}{\currparskip}
+%%    \setlength{\parindent}{\currparindent}
+%}{%
+%    \end{oldminipage}%
+%}
