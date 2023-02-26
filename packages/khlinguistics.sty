@@ -62,7 +62,7 @@
 
 \newcommand*{\bigsqbr}[1]{%
   \(%
-    \begin{matrix}%
+    \begin{bmatrix}%
       \forcsvlist{\textmatrixline}{#1}%
     \end{bmatrix}%
   \)%
@@ -89,7 +89,7 @@
 %
 
 % PS brackets with optional labels
-\newcommand{\sqbr}[2][]{[$_{\text{\tiny #1}}$\hspace{.08em}#2\hspace{.08em}]}
+\newcommand{\psbr}[2][]{[$_{\text{\tiny #1}}$\hspace{.08em}#2\hspace{.08em}]}
 
 % Properly formatted trace with an optional index
 \newcommand*{\tr}[1][]{\textit{t}\textsubscript{#1}\xspace}
