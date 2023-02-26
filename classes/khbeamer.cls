@@ -70,13 +70,22 @@
 \newcommand{\email}[1]{\def\@email{#1}}
 \newcommand{\insertemail}{\ifdefvoid{\@email}{}{\@email}}
 
+\newcommand{\website}[1]{\def\@website{#1}}
+\newcommand{\insertwebsite}{\ifdefvoid{\@website}{}{\@website}}
+
+\newcommand{\venue}[1]{\def\@venue{#1}}
+\newcommand{\insertvenue}{\ifdefvoid{\@venue}{}{\@venue}}
+
 \setbeamertemplate{title page}{%
     \centering
     \vspace{2em}
     {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\par\bigskip
-    \insertauthor\par
+    {\usebeamercolor[fg]{title}\insertsubtitle}\par
+    {\large\insertauthor}\par
     \insertemail\par
-    \insertinstitute\par\bigskip
-    \inserttitlegraphic\par\bigskip
+    \insertwebsite\par
+    \insertinstitute\par
+    \medskip\inserttitlegraphic\medskip\par
+    \insertvenue\par
     \insertdate\par
 }
