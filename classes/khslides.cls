@@ -11,8 +11,8 @@
 \PassOptionsToPackage{small}{titlesec}
 \RequirePackage{titlesec}
 
-\PassOptionsToPackage{small}{khtitle}
-\RequirePackage{khtitle}
+\PassOptionsToPackage{small}{khlatex}
+\RequirePackage{khlatex}
 \RequirePackage{khfontsize}
 \RequirePackage{khcolor}
 

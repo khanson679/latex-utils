@@ -5,11 +5,11 @@
 
 \DeclareOption{onecolumn}{%
 	\PassOptionsToPackage{small}{titlesec}
-	\PassOptionsToPackage{compact}{khtitle}
+	\PassOptionsToPackage{compact}{khlatex}
 }
 \DeclareOption{twocolumn}{%
 	\PassOptionsToPackage{tiny}{titlesec}
-	\PassOptionsToPackage{small,tight}{khtitle}
+	\PassOptionsToPackage{small,tight}{khlatex}
 	\setbool{twocolumn}{true}
 }
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{kharticle}}
@@ -17,6 +17,7 @@
 \ProcessOptions\relax
 
 \LoadClass{kharticle}
+\RequirePackage{khfontsize}
 \RequirePackage{titlesec}
 \RequirePackage{parskip}
 

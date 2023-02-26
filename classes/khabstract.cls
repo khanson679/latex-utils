@@ -10,7 +10,7 @@
 \ProcessOptions\relax
 
 \LoadClass{article}
-\RequirePackage{khtitle}
+\RequirePackage{khlatex}
 \RequirePackage{khfontsize}
 
 \PassOptionsToPackage{margin=1in}{geometry}
