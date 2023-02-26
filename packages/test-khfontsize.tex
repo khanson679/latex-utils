@@ -1,0 +1,33 @@
+\documentclass[a4paper,11pt]{kharticle}
+\usepackage{newtx}
+\usepackage{khfontsize}
+\usepackage{pgffor}
+%\usepackage{parskip}
+
+\makeatletter
+\newcommand{\thefontsize}{\f@size}
+\makeatother
+
+\newcommand{\testline}[1]{\noindent \csname#1\endcsname hello (#1 / \thefontsize pt)\par}
+
+
+\title{Test Document for `khfontsize.sty'}
+
+
+\begin{document}
+
+\maketitle
+
+\noindent
+Document font size: \thefontsize pt
+
+\bigskip
+
+\foreach \currsize in {
+    tiny, scriptsize, footnotesize, small, normalsize,
+    large, Large, LARGE, huge, Huge
+}{
+    \testline{\currsize}
+}
+
+\end{document}
