@@ -9,7 +9,7 @@ LATEX := latexmk -pdf -outdir=build -interaction=batchmode
 all: $(PDF)
 
 %.pdf : %.tex
-	$(LATEX) $<
+	$(LATEX) -c $<
 
 .PHONY: cleanaux
 cleanaux:
