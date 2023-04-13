@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{khbeamer}
 \RequirePackage{etoolbox}
+\RequirePackage{qrcode}
 \RequirePackage{khcolor}
 
 \newbool{fancyfoot}
@@ -76,6 +77,13 @@
 \newcommand{\venue}[1]{\def\@venue{#1}}
 \newcommand{\insertvenue}{\ifdefvoid{\@venue}{}{\@venue}}
 
+\newcommand{\filelink}[1]{\def\@filelink{#1}}
+\newcommand{\insertqrcode}{\ifdefvoid{\@filelink}{}{%
+    \hfill
+    \tikz[remember picture,overlay]{%
+        \node[xshift=-0.6in,yshift=0.6in] at (current page.south east)%
+            {\qrcode[hyperlink,height=0.75in]{\@filelink}};}}}
+
 \setbeamertemplate{title page}{%
     \centering
     \vspace{2em}
@@ -85,7 +93,16 @@
     \insertemail\par
     \insertwebsite\par
     \insertinstitute\par
-    \medskip\inserttitlegraphic\medskip\par
+    \medskip
+    \inserttitlegraphic\par
+    \medskip
     \insertvenue\par
     \insertdate\par
+    \insertqrcode
+}
+
+
+% section page
+\setbeamertemplate{section page}{%
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\insertsection}\par
 }
