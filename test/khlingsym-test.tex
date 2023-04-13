@@ -1,0 +1,66 @@
+%!TeX program=pdflatex
+
+\documentclass{kharticle}
+\usepackage{newtxtext}
+\usepackage{khlingsym}
+
+\usepackage{parskip}
+\usepackage[small]{titlesec}
+\usepackage[listings]{tcolorbox}
+
+\newtcblisting{examplebox}{%
+    sidebyside,
+    text and listing,
+    colframe=black,
+    colback=white,
+    boxrule=\fboxrule}
+
+\title{Test document for \texttt{khlinguistics.sty}}
+
+\begin{document}
+
+\maketitle
+
+\section{Symbol Shortcuts}
+
+\begin{examplebox}
+\larrow \rarrow \lrarrow \par
+\emptystr \zero \par
+\chkmark \xmark \par
+\ledge \redge \tedge \bedge \slot \par
+A B \gap D \par
+\setof{a,b,c} \par
+\tuple{1,2,3} \par
+\end{examplebox}
+
+\section{Syntax Shortcuts}
+
+\begin{examplebox}
+\emptyD \emptyT \par
+\lv \lvb \lvp \par
+\Tpast \Tpres
+\end{examplebox}
+
+\section{MGs}
+
+\begin{examplebox}
+\mgli{the}{+N -D} \par
+\mgfstr{+N -D} \par
+\mgflist{+N -D} \par
+X \mergedot Y \par
+\end{examplebox}
+
+\section{Math Symbols}
+
+\begin{examplebox}
+\begin{math}
+x \aeq y \\
+x \idom y \\
+x \pdom y \\
+x \rdom y \\
+x \tieridom y \\
+x \tierprec y
+\end{math}
+\end{examplebox}
+
+\end{document}
