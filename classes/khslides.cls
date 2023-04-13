@@ -65,31 +65,42 @@
 %\newcommand{\slide}[1]{\section{#1}\vspace{1em}}
 %\newcommand{\sectionbreak}{\clearpage} % requires titlesec
 
+\newenvironment{titleslide}{%
+    \setlength{\topskip}{0pt}
+    \vspace*{\fill}
+}{%
+    \vspace*{0pt plus 2fill}
+}
 
 \newenvironment{slide}[1]{%
 	\clearpage
-	{\large\bfseries #1}
+	{\large\bfseries #1 \par}
 %	\vspace{1em}
-	\vspace{\fill}
+	\vspace*{\fill}
 }{%
-	\vspace{\fill}
+	\vspace*{0pt plus 2fill} % Allocate more space to the bottom
 }
 
-\newenvironment{indentblock}{%
-\vspace{\parskip}
+%% Alias beamer "frame" environment
+%\newenvironment{frame}[1][]
+%{\begin{slide}{#1}}
+%{\end{slide}}
+
+\newenvironment{indentblock}[1][.25in]{%
+\par\medskip
 \hfill
-\begin{minipage}{\dimexpr\textwidth-.25in}
+\begin{minipage}{\dimexpr\textwidth-#1}
 }{%
 \end{minipage}
-\vspace{\parskip}
+\par\medskip
 }
 
-\newenvironment{centerblock}{%
-\vspace{\parskip}
-\begin{center}
-\begin{minipage}{\dimexpr\textwidth-.5in}
+\newenvironment{centerblock}[1][.9]{%
+\par\medskip
+\hfill
+\begin{minipage}{#1\textwidth}
 }{%
 \end{minipage}
-\end{center}
-\vspace{\parskip}
+\hfill
+\par\medskip
 }
