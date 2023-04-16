@@ -15,7 +15,7 @@
 \RequirePackage[only,llbracket,rrbracket]{stmaryrd} % double brackets
 \RequirePackage{pifont} % checkmark and x-mark symbols
 
-% load just \{l,r,u,d}times from mathdesign
+%% load just \{l,r,u,d}times from mathdesign
 \DeclareFontEncoding{MDA}{}{}
 \DeclareFontSubstitution{MDA}{cmr}{m}{n}
 \DeclareSymbolFont{mathdesignA}{MDA}{mdput}{m}{n}
@@ -26,74 +26,33 @@
 \DeclareMathSymbol{\utimes}{\mathbin}{mathdesignA}{"5E}
 \DeclareMathSymbol{\dtimes}{\mathbin}{mathdesignA}{"5F}
 
-
-% General symbols
+%% text symbols
 \newcommand{\emptystr}{$\varepsilon$\xspace}
 \newcommand{\zero}{$\varnothing$\xspace}
-\newcommand{\lrarrow}{$\leftrightarrow$\xspace}
-\newcommand{\larrow}{$\leftarrow$\xspace}
-\newcommand{\rarrow}{$\rightarrow$\xspace}
-%\newcommand{\gap}{\textunderscore\textunderscore\xspace}
-%\newcommand{\gap}{\underline{\hspace{1em}}\xspace}
 \newcommand{\gap}{\rule{1em}{.5pt}\xspace}
-
 \newcommand{\chkmark}{\ding{51}\xspace}
 \newcommand{\xmark}{\ding{55}\xspace}
 
-% MGs
-\newcommand{\mgli}[2]{#1 :: \texttt{#2}}
-\newcommand{\mgflist}[1]{$\langle$#1$\rangle$}
-\newcommand{\mgfstr}[1]{\texttt{#1}}
-\newcommand{\mergedot}{$\circ$\xspace}
+\newcommand{\lrarrow}{$\leftrightarrow$\xspace}
+\newcommand{\larrow}{$\leftarrow$\xspace}
+\newcommand{\rarrow}{$\rightarrow$\xspace}
 
-% matched brackets
+%% math symbols
+\renewcommand{\emptyset}{$\varnothing$}
+
+
+%
+% Brackets
+%
+
+%% matched brackets
 \newcommand{\setof}[1]{\{#1\}}
 \newcommand{\tuple}[1]{$\langle$#1$\rangle$}
-
-% syntactic categories
-\newcommand{\emptyD}{\zero{}$_{D}$\xspace}
-\newcommand{\emptyT}{\zero{}$_{T}$\xspace}
-\newcommand{\lv}{\textit{\rmfamily v}\xspace}
-\newcommand{\lvb}{\textit{\rmfamily v}$'$\xspace}
-\newcommand{\lvp}{\textit{\rmfamily v}P\xspace}
-\newcommand{\Tpast}{T$_\textsc{past}$\xspace}
-\newcommand{\Tpres}{T$_\textsc{pres}$\xspace}
-
-% formal grammars
-\newcommand{\ledge}{\ensuremath{\rtimes}}
-\newcommand{\redge}{\ensuremath{\ltimes}}
-\newcommand{\tedge}{\ensuremath{\dtimes}}
-\newcommand{\bedge}{\ensuremath{\utimes}}
-\newcommand{\slot}{\ensuremath{\Box}}
-
-% math shortcuts
-\renewcommand{\emptyset}{$\varnothing$}
-\newcommand{\aeq}{\approx}
-\newcommand{\idom}{\triangleleft}
-\newcommand{\pdom}{\triangleleft^+}
-\newcommand{\rdom}{\triangleleft^*}
-\newcommand{\tieridom}{\triangleleft_T}
-\newcommand{\tierprec}{\prec_T}
-
-%
-% Trace command
-%
-
-
-%
-% Bracket shortcuts
-%
-
-% Add angle brackets around argument
 \newcommand{\anglebr}[1]{$\langle$#1$\rangle$}
 \newcommand{\dblsqbr}[1]{$\llbracket$#1$\rrbracket$}
 
-%
-% Big brackets
-%
-% Create single column array in big brackets from a
-% comma-separated list
-%
+%% Big brackets -- create single column array
+%% from a comma-separated list
 
 \newcommand*{\textmatrixline}[1]{\text{#1}\\}
 
@@ -125,10 +84,19 @@
 % Syntax
 %
 
-% PS brackets with optional labels
-\newcommand{\psbr}[2][]{[$_{\text{\tiny #1}}$\hspace{.08em}#2\hspace{.08em}]}
+%% syntactic categories
+\newcommand{\emptyD}{\zero{}$_{D}$\xspace}
+\newcommand{\emptyT}{\zero{}$_{T}$\xspace}
+\newcommand{\lv}{\textit{\rmfamily v}\xspace}
+\newcommand{\lvb}{\textit{\rmfamily v}$'$\xspace}
+\newcommand{\lvp}{\textit{\rmfamily v}P\xspace}
+\newcommand{\Tpast}{T$_\textsc{past}$\xspace}
+\newcommand{\Tpres}{T$_\textsc{pres}$\xspace}
 
-% Properly formatted trace with an optional index
+%% PS brackets with optional labels
+\newcommand{\psbr}[2][]{$[_{\text{\tiny #1}}$\hspace{.08em}#2\hspace{.08em}$]$}
+
+%% Properly formatted trace with an optional index
 \newcommand*{\tr}[1][]{\textit{t}\textsubscript{#1}\xspace}
 
 %
@@ -136,9 +104,33 @@
 %
 
 \newcommand{\semtype}[1]{\ensuremath{\langle#1\rangle}}
-\newcommand{\semet}{\semtype{e,t}}
-\newcommand{\semeet}{\semtype{e,\semtype{e,t}}}
-\newcommand{\semett}{\semtype{\semtype{e,t},t}}
-\newcommand{\semetet}{\semtype{\semtype{e,t},\semtype{e,t}}}
+\newcommand{\typeet}{\semtype{e,t}}
+\newcommand{\typeeet}{\semtype{e,\semtype{e,t}}}
+\newcommand{\typeett}{\semtype{\semtype{e,t},t}}
+\newcommand{\typeetet}{\semtype{\semtype{e,t},\semtype{e,t}}}
 
 \newcommand{\denot}[2][]{\dblsqbr{#2}$^{#1}$}
+
+%
+% Mathling
+%
+
+%% tree node relations
+\newcommand{\idom}{\triangleleft}
+\newcommand{\pdom}{\triangleleft^+}
+\newcommand{\rdom}{\triangleleft^*}
+\newcommand{\tieridom}{\triangleleft_T}
+\newcommand{\tierprec}{\prec_T}
+
+%% tree elements
+\newcommand{\ledge}{\ensuremath{\rtimes}}
+\newcommand{\redge}{\ensuremath{\ltimes}}
+\newcommand{\tedge}{\ensuremath{\dtimes}}
+\newcommand{\bedge}{\ensuremath{\utimes}}
+\newcommand{\slot}{\ensuremath{\Box}}
+
+%% MGs
+\newcommand{\mgli}[2]{#1 :: \texttt{#2}}
+\newcommand{\mgflist}[1]{$\langle$#1$\rangle$}
+\newcommand{\mgfstr}[1]{\texttt{#1}}
+\newcommand{\mergedot}{$\circ$\xspace}
