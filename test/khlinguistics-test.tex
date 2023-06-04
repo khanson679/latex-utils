@@ -89,22 +89,32 @@ A B \gap D \par
 
 \section{Mathling}
 
+\subsection{Symbols in text or math mode}
+
+\begin{examplebox}
+    \ledge \redge \tedge \bedge \slot
+\end{examplebox}
+
+\subsection{Mathematical relations}
+
 \begin{examplebox}
 \begin{math}
+x \scsr y \\
+x \tierscsr y \\
+x \prec y \\
+x \tierprec y \\
 x \idom y \\
 x \pdom y \\
 x \rdom y \\
 x \tieridom y \\
-x \tierprec y
 \end{math}
 \end{examplebox}
 
 \begin{examplebox}
-\ledge \redge \tedge \bedge \slot \par
-\mgli{the}{+N -D} \par
-\mgfstr{+N -D} \par
-\mgflist{+N -D} \par
+\mgli{the}{\fsel{N} \fcat{D}} \par
+\mgflist{\fsel{N} \fcat{D}} \par
 X \mergedot Y \par
+X \movedot Y \par
 \end{examplebox}
 
 \end{document}

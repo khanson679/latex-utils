@@ -7,13 +7,18 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{xspace}
+\RequirePackage{xkeyval}
+
+%
+% Fonts
+%
+
 \RequirePackage{amsmath} % bmatrix, Bmatrix
-
-% load amssym only if needed -- other packages may provide these symbols
-\@ifundefined{varnothing}{\RequirePackage{amssymb}}{}
-
 \RequirePackage[only,llbracket,rrbracket]{stmaryrd} % double brackets
 \RequirePackage{pifont} % checkmark and x-mark symbols
+
+%% load amssym only if needed -- other packages may provide these symbols
+\@ifundefined{varnothing}{\RequirePackage{amssymb}}{}
 
 %% load just \{l,r,u,d}times from mathdesign
 \DeclareFontEncoding{MDA}{}{}
@@ -22,9 +27,12 @@
 \SetSymbolFont{mathdesignA}{bold}{MDA}{mdput}{b}{n}
 \DeclareMathSymbol{\ltimes}{\mathbin}{mathdesignA}{"6E}
 \DeclareMathSymbol{\rtimes}{\mathbin}{mathdesignA}{"6F}
-\DeclareMathSymbol{\udtimes}{\mathbin}{mathdesignA}{"5D}
 \DeclareMathSymbol{\utimes}{\mathbin}{mathdesignA}{"5E}
 \DeclareMathSymbol{\dtimes}{\mathbin}{mathdesignA}{"5F}
+
+%
+% Symbol shortcuts
+%
 
 %% text symbols
 \newcommand{\emptystr}{$\varepsilon$\xspace}
@@ -38,7 +46,7 @@
 \newcommand{\rarrow}{$\rightarrow$\xspace}
 
 %% math symbols
-\renewcommand{\emptyset}{$\varnothing$}
+\renewcommand{\emptyset}{\varnothing}
 
 
 %
@@ -115,13 +123,6 @@
 % Mathling
 %
 
-%% tree node relations
-\newcommand{\idom}{\triangleleft}
-\newcommand{\pdom}{\triangleleft^+}
-\newcommand{\rdom}{\triangleleft^*}
-\newcommand{\tieridom}{\triangleleft_T}
-\newcommand{\tierprec}{\prec_T}
-
 %% tree elements
 \newcommand{\ledge}{\ensuremath{\rtimes}}
 \newcommand{\redge}{\ensuremath{\ltimes}}
@@ -129,8 +130,46 @@
 \newcommand{\bedge}{\ensuremath{\utimes}}
 \newcommand{\slot}{\ensuremath{\Box}}
 
+%% model theory relations
+\newcommand{\scsr}{\triangleleft}
+\newcommand{\tierscsr}{\scsr_T}
+\newcommand{\tierprec}{\prec_T}
+
+\newcommand{\idom}{\triangleleft}
+\newcommand{\pdom}{\triangleleft^+}
+\newcommand{\rdom}{\triangleleft^*}
+\newcommand{\tieridom}{\triangleleft_T}
+
 %% MGs
-\newcommand{\mgli}[2]{#1 :: \texttt{#2}}
-\newcommand{\mgflist}[1]{$\langle$#1$\rangle$}
-\newcommand{\mgfstr}[1]{\texttt{#1}}
 \newcommand{\mergedot}{$\circ$\xspace}
+\newcommand{\movedot}{$\bullet$\xspace}
+\newcommand{\mglifont}{\normalfont}
+\newcommand{\mgli}[2]{{\mglifont #1 ::\ #2}}
+\newcommand{\mgfstr}[1]{{\mglifont #1}}
+\newcommand{\mgflist}[1]{$\langle$\mgfstr{#1}$\rangle$}
+
+%\newcommand{\fsel}[1]{#1$^+$}
+%\newcommand{\fcat}[1]{#1$^-$}
+%\newcommand{\flcr}[1]{#1$^+$}
+%\newcommand{\flce}[1]{#1$^-$}
+
+\define@choicekey*{khlinguistics}{mgfeatures}[\val\n]{classic,pmprefix,pmsuper}[pmprefix]{%
+    \ifcase\n
+        \providecommand{\fsel}[1]{$=$##1}
+        \providecommand{\fcat}[1]{##1}
+        \providecommand{\flcr}[1]{$+$##1}
+        \providecommand{\flce}[1]{$-$##1}
+    \or
+        \providecommand{\fsel}[1]{$+$##1}
+        \providecommand{\fcat}[1]{$-$##1}
+        \providecommand{\flcr}[1]{$+$##1}
+        \providecommand{\flce}[1]{$-$##1}
+    \or
+        \providecommand{\fsel}[1]{##1$^+$}
+        \providecommand{\fcat}[1]{##1$^-$}
+        \providecommand{\flcr}[1]{##1$^+$}
+        \providecommand{\flce}[1]{##1$^-$}
+    \fi
+}
+\presetkeys{khlinguistics}{mgfeatures}{}
+\ProcessOptionsX<khlinguistics>
