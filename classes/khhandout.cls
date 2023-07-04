@@ -17,7 +17,7 @@
 \ProcessOptions\relax
 
 \LoadClass{kharticle}
-\RequirePackage{khfontsize}
+% \RequirePackage{khfontsize}
 \RequirePackage{titlesec}
 \RequirePackage{parskip}
 

@@ -6,7 +6,7 @@
 
 \LoadClass{article}
 \RequirePackage{khlatex}
-\RequirePackage{khfontsize}
+% \RequirePackage{khfontsize}
 
 \PassOptionsToPackage{margin={1.5in,1in}}{geometry}
 \RequirePackage{geometry}

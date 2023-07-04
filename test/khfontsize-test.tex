@@ -1,8 +1,7 @@
-\documentclass[a4paper,11pt]{kharticle}
+\documentclass[11pt]{kharticle}
 \usepackage{newtx}
 \usepackage{khfontsize}
 \usepackage{pgffor}
-%\usepackage{parskip}
 
 \makeatletter
 \newcommand{\thefontsize}{\f@size}
@@ -11,7 +10,7 @@
 \newcommand{\testline}[1]{\noindent \csname#1\endcsname hello (#1 / \thefontsize pt)\par}
 
 
-\title{Test Document for `khfontsize.sty'}
+\title{Test Document for \texttt{khfontsize.sty}}
 
 
 \begin{document}
@@ -25,8 +24,7 @@ Document font size: \thefontsize pt
 
 \foreach \currsize in {
     tiny, scriptsize, footnotesize, small, normalsize,
-    large, Large, LARGE, huge, Huge
-}{
+    large, Large, LARGE, huge, Huge}{
     \testline{\currsize}
 }
 

@@ -5,7 +5,7 @@
 \ProcessOptions\relax
 
 \LoadClass{article}
-\RequirePackage{khfontsize}
+% \RequirePackage{khfontsize}
 
 \PassOptionsToPackage{compact}{khlatex}
 \RequirePackage{khlatex}

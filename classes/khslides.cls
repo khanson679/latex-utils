@@ -13,7 +13,7 @@
 
 \PassOptionsToPackage{small}{khlatex}
 \RequirePackage{khlatex}
-\RequirePackage{khfontsize}
+% \RequirePackage{khfontsize}
 \RequirePackage{khcolor}
 
 \RequirePackage{enumitem}

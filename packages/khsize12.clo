@@ -1,0 +1,46 @@
+\ProvidesFile{size12.clo}
+    [2023/07/03 v0.1 Adjustments to standard class font sizes.]
+
+%% See khfontsize.sty for details.
+
+\DeclareRobustCommand\normalsize{%
+    \@setfontsize\normalsize{12}{14.4}%
+    \abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
+    \abovedisplayshortskip \z@ \@plus3\p@
+    \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
+    \belowdisplayskip \abovedisplayskip
+    \let\@listi\@listI}
+\normalsize
+
+\DeclareRobustCommand\small{%
+    \@setfontsize\small{11}{13.2}%
+    \abovedisplayskip 11\p@ \@plus3\p@ \@minus6\p@
+    \abovedisplayshortskip \z@ \@plus3\p@
+    \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
+    \def\@listi{\leftmargin\leftmargini
+                \topsep 9\p@ \@plus3\p@ \@minus5\p@
+                \parsep 4.5\p@ \@plus2\p@ \@minus\p@
+                \itemsep \parsep}%
+    \belowdisplayskip \abovedisplayskip
+}
+
+\DeclareRobustCommand\footnotesize{%
+    \@setfontsize\footnotesize{10}{12}%
+    \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+    \abovedisplayshortskip \z@ \@plus3\p@
+    \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+    \def\@listi{\leftmargin\leftmargini
+                \topsep 6\p@ \@plus2\p@ \@minus2\p@
+                \parsep 3\p@ \@plus2\p@ \@minus\p@
+                \itemsep \parsep}%
+    \belowdisplayskip \abovedisplayskip
+}
+
+\DeclareRobustCommand\scriptsize{\@setfontsize\scriptsize{9}{10.8}}
+\DeclareRobustCommand\tiny{\@setfontsize\tiny{8}{9.6}}
+
+\DeclareRobustCommand\large{\@setfontsize\large{14.4}{17.3}}
+\DeclareRobustCommand\Large{\@setfontsize\Large{17.3}{20.7}}
+\DeclareRobustCommand\LARGE{\@setfontsize\LARGE{20.7}{24.9}}
+\DeclareRobustCommand\huge{\@setfontsize\huge{24.9}{29.9}}
+\DeclareRobustCommand\Huge{\@setfontsize\Huge{29.9}{35.8}}
