@@ -11,10 +11,13 @@
 
 \newcommand{\semph}[1]{\textbf{#1}}
 \newcommand{\demph}[1]{\textcolor{gray}{#1}}
+\newcommand{\parheading}[1]{\textbf{\structure{#1}}}
+%\newcommand{\blockheading}[1]{\unskip\medskip\textbf{\structure{#1}}\par}
 
-\newcommand<>{\hl}[1]{\textcolor#2{hl}{#1}}
-\newcommand<>{\hla}[1]{\textcolor#2{hla}{#1}}
-\newcommand<>{\hlb}[1]{\textcolor#2{hlb}{#1}}
-\newcommand<>{\hlc}[1]{\textcolor#2{hlc}{#1}}
-\newcommand<>{\hld}[1]{\textcolor#2{hld}{#1}}
-\newcommand<>{\hle}[1]{\textcolor#2{hle}{#1}}
+\newcommand{\hlfont}{\normalfont}
+\newcommand<>{\hl}[1]{\textcolor#2{hl}{\hlfont #1}}
+\newcommand<>{\hla}[1]{\textcolor#2{hla}{\hlfont #1}}
+\newcommand<>{\hlb}[1]{\textcolor#2{hlb}{\hlfont #1}}
+\newcommand<>{\hlc}[1]{\textcolor#2{hlc}{\hlfont #1}}
+\newcommand<>{\hld}[1]{\textcolor#2{hld}{\hlfont #1}}
+\newcommand<>{\hle}[1]{\textcolor#2{hle}{\hlfont #1}}

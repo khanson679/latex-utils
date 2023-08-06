@@ -27,11 +27,26 @@
 
 % Beamer text formatting
 \setbeamercolor{alerted text}{fg=hl}
-%\setbeamerfont{block title}{series=\bfseries}
+\setbeamerfont{block title}{size=\normalsize}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{itemize items}[circle]
 \setbeamertemplate{bibliography item}{} % remove icon
 \setbeamercolor{bibliography entry note}{fg=darkgray}
+
+% Overwrite Beamer list formatting
+\def\@listi{\leftmargin\leftmargini
+            \topsep 3\p@ \@plus2\p@ \@minus2.5\p@
+            \parsep 0\p@
+            \itemsep4\p@ \@plus2\p@ \@minus3\p@}
+\let\@listI\@listi
+\def\@listii{\leftmargin\leftmarginii
+              \topsep    2\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@   \@plus\p@
+              \itemsep   2pt}
+\def\@listiii{\leftmargin\leftmarginiii
+              \topsep    2\p@ \@plus1\p@ \@minus2\p@
+              \parsep    0\p@   \@plus\p@
+              \itemsep   2pt}
 
 % Beamer frame formatting
 \setbeamertemplate{frametitle continuation}[from second][(\insertcontinuationcount)]
