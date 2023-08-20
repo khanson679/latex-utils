@@ -1,0 +1,25 @@
+\ProvidesPackage{khbiblatex}
+
+\newif{\@useampersand}
+\newif{\@shortbib}
+\DeclareOption{ampersand}{\@useampersandtrue}
+\DeclareOption{shortbib}{\@shortbibtrue}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{biblatex}}
+\ProcessOptions\relax
+\RequirePackage{biblatex}
+
+% make \citeyear and \citeyearpar into links
+\ifhyperref{
+    \DeclareCiteCommand{\citeyear}
+        {}{\bibhyperref{\printdate}}{\multicitedelim}{}
+    \DeclareCiteCommand{\citeyearpar}
+        {}{\mkbibparens{\bibhyperref{\printdate}}}{\multicitedelim}{}
+}{}
+
+% replace "and" with "&" in citations
+\if@useampersand
+    \DeclareDelimFormat[textcite,parencite]{finalnamedelim}{%
+        \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+        \addspace\&\space}
+\else
+\fi
