@@ -20,7 +20,7 @@
 \RequirePackage{khbeamertools}
 
 % Basic formatting
-\setlength{\parskip}{.5\baselineskip plus 2pt}
+\setlength{\parskip}{.5\baselineskip plus 2pt minus 2pt}
 
 % Beamer color settings
 \usecolortheme{pine}

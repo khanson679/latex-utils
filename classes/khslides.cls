@@ -1,23 +1,26 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{khsimpleslides}
+\ProvidesClass{khslides}
 
-\LoadClass{extarticle}
+\LoadClass{article}
+\RequirePackage{khlatex}
+\RequirePackage{khcolor}
+\RequirePackage{graphicx}
 
 \PassOptionsToPackage{papersize={128mm,96mm},margin=6mm,footskip=4mm}{geometry}
 \RequirePackage{geometry}
 
-\RequirePackage[skip=.5\baselineskip plus 2pt]{parskip}
+\RequirePackage[skip=.5\baselineskip plus 2pt minus 2pt]{parskip}
 
 \PassOptionsToPackage{small}{titlesec}
 \RequirePackage{titlesec}
 
-\PassOptionsToPackage{small}{khlatex}
-\RequirePackage{khlatex}
-% \RequirePackage{khfontsize}
-\RequirePackage{khcolor}
-
 \RequirePackage{enumitem}
-\setlist{topsep=.5\baselineskip}
+\setlist{
+    partopsep=0pt,
+    topsep=.25\baselineskip plus 2pt minus 2pt,
+    itemsep=.25\baselineskip plus 2pt minus 2pt,
+    parsep=0pt
+}
 \SetEnumitemKey{compact}{noitemsep}
 %\setlist{itemsep=.25\baselineskip,parsep=.25\baselineskip plus 2pt}
 
@@ -28,11 +31,11 @@
 
 \RequirePackage{fancyhdr}
 \AtBeginDocument{
-	\renewcommand{\headrulewidth}{0pt}
-	\pagestyle{fancy}
-	\fancyhead{}
-	\fancyfoot{}
-	\fancyfoot[r]{\tiny\thepage}
+%    \renewcommand{\headrulewidth}{0pt}
+    \pagestyle{fancy}
+    \fancyhead{}
+    \fancyfoot{}
+    \fancyfoot[r]{\tiny\thepage}
 }
 
 % Text markup
@@ -56,9 +59,46 @@
 
 
 % Title page
-
+\newcommand{\@titlegraphic}{}
 \newcommand{\titlegraphic}[1]{\def\@titlegraphic{#1}}
 
+\newcommand{\@titlefmt}{\LARGE}
+\newcommand{\@pretitlefmt}{\Large}
+\newcommand{\@subtitlefmt}{\Large}
+\newcommand{\@keywordfmt}{\large}
+\newcommand{\@authorfmt}{\large}
+\newcommand{\@emailfmt}{\normalsize\ttfamily}
+\newcommand{\@datefmt}{\large}
+
+\newlength{\@titleblocksep}
+\setlength{\@titleblocksep}{1em}
+\newlength{\@titleblocktmargin}
+\setlength{\@titleblocktmargin}{2em}
+\newlength{\@titleblockbmargin}
+\setlength{\@titleblockbmargin}{1.5em}
+
+\renewcommand{\maketitle}{%
+    \begingroup%
+    \setlength{\topskip}{0pt}%
+    \vspace*{0pt}%
+    \addvspace{\@titleblocktmargin}%
+    \begin{center}%
+        \centering%
+        {\@titlefmt \@title\par}%
+        \addvspace{\@titleblocksep}
+        \ifdefvoid{\@subtitle}{}{{\@subtitlefmt \@subtitle\par}}%
+        \addvspace{\@titleblocksep}
+        \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}%
+        \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}%
+        \addvspace{\@titleblocksep}
+        \ifdefvoid{\@titlegraphic}{}{\@titlegraphic \par}%
+        \addvspace{\@titleblocksep}
+        \ifdefvoid{\@date}{}{{\@datefmt \@date \par}}%
+        \unskip
+    \end{center}%
+    \addvspace{\@titleblockbmargin}%
+    \endgroup%
+}
 
 % Structure
 
@@ -73,12 +113,12 @@
 }
 
 \newenvironment{slide}[1]{%
-	\clearpage
-	{\large\bfseries #1 \par}
-%	\vspace{1em}
-	\vspace*{\fill}
+    \clearpage
+    {\large\bfseries #1 \par}
+%    \vspace{1em}
+    \vspace*{\fill}
 }{%
-	\vspace*{0pt plus 2fill} % Allocate more space to the bottom
+    \vspace*{0pt plus 2fill} % Allocate more space to the bottom
 }
 
 %% Alias beamer "frame" environment

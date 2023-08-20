@@ -1,17 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{khplain}
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{kharticle}}
 \ProcessOptions\relax
 
-\LoadClass{article}
-% \RequirePackage{khfontsize}
+\LoadClass{kharticle}
 
-\PassOptionsToPackage{compact}{khlatex}
-\RequirePackage{khlatex}
+%% remove space before title
+\setlength{\@titleblocktmargin}{0em}
 
-\PassOptionsToPackage{margin={1.5in,1in}}{geometry}
-\RequirePackage{geometry}
-
-% Compact title
-%\renewcommand{\maketitle}{\titleblock \vspace*{2em}}
+%% reduce margins
+\switchcase{\@basefontsize}{
+    {10}{\setlength{\@hmargin}{1.5in}}
+    {11}{\setlength{\@hmargin}{1.25in}}
+    {12}{\setlength{\@hmargin}{1in}}}
+\geometry{vmargin=1in,hmargin=\@hmargin}

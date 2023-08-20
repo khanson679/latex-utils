@@ -11,49 +11,46 @@
 
 \LoadClass{article}
 \RequirePackage{khlatex}
-\RequirePackage{khfontsize}
-
-\PassOptionsToPackage{margin=1in}{geometry}
 \RequirePackage{geometry}
-
+\geometry{margin=1in}
 \PassOptionsToPackage{tiny,compact}{titlesec}
 \usepackage{titlesec}
 
-% title formatting
-\renewcommand{\@titlesize}{\normalsize}
-\renewcommand{\@titleweight}{\bfseries}
-\renewcommand{\@pretitlesize}{\normalsize}
-\renewcommand{\@subtitlesize}{\normalsize}
-\renewcommand{\@keywordsize}{\normalsize}
-\renewcommand{\@authorsize}{\normalsize}
-\renewcommand{\@datesize}{\normalsize}
-
-\renewcommand{\@titlespread}{1.0}
-\setlength{\@posttitleadjust}{0em}
-\renewcommand{\@titleblocksep}{0em}
+%% title formatting
+\newcommand{\@titlefmt}{\normalsize\bfseries}
+\newcommand{\@keywordfmt}{\normalsize}
+\newcommand{\@authorfmt}{\normalsize}
+\newcommand{\@emailfmt}{\small\ttfamily}
+\newcommand{\@datefmt}{\normalsize}
+\newcommand{\@titleblocksep}{0.2em}
+\newlength{\@titleblocktmargin}
 \setlength{\@titleblocktmargin}{0em}
+\newlength{\@titleblockbmargin}
 \setlength{\@titleblockbmargin}{0em}
 
 \ifbool{compact}{
-	% inline section headings
-	\titleformat{\section}[runin]{\normalfont\bfseries}{\thesection.}{3pt}{}[\;]
+    % no space in title
+    \renewcommand{\@titleblocksep}{0em}
+    % inline section headings
+    \titleformat{\section}[runin]{\normalfont\bfseries}{\thesection.}{3pt}{}[\;]
 }{}
 
-% title block formatting
+%% title block formatting
 \renewcommand{\maketitle}{%
-	\begingroup
-	\setlength{\topskip}{0mm} % \prevent spurious space when \@titleblocktmargin is 0pt
-	\vspace*{\@titleblocktmargin}
-	\centering
-	\setlength{\parskip}{\@titleblocksep}
-	\ifdefvoid{\@pretitle}{}{\@formatpretitle}
-	\@formattitle
-	\ifdefvoid{\@subtitle}{}{\@formatsubtitle}
-	\ifbool{anonymous}{}{
-		\ifdefvoid{\@author}{}{\@formatauthor}
-		\ifdefvoid{\@email}{}{\@formatemail}}
-	\ifdefvoid{\@date}{}{\@formatdate}
-	\ifdefvoid{\@keywords}{}{\@formatkeywords}
-	\vspace{\@titleblockbmargin}
-	\endgroup
+    \begingroup
+    \setlength{\topskip}{0pt} % \prevent spurious space when \@titleblocktmargin is 0pt
+    \setlength{\parskip}{0pt}
+    \vspace*{\@titleblocktmargin}
+    \centering
+    {{\@titlefmt \@title \par}}
+    \vspace*{\@titleblocksep}
+    \ifbool{anonymous}{}{
+        \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}
+        \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}}
+    \vspace*{\@titleblocksep}
+    \ifdefvoid{\@date}{}{{\@datefmt \@date \par}}
+    \vspace*{\@titleblocksep}
+    \ifdefvoid{\@keywords}{}{{\@keywordfmt \@keywords \par}}
+    \vspace*{\@titleblockbmargin}
+    \endgroup
 }

@@ -1,45 +1,79 @@
-\documentclass[11pt]{kharticle}
+\documentclass[10pt]{kharticle}
 \usepackage{newtx}
-
-\usepackage{showframe}
+\usepackage[T1]{fontenc}
+%\usepackage[big]{titlesec}
+\usepackage{lipsum}
+%\usepackage{showframe}
+% \usepackage{geometry}
+% \geometry{margin={1.5in,1in}}
 
 \title{Title}
-\shorttitle{Short Title}
+%\subtitle{Subtitle}
 \author{Author}
+\email{address@site.net}
 \date{Date}
 
 \begin{document}
-
 \maketitle
 
-Text at the top of the page. Text at the top of the page. Text at the top of the page.
+\begin{abstract}
+\lipsum[1][1-15]
+\end{abstract}
 
 \section{Section}
-Text after a heading.
+\textbf{Text after a section heading.}
+\lipsum[2-3]
+
+\section{Section}
+\textbf{Text after a section heading.}
+\lipsum[4][1-10]
 
 \subsection{Subsection}
-Text after a heading.
+\textbf{Text after a subsection heading.}
+\lipsum[5][1-10]
 
 \subsubsection{Subsubsection}
-Text after a heading.
+\textbf{Text after a subsubsection heading.}
+\lipsum[5][1-10]
+
+\paragraph{Paragraph}
+Text after a paragraph heading.
+\lipsum[5][1-10]
+
+\subparagraph{Subparagraph}
+Text after a subparagraph heading.
+\lipsum[5][1-10]
+\subparagraph{Subparagraph}
+Text after a subparagraph heading.
+\lipsum[5][1-10]
+
 
 \section{Section}
 \subsection{Subsection}
 \subsubsection{Subsubsection}
-Text after several headings.
+\textbf{Text after several headings.}
+\lipsum[6][1-10]
 
 \section{Font Sizes}
-\Huge xhuge
-\huge huge
-\LARGE xxlarge
-\Large xlarge
-\large large
-\normalsize normalsize
-\small small
-\footnotesize footnotesize
+Base font size: \makeatletter\f@size\makeatother pt
 
-\newpage
+\begingroup
+\setlength{\parindent}{0em}
+\Huge hello (xhuge)\par
+\huge hello (huge)\par
+\LARGE hello (xxlarge)\par
+\Large hello (xlarge)\par
+\large hello (large)\par
+\normalsize hello (normalsize)\par
+\small hello (small)\par
+\footnotesize hello (xsmall)\par
+\scriptsize hello (xxsmall)\par
+\tiny hello (tiny)\par
+\endgroup
 
-New page.
+\section{Page Dimensions}
+
+hmargin \fpeval{trunc((\paperwidth-\textwidth)/72/2,2)} \\
+vmargin \fpeval{trunc((\paperheight-\textheight)/72/2,2)}
 
 \end{document}
