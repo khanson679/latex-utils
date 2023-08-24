@@ -76,116 +76,6 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Title formatting
-
-%% Default formatting
-%\newcommand{\@titlefmt}{\LARGE}
-%\newcommand{\@pretitlefmt}{\large}
-%\newcommand{\@subtitlefmt}{\large}
-%\newcommand{\@keywordfmt}{\large}
-%\newcommand{\@authorfmt}{\large}
-%\newcommand{\@emailfmt}{\large\ttfamily}
-%\newcommand{\@datefmt}{\large}
-%
-%% space between items in title block
-%\newlength{\@titleblocksep}
-%\setlength{\@titleblocksep}{1em}
-%
-%% reduce linespread in title in larger sizes
-%\newcommand{\@titlespread}{0.9}
-%
-%% extra space after title, to balance large line height
-%\newlength{\@posttitleadjust}
-%\setlength{\@posttitleadjust}{0.3em}
-%
-%\newlength{\@titleblocktmargin}
-%\setlength{\@titleblocktmargin}{2em}
-%
-%\newlength{\@titleblockbmargin}
-%\setlength{\@titleblockbmargin}{1em}
-
-
-% Options to change defaults
-
-% \DeclareOption{small}{
-% 	\renewcommand{\@titlesize}{\Large}
-% 	\renewcommand{\@pretitlesize}{\normalsize}
-% 	\renewcommand{\@subtitlesize}{\normalsize}
-% 	\renewcommand{\@keywordsize}{\normalsize}
-% 	\renewcommand{\@authorsize}{\normalsize}
-% 	\renewcommand{\@datesize}{\normalsize}
-% 	\renewcommand{\@titlespread}{0.95}
-% 	\setlength{\@posttitleadjust}{0.2em}}
-% \DeclareOption{tiny}{
-% 	\renewcommand{\@titlesize}{\normalsize}
-% 	\renewcommand{\@titleweight}{\bfseries}
-% 	\renewcommand{\@pretitlesize}{\normalsize}
-% 	\renewcommand{\@subtitlesize}{\normalsize}
-% 	\renewcommand{\@keywordsize}{\normalsize}
-% 	\renewcommand{\@authorsize}{\normalsize}
-% 	\renewcommand{\@datesize}{\normalsize}
-% 	\renewcommand{\@titlespread}{1.0}
-% 	\setlength{\@posttitleadjust}{0em}}
-% \DeclareOption{compact}{
-% 	\setlength{\@titleblocksep}{0.4em}
-% 	\setlength{\@titleblocktmargin}{1em}
-% 	\setlength{\@titleblockbmargin}{1em}}
-% \DeclareOption{tight}{
-% 	\setlength{\@titleblocksep}{0.2em}
-% 	\setlength{\@titleblocktmargin}{1em}
-% 	\setlength{\@titleblockbmargin}{1em}}
-% \DeclareOption{nospace}{
-% 	\setlength{\@titleblocksep}{0em}
-% 	\setlength{\@titleblocktmargin}{0em}
-% 	\setlength{\@titleblockbmargin}{1em}}
-% \ProcessOptions\relax
-
-
-
-
-% \titleblock
-% Print the title, subtitle, author, and date, omitting the latter three if empty
-
-%\newcommand{\titleblock}{%
-%	\begingroup
-%	\centering
-%	\setlength{\parskip}{\@titleblocksep}
-%	\ifdefvoid{\@pretitle}{}{\@formatpretitle}
-%	\@formattitle
-%	\ifdefvoid{\@subtitle}{}{\@formatsubtitle}
-%	\ifdefvoid{\@author}{}{\@formatauthor}
-%	\ifdefvoid{\@email}{}{\@formatemail}
-%	\ifdefvoid{\@date}{}{\@formatdate}
-%	\ifdefvoid{\@keywords}{}{\@formatkeywords}
-%	\endgroup
-%}
-
-%\newcommand{\@formatpretitle}{%
-%	{\@pretitlesize\@pretitleweight\@pretitle \par}}
-%\newcommand{\@formattitle}{%
-%	{\@titlesize\linespread{\@titlespread}\@titleweight\@title \par}
-%	\vspace{\@posttitleadjust}}
-%\newcommand{\@formatsubtitle}{%
-%	{\@subtitlesize\@subtitleweight\@subtitle \par}}
-%\newcommand{\@formatkeywords}{%
-%	{Keywords: \@keywordsize\@keywordweight\@keywords \par}}
-%\newcommand{\@formatauthor}{%
-%	{\@authorsize\@authorweight\@author \par}}
-%\newcommand{\@formatemail}{%
-%	{\@authorsize\@authorweight\texttt\@email \par}}
-%\newcommand{\@formatdate}{%
-%	{\@datesize\@dateweight\@date \par}}
-
-
-% Overwrite \maketitle
-
-% \renewcommand{\maketitle}{%
-% 	\vspace*{\@titleblocktmargin}
-% 	\titleblock
-% 	\vspace{\@titleblockbmargin}
-% }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font sizes
 \newcommand{\xsmall}{\footnotesize}
 \newcommand{\xxsmall}{\scriptsize}
@@ -219,15 +109,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Helper commands
 
-%% \switchcase
-%% Usage:
-%% \switchcase{macro or string}
-%% {
-%%     {case1}{text1}
-%%     {case2}{text2}
-%%     ...
-%% }
-%% [default text]
+% \switchcase
+% Usage:
+% \switchcase{macro or string}
+% {
+%     {case1}{text1}
+%     {case2}{text2}
+%     ...
+% }
+% [default text]
 \ExplSyntaxOn
 \NewDocumentCommand{\switchcase}{mmO{}}
 {
