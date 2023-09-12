@@ -1,20 +1,22 @@
 \ProvidesPackage{khbiblatex}
 
-\newif{\@useampersand}
-\newif{\@shortbib}
+\newif{\if@useampersand}
+\newif{\if@shortbib}
+
 \DeclareOption{ampersand}{\@useampersandtrue}
 \DeclareOption{shortbib}{\@shortbibtrue}
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{biblatex}}
 \ProcessOptions\relax
+
 \RequirePackage{biblatex}
 
 % make \citeyear and \citeyearpar into links
-\ifhyperref{
-    \DeclareCiteCommand{\citeyear}
-        {}{\bibhyperref{\printdate}}{\multicitedelim}{}
-    \DeclareCiteCommand{\citeyearpar}
-        {}{\mkbibparens{\bibhyperref{\printdate}}}{\multicitedelim}{}
-}{}
+%\ifhyperref{
+%    \DeclareCiteCommand{\citeyear}
+%        {}{\bibhyperref{\printdate}}{\multicitedelim}{}
+%    \DeclareCiteCommand{\citeyearpar}
+%        {}{\mkbibparens{\bibhyperref{\printdate}}}{\multicitedelim}{}
+%}{}
 
 % replace "and" with "&" in citations
 \if@useampersand
@@ -23,3 +25,29 @@
         \addspace\&\space}
 \else
 \fi
+
+% short references
+\if@shortbib
+    \AtEveryBibitem{%
+        \clearname{editor}%
+        \clearlist{publisher}%
+        \clearlist{location}%
+        \clearfield{isbn}%
+        \clearfield{pages}%
+    }
+\else
+\fi
+
+% only print one of {doi, eprint, url}
+\renewbibmacro*{doi+eprint+url}{%
+    \iftoggle{bbx:doi}
+    {\iffieldundef{url}{\printfield{doi}}{}}
+    {}%
+    \newunit\newblock
+    \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}
+    {}%
+    \newunit\newblock
+    \iftoggle{bbx:url}
+    {\usebibmacro{url+urldate}}
+    {}}
