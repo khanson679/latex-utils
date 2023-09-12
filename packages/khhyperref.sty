@@ -1,0 +1,13 @@
+\ProvidesPackage{khhyperref}
+
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{colorlinks=true,allcolors=blue}{hyperref}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{hyperref}}
+\ProcessOptions\relax
+
+\RequirePackage{etoolbox}
+\RequirePackage{khcolor}
+\AtEndPreamble{\RequirePackage{hyperref}} % Important: not \AtBeginDocument
+
+%% proper link for email address
+\newcommand{\mailurl}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
