@@ -38,11 +38,11 @@
 %% title block formatting
 \renewcommand{\maketitle}{%
     \begingroup
-    \setlength{\topskip}{0pt} % \prevent spurious space when \@titleblocktmargin is 0pt
+    \setlength{\topskip}{0pt} % prevent spurious space when \@titleblocktmargin is 0pt
     \setlength{\parskip}{0pt}
     \vspace*{\@titleblocktmargin}
     \centering
-    {{\@titlefmt \@title \par}}
+    {\@titlefmt \@title \par}
     \vspace*{\@titleblocksep}
     \ifbool{anonymous}{}{
         \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}
