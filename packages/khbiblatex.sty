@@ -2,9 +2,11 @@
 
 \newif{\if@useampersand}
 \newif{\if@shortbib}
+\newif{\if@inlinebib}
 
 \DeclareOption{ampersand}{\@useampersandtrue}
 \DeclareOption{shortbib}{\@shortbibtrue}
+\DeclareOption{inlinebib}{\@inlinebibtrue\PassOptionsToPackage{dashed=false}{biblatex}}
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{biblatex}}
 \ProcessOptions\relax
 
@@ -34,7 +36,28 @@
         \clearlist{location}%
         \clearfield{isbn}%
         \clearfield{pages}%
+        \clearfield{url}%
+        \clearfield{doi}%
     }
+\else
+\fi
+
+% single paragraph bibliography
+\if@inlinebib
+\DeclareNameWrapperFormat{sortname}{\mkbibbold{#1}}
+\renewcommand{\bibfont}{\footnotesize}
+
+\defbibenvironment{bibliography}{%
+    \newtoggle{firstentry}
+    \toggletrue{firstentry}
+    \newcommand{\bibentry}{%
+        \iftoggle{firstentry}
+        {\global\togglefalse{firstentry}}
+        {\space\textbullet\space}}
+}{\endgraf}{
+    \iftoggle{firstentry}
+    {\global\togglefalse{firstentry}}
+    {\textbullet\space}}
 \else
 \fi
 
