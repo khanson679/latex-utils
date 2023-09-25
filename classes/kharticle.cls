@@ -19,7 +19,9 @@
 
 %% Quick settings for title and headings
 \newbool{small}
+\newbool{tiny}
 \newbool{compact}
+\DeclareVoidOption{tiny}{\setbool{tiny}{true}}
 \DeclareVoidOption{small}{\setbool{small}{true}}
 \DeclareVoidOption{compact}{\setbool{compact}{true}}
 
@@ -90,6 +92,10 @@
     \PassOptionsToPackage{small}{titlesec}
     \RequirePackage{titlesec}
 }{}
+\ifbool{tiny}{
+    \PassOptionsToPackage{tiny}{titlesec}
+    \RequirePackage{titlesec}
+}{}
 \ifbool{compact}{
     \RequirePackage{titlesec}
     \titlespacing*{\section}{0pt}{3ex plus 1ex minus .2ex}{1.5ex plus .2ex}
@@ -122,6 +128,16 @@
     \renewcommand{\@titlefmt}{\Large}
     \renewcommand{\@pretitlefmt}{\large}
     \renewcommand{\@subtitlefmt}{\large}
+    \renewcommand{\@keywordfmt}{\normalsize}
+    \renewcommand{\@authorfmt}{\normalsize}
+    \renewcommand{\@emailfmt}{\small\ttfamily}
+    \renewcommand{\@datefmt}{\normalsize}
+    \setlength{\@titleblocksep}{.6em}
+}{}
+\ifbool{tiny}{
+    \renewcommand{\@titlefmt}{\large}
+    \renewcommand{\@pretitlefmt}{\normalsize}
+    \renewcommand{\@subtitlefmt}{\normalsize}
     \renewcommand{\@keywordfmt}{\normalsize}
     \renewcommand{\@authorfmt}{\normalsize}
     \renewcommand{\@emailfmt}{\small\ttfamily}
