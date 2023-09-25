@@ -13,7 +13,7 @@
 	\setbool{twocolumn}{true}
 }
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{kharticle}}
-\ExecuteOptions{onecolumn,title=small}
+%\ExecuteOptions{onecolumn,small}
 \ProcessOptions\relax
 
 \LoadClass{kharticle}
