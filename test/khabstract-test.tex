@@ -1,6 +1,11 @@
 \documentclass[11pt,compact]{khabstract}
 \usepackage{newtx}
 \usepackage[T1]{fontenc}
+
+\PassOptionsToPackage{style=authoryear}{biblatex}
+\usepackage[inlinebib,shortbib]{khbiblatex}
+\addbibresource{hanson.bib}
+
 \usepackage{showframe}
 \usepackage{lipsum}
 
@@ -17,5 +22,8 @@
 
 \section{Section}
 \lipsum[2-3]
+
+\nocite{*}
+\printbibliography[type=inproceedings]
 
 \end{document}
