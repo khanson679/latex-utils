@@ -41,9 +41,9 @@
 \newcommand{\chkmark}{\ding{51}\xspace}
 \newcommand{\xmark}{\ding{55}\xspace}
 
-\newcommand{\lrarrow}{$\leftrightarrow$\xspace}
-\newcommand{\larrow}{$\leftarrow$\xspace}
-\newcommand{\rarrow}{$\rightarrow$\xspace}
+\newcommand{\lrarrow}{\ensuremath{\leftrightarrow}\xspace}
+\newcommand{\larrow}{\ensuremath{\leftarrow}\xspace}
+\newcommand{\rarrow}{\ensuremath{\rightarrow}\xspace}
 
 %% math symbols
 \renewcommand{\emptyset}{\varnothing}
@@ -109,7 +109,9 @@
 \newcommand{\psbr}[2][]{$[_{\text{\tiny #1}}$\hspace{.08em}#2\hspace{.08em}$]$}
 
 %% Properly formatted trace with an optional index
-\newcommand*{\tr}[1][]{\textit{t}\textsubscript{#1}\xspace}
+\newcommand*{\tr}[1][]{\textit{\rmfamily t}\textsubscript{#1}\xspace}
+
+\newcommand{\del}[1]{\anglebr{#1}}
 
 %
 % Semantics
