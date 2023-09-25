@@ -20,33 +20,51 @@
 \RequirePackage{khbeamertools}
 
 % Basic formatting
-\setlength{\parskip}{.5\baselineskip plus 2pt minus 2pt}
+\setlength{\parskip}{.75\baselineskip plus 2pt minus 2pt}
 
 % Beamer color settings
 \usecolortheme{pine}
 
 % Beamer text formatting
 \setbeamercolor{alerted text}{fg=hl}
-\setbeamerfont{block title}{size=\normalsize}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
 \setbeamertemplate{caption}[numbered]
-\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamertemplate{itemize subsubitem}{\raisebox{1pt}{$\blacksquare$}} % correct square bullet size
 \setbeamertemplate{bibliography item}{} % remove icon
 \setbeamercolor{bibliography entry note}{fg=darkgray}
 
+%\addtobeamertemplate{block begin}{\renewcommand{\medskipamount}{\parskip}}
+
+
 % Overwrite Beamer list formatting
+%\def\@listi{\leftmargin\leftmargini
+%            \topsep  0\p@
+%            \parsep  0\p@
+%            \itemsep 6\p@ \@plus2\p@ \@minus4\p@}
+%\let\@listI\@listi
+%\def\@listii{\leftmargin\leftmarginii
+%              \topsep  4\p@ \@plus\p@ \@minus2\p@
+%              \parsep  0\p@ \@plus\p@
+%              \itemsep 4\p@ \@plus\p@ \@minus3\p@}
+%\def\@listiii{\leftmargin\leftmarginiii
+%              \topsep  2\p@ \@plus\p@ \@minus1\p@
+%              \parsep  0\p@ \@plus\p@
+%              \itemsep 2\p@ \@plus\p@ \@minus2\p@}
 \def\@listi{\leftmargin\leftmargini
-            \topsep 3\p@ \@plus2\p@ \@minus2.5\p@
-            \parsep 0\p@
-            \itemsep4\p@ \@plus2\p@ \@minus3\p@}
+    \topsep  0\p@
+    \parsep  6\p@ \@plus2\p@ \@minus4\p@
+    \itemsep 0\p@}
 \let\@listI\@listi
 \def\@listii{\leftmargin\leftmarginii
-              \topsep    2\p@ \@plus1\p@ \@minus2\p@
-              \parsep    0\p@   \@plus\p@
-              \itemsep   2pt}
+    \topsep  0\p@ \@plus\p@
+    \parsep  4\p@ \@plus\p@ \@minus3\p@
+    \itemsep 0\p@ \@plus\p@}
 \def\@listiii{\leftmargin\leftmarginiii
-              \topsep    2\p@ \@plus1\p@ \@minus2\p@
-              \parsep    0\p@   \@plus\p@
-              \itemsep   2pt}
+    \topsep  0\p@ \@plus\p@
+    \parsep  3\p@ \@plus\p@ \@minus3\p@
+    \itemsep 0\p@ \@plus\p@}
 
 % Beamer frame formatting
 \setbeamertemplate{frametitle continuation}[from second][(\insertcontinuationcount)]
@@ -55,7 +73,7 @@
 % titlebar -- light text on dark background
 \ifbool{titlebar}
     {\setbeamercolor{frametitle}{fg=white!95!themegreen,bg=themegreen}}
-    {}
+    {\setbeamercolor{frametitle}{bg=white}} %% spacing is different if no color set
 
 % Footline
 % Show slide number, but not total
