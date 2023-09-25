@@ -18,7 +18,7 @@
 
 %% title formatting
 \newcommand{\@titlefmt}{\normalsize\bfseries}
-\newcommand{\@keywordfmt}{\normalsize}
+\newcommand{\@keywordfmt}{\small}
 \newcommand{\@authorfmt}{\normalsize}
 \newcommand{\@emailfmt}{\small\ttfamily}
 \newcommand{\@datefmt}{\normalsize}
@@ -50,7 +50,7 @@
     \vspace*{\@titleblocksep}
     \ifdefvoid{\@date}{}{{\@datefmt \@date \par}}
     \vspace*{\@titleblocksep}
-    \ifdefvoid{\@keywords}{}{{\@keywordfmt \@keywords \par}}
+    \ifdefvoid{\@keywords}{}{{\@keywordfmt Keywords: \@keywords \par}}
     \vspace*{\@titleblockbmargin}
     \endgroup
 }
