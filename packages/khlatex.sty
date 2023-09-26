@@ -20,6 +20,9 @@
 \renewcommand{\@author}{}
 %\renewcommand{\author}[1]{\def\@author{#1}}
 
+\newcommand{\@venue}{}
+\newcommand{\venue}[1]{\def\@venue{#1}}
+
 % Empty date by default
 \renewcommand{\@date}{}
 %\renewcommand{\date}[1]{\def\@date{#1}}
@@ -65,6 +68,10 @@
     \ifdefvoid{\@email}
     {\PackageError{khtitle}{No \textbackslash email given.}{}}
     {\@email}}
+\newcommand{\thevenue}{%
+    \ifdefvoid{\@venue}
+    {\PackageError{khtitle}{No \textbackslash venue given.}{}}
+    {\@venue}}
 \newcommand{\thedate}{%
     \ifdefvoid{\@date}
     {\PackageError{khtitle}{No \textbackslash date given.}{}}

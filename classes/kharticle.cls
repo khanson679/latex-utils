@@ -114,6 +114,7 @@
 \newcommand{\@keywordfmt}{\large}
 \newcommand{\@authorfmt}{\large}
 \newcommand{\@emailfmt}{\normalsize\ttfamily}
+\newcommand{\@venuefmt}{\large}
 \newcommand{\@datefmt}{\large}
 
 \newlength{\@titleblocksep}
@@ -131,6 +132,7 @@
     \renewcommand{\@keywordfmt}{\normalsize}
     \renewcommand{\@authorfmt}{\normalsize}
     \renewcommand{\@emailfmt}{\small\ttfamily}
+    \renewcommand{\@venuefmt}{\normalsize}
     \renewcommand{\@datefmt}{\normalsize}
     \setlength{\@titleblocksep}{.6em}
 }{}
@@ -141,6 +143,7 @@
     \renewcommand{\@keywordfmt}{\normalsize}
     \renewcommand{\@authorfmt}{\normalsize}
     \renewcommand{\@emailfmt}{\small\ttfamily}
+    \renewcommand{\@venuefmt}{\normalsize}
     \renewcommand{\@datefmt}{\normalsize}
     \setlength{\@titleblocksep}{.6em}
 }{}
@@ -166,6 +169,7 @@
         \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}%
         \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}%
         \addvspace{\@titleblocksep}
+        \ifdefvoid{\@venue}{}{{\@venuefmt \@venue \par}}%
         \ifdefvoid{\@date}{}{{\@datefmt \@date \par}}%
         \unskip
     \end{center}%
