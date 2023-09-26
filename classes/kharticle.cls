@@ -159,6 +159,7 @@
 %% Titleblock
 \newcommand{\@titleblock}{%
     \begingroup%
+    \setlength{\parskip}{0pt}%
     \setlength{\topskip}{0pt}%
     \newpage%
     \vspace*{0pt}%
