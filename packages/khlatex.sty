@@ -20,14 +20,18 @@
 \renewcommand{\@author}{}
 %\renewcommand{\author}[1]{\def\@author{#1}}
 
-\newcommand{\@venue}{}
-\newcommand{\venue}[1]{\def\@venue{#1}}
-
 % Empty date by default
 \renewcommand{\@date}{}
 %\renewcommand{\date}[1]{\def\@date{#1}}
 
-% Add support for email, which appears after author
+\newcommand{\@venue}{}
+\newcommand{\venue}[1]{\def\@venue{#1}}
+
+% Add support for affiliation
+\newcommand{\@affiliation}{}
+\newcommand{\affiliation}[1]{\def\@affiliation{#1}}
+
+% Add support for email address
 \newcommand{\@email}{}
 \newcommand{\email}[1]{\def\@email{#1}}
 
@@ -35,7 +39,7 @@
 \newcommand{\@shorttitle}{}
 \newcommand{\shorttitle}[1]{\def\@shorttitle{#1}}
 
-% Add support for subtitle, which appears between title and author
+% Add support for subtitle
 \newcommand{\@subtitle}{}
 \newcommand{\subtitle}[1]{\def\@subtitle{#1}}
 
@@ -64,6 +68,10 @@
     \ifdefvoid{\@author}
     {\PackageError{khtitle}{No \textbackslash author given.}{}}
     {\@author}}
+\newcommand{\theaffiliation}{%
+    \ifdefvoid{\@affiliation}
+    {\PackageError{khtitle}{No \textbackslash affiliation given.}{}}
+    {\@affiliation}}
 \newcommand{\theemail}{%
     \ifdefvoid{\@email}
     {\PackageError{khtitle}{No \textbackslash email given.}{}}
