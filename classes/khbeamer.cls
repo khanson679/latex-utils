@@ -69,6 +69,7 @@
 % Beamer frame formatting
 \setbeamertemplate{frametitle continuation}[from second][(\insertcontinuationcount)]
 \setbeamertemplate{navigation symbols}{}
+%\setbeamersize{text margin left=1cm, text margin right=1cm}
 
 % titlebar -- light text on dark background
 \ifbool{titlebar}
@@ -135,7 +136,10 @@
 }
 
 
-% section page
+% section pages
+\setbeamerfont{section title}{size=\Large}
+\setbeamerfont{subsection title}{size=\Large}
 \setbeamertemplate{section page}{%
-    {\usebeamerfont{title}\usebeamercolor[fg]{title}\insertsection}\par
-}
+    {\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection\par}}
+\setbeamertemplate{subsection page}{%
+    {\usebeamerfont{subsection title}\usebeamercolor[fg]{subsection title}\insertsubsection\par}}
