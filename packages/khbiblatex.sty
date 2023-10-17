@@ -35,12 +35,29 @@
         \clearlist{publisher}%
         \clearlist{location}%
         \clearfield{isbn}%
+        \clearfield{issn}%
         \clearfield{pages}%
         \clearfield{url}%
         \clearfield{doi}%
     }
 \else
 \fi
+
+%% format undated works
+
+%% Use pubstate after name if no date.
+\DeclareLabeldate{%
+    \field{date}
+    \field{year}
+    \field{pubstate}   % <-- NEW
+    \literal{nodate}
+}
+
+%% Don't print pubstate at end.
+\renewbibmacro*{addendum+pubstate}{}
+
+%% Shorten ``in prep''
+\DefineBibliographyStrings{english}{inpreparation={in prep\adddot}}
 
 % single paragraph bibliography
 \if@inlinebib
