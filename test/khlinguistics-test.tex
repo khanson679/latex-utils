@@ -1,5 +1,5 @@
 %!TeX program=pdflatex
-\documentclass{kharticle}
+\documentclass{khplain}
 \usepackage{newtx}
 \usepackage[T1]{fontenc}
 
@@ -35,8 +35,8 @@ A B \gap D \par
 \section{Brackets}
 
 \begin{examplebox}
-\anglebr{cat} \{abc\} [abc] (abc) \par
-\setof{a,b,c} \par \par
+\anglebr{cat} \par
+\setof{a,b,c} \par
 \tuple{1,2,3} \par
 \end{examplebox}
 
@@ -100,13 +100,17 @@ A B \gap D \par
 \begin{examplebox}
 \begin{math}
 x \scsr y \\
-x \tierscsr y \\
+x \tscsr y \\
 x \prec y \\
-x \tierprec y \\
+x \tprec y \\
 x \idom y \\
 x \pdom y \\
 x \rdom y \\
-x \tieridom y \\
+x \tdom y \\
+x \ilsib y \\
+x \plsib y \\
+x \rlsib y \\
+x \tlsib y
 \end{math}
 \end{examplebox}
 

@@ -129,22 +129,30 @@
 % Mathling
 %
 
-%% tree elements
+%% special elements
 \newcommand{\ledge}{\ensuremath{\rtimes}}
 \newcommand{\redge}{\ensuremath{\ltimes}}
 \newcommand{\tedge}{\ensuremath{\dtimes}}
 \newcommand{\bedge}{\ensuremath{\utimes}}
 \newcommand{\slot}{\ensuremath{\Box}}
 
-%% model theory relations
+%% relations
 \newcommand{\scsr}{\triangleleft}
-\newcommand{\tierscsr}{\scsr_T}
-\newcommand{\tierprec}{\prec_T}
+\newcommand{\tscsr}{\scsr_T}
+\newcommand{\tprec}{\prec_T}
 
 \newcommand{\idom}{\triangleleft}
 \newcommand{\pdom}{\triangleleft^+}
+\let\dom\pdom
 \newcommand{\rdom}{\triangleleft^*}
-\newcommand{\tieridom}{\triangleleft_T}
+\newcommand{\tdom}{\triangleleft_T}
+
+\newcommand{\ilsib}{\prec}
+\newcommand{\plsib}{\prec^+}
+\let\lsib\plsib
+\newcommand{\rlsib}{\prec^*}
+\newcommand{\tlsib}{\prec_T}
+
 
 %% MGs
 \newcommand{\mergedot}{$\circ$\xspace}
