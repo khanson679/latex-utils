@@ -9,10 +9,10 @@
 \colorlet{hle}{gold!90!black}
 \colorlet{hl}{hla}
 
-\newcommand{\semph}[1]{\textbf{#1}}
-\newcommand{\demph}[1]{\textcolor{gray}{#1}}
+\newcommand<>{\semph}[1]{\textbf#2{#1}}
+\newcommand<>{\demph}[1]{\textcolor#2{gray}{#1}}
 \newcommand{\parheading}[1]{\textbf{\structure{#1}}}
-%\newcommand{\blockheading}[1]{\unskip\medskip\textbf{\structure{#1}}\par}
+\newcommand{\blockheading}[1]{\unskip\medskip\textbf{\structure{#1}}\par}
 
 \newcommand{\hlfont}{\normalfont}
 \newcommand<>{\hl}[1]{\textcolor#2{hl}{\hlfont #1}}
