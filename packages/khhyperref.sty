@@ -7,7 +7,7 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{khcolor}
-\AtEndPreamble{\RequirePackage{hyperref}} % Important: not \AtBeginDocument
+\BeforeBeginEnvironment{document}{\RequirePackage{hyperref}} % Important: not \AtBeginDocument
 
 %% proper link for email address
 \newcommand{\mailurl}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
