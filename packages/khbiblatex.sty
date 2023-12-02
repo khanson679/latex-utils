@@ -20,6 +20,16 @@
 %        {}{\mkbibparens{\bibhyperref{\printdate}}}{\multicitedelim}{}
 %}{}
 
+%% remove links in citations
+%% https://tex.stackexchange.com/questions/662944/remove-clickable-links-on-citations-to-the-bibliography
+%\makeatletter
+%\renewcommand\hyper@natanchorstart[1]{}
+%\renewcommand\hyper@natanchorend{}
+%\renewcommand\hyper@natlinkstart[1]{}
+%\renewcommand\hyper@natlinkend{}
+%\renewcommand\hyper@natlinkbreak[2]{#1}
+%\makeatother
+
 % replace "and" with "&" in citations
 \if@useampersand
     \DeclareDelimFormat[textcite,parencite]{finalnamedelim}{%
@@ -34,6 +44,7 @@
         \clearname{editor}%
         \clearlist{publisher}%
         \clearlist{location}%
+        \clearfield{venue}%
         \clearfield{isbn}%
         \clearfield{issn}%
         \clearfield{pages}%
