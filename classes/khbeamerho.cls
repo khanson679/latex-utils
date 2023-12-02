@@ -11,6 +11,7 @@
 \RequirePackage{beamerarticle}
 \RequirePackage{khbeamertools}
 \RequirePackage{adjustbox}
+\RequirePackage{qrcode}
 
 %\mode<article>{
 %% implement column environment
@@ -31,6 +32,9 @@
 %\newcommand{\venue}[1]{\def\@venue{#1}}
 \newcommand{\insertvenue}{\ifdefvoid{\@venue}{}{\@venue}}
 
+\newcommand{\filelink}[1]{\def\@filelink{#1}}
+\newcommand{\insertqrcode}{\ifdefvoid{\@filelink}{}{\qrcode[hyperlink,height=0.75in]{\@filelink}}}
+
 \setbeamertemplate{title page}{%
     \centering
     \vspace{2em}
@@ -39,6 +43,7 @@
     {\large\insertauthor}\par
     \insertemail\par
     \insertwebsite\par
+    \insertinstitute\par
     \medskip
     \insertvenue\par
     \insertdate\par
