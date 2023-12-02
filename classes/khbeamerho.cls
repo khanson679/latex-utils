@@ -1,6 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{khbeamerho}
+\RequirePackage{etoolbox}
 
+\newbool{framenumbers}
+\DeclareOption{framenumbers}{\booltrue{framenumbers}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{khhandout}}
 \ProcessOptions\relax
 
@@ -20,8 +23,9 @@
 %\setbeamertemplate{frame end}{\par}
 
 %% show small frame numbers
-\renewcommand{\frametitle}[1]{\subsubsection*{{\xsmall [\insertframenumber]} #1}}
-%}
+\renewcommand{\frametitle}[1]{%
+    \subsection*{\ifbool{framenumbers}{\xsmall [\insertframenumber] }{}#1}}
+
 
 %% title stuff
 %\newcommand{\venue}[1]{\def\@venue{#1}}
@@ -44,10 +48,10 @@
 \renewcommand{\blockheading}[1]{\textbf{#1}\par}
 
 \renewenvironment{figure}
-    {\begin{center}
+    {\medskip\begin{center}
         \renewcommand{\caption}[1]{\par{\centering\small##1\par}}}
-    {\end{center}}
+    {\end{center}\medskip}
 \renewenvironment{table}
-    {\begin{center}
+    {\medskip\begin{center}
         \renewcommand{\caption}[1]{\par{\centering\small##1\par}}}
-    {\end{center}}
+    {\end{center}\medskip}
