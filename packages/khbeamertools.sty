@@ -15,9 +15,9 @@
 \newcommand{\blockheading}[1]{\unskip\medskip\textbf{\structure{#1}}\par}
 
 \newcommand{\hlfont}{\normalfont}
-\newcommand<>{\hl}[1]{\textcolor#2{hl}{\hlfont #1}}
-\newcommand<>{\hla}[1]{\textcolor#2{hla}{\hlfont #1}}
-\newcommand<>{\hlb}[1]{\textcolor#2{hlb}{\hlfont #1}}
-\newcommand<>{\hlc}[1]{\textcolor#2{hlc}{\hlfont #1}}
-\newcommand<>{\hld}[1]{\textcolor#2{hld}{\hlfont #1}}
-\newcommand<>{\hle}[1]{\textcolor#2{hle}{\hlfont #1}}
+\newcommand<>{\hl}[1]{\textcolor#2{hl}{\only#2{\hlfont}#1}}
+\newcommand<>{\hla}[1]{\textcolor#2{hla}{\only#2{\hlfont}#1}}
+\newcommand<>{\hlb}[1]{\textcolor#2{hlb}{\only#2{\hlfont}#1}}
+\newcommand<>{\hlc}[1]{\textcolor#2{hlc}{\only#2{\hlfont}#1}}
+\newcommand<>{\hld}[1]{\textcolor#2{hld}{\only#2{\hlfont}#1}}
+\newcommand<>{\hle}[1]{\textcolor#2{hle}{\only#2{\hlfont}#1}}
