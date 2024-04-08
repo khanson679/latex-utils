@@ -13,19 +13,21 @@
 \RequirePackage{adjustbox}
 \RequirePackage{qrcode}
 
-%\mode<article>{
 %% implement column environment
 \renewenvironment<>{beamer@columnenv}[2][]
-{\begin{minipage}{#2}}
-{\end{minipage}}
+    {\begin{minipage}{#2}}
+    {\end{minipage}}
 \let\endcolumn\endbeamer@columnenv
 
 %% make sure frame ends with a paragraph break
 %\setbeamertemplate{frame end}{\par}
 
 %% show small frame numbers
+\newcommand{\textsquarebullet}{\raisebox{1pt}{\rule{.4em}{.4em}}}
 \renewcommand{\frametitle}[1]{%
-    \subsection*{\ifbool{framenumbers}{\xsmall [\insertframenumber] }{}#1}}
+    \subsection*{\ifbool{framenumbers}%
+        {{\xsmall[\insertframenumber]}\space#1}
+        {\textsquarebullet\space#1\space\textsquarebullet}}}
 
 
 %% title stuff
@@ -50,13 +52,19 @@
     \insertqrcode
 }
 
+%% frame elements
+
+\setbeamertemplate{block begin}
+    {\par\vskip\smallskipamount{\noindent\textbf{\insertblocktitle}}\par\noindent\ignorespaces}
+\setbeamertemplate{block end}{\vskip\smallskipamount}
+
 \renewcommand{\blockheading}[1]{\textbf{#1}\par}
 
 \renewenvironment{figure}
-    {\medskip\begin{center}
+    {\smallskip\begin{center}
         \renewcommand{\caption}[1]{\par{\centering\small##1\par}}}
-    {\end{center}\medskip}
+    {\end{center}\smallskip}
 \renewenvironment{table}
-    {\medskip\begin{center}
+    {\smallskip\begin{center}
         \renewcommand{\caption}[1]{\par{\centering\small##1\par}}}
-    {\end{center}\medskip}
+    {\end{center}\smallskip}
