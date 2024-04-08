@@ -1,13 +1,32 @@
 \ProvidesPackage{khhyperref}
 
+\newif{\if@citelinks}
+
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{colorlinks=true,allcolors=blue}{hyperref}
+
+\DeclareOption{nocitelinks}{\@citelinksfalse}
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{hyperref}}
 \ProcessOptions\relax
 
 \RequirePackage{etoolbox}
 \RequirePackage{khcolor}
-\BeforeBeginEnvironment{document}{\RequirePackage{hyperref}} % Important: not \AtBeginDocument
+
+\BeforeBeginEnvironment{document}{ % Important: not \AtBeginDocument
+    \RequirePackage{hyperref}
+    %% remove links in citations
+    %% https://tex.stackexchange.com/questions/662944/remove-clickable-links-on-citations-to-the-bibliography
+    \if@citelinks
+    \else
+        \makeatletter
+        \renewcommand\hyper@natanchorstart[1]{}
+        \renewcommand\hyper@natanchorend{}
+        \renewcommand\hyper@natlinkstart[1]{}
+        \renewcommand\hyper@natlinkend{}
+        \renewcommand\hyper@natlinkbreak[2]{#1}
+        \makeatother
+    \fi
+}
 
 %% proper link for email address
 \newcommand{\mailurl}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
