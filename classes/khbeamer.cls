@@ -39,32 +39,32 @@
 
 
 % Overwrite Beamer list formatting
-%\def\@listi{\leftmargin\leftmargini
-%            \topsep  0\p@
-%            \parsep  0\p@
-%            \itemsep 6\p@ \@plus2\p@ \@minus4\p@}
-%\let\@listI\@listi
-%\def\@listii{\leftmargin\leftmarginii
-%              \topsep  4\p@ \@plus\p@ \@minus2\p@
-%              \parsep  0\p@ \@plus\p@
-%              \itemsep 4\p@ \@plus\p@ \@minus3\p@}
-%\def\@listiii{\leftmargin\leftmarginiii
-%              \topsep  2\p@ \@plus\p@ \@minus1\p@
-%              \parsep  0\p@ \@plus\p@
-%              \itemsep 2\p@ \@plus\p@ \@minus2\p@}
 \def\@listi{\leftmargin\leftmargini
-    \topsep  0\p@
-    \parsep  6\p@ \@plus2\p@ \@minus4\p@
-    \itemsep 0\p@}
+           \topsep  0\p@
+           \parsep  0\p@
+           \itemsep 6\p@ \@plus2\p@ \@minus4\p@}
 \let\@listI\@listi
 \def\@listii{\leftmargin\leftmarginii
-    \topsep  0\p@ \@plus\p@
-    \parsep  4\p@ \@plus\p@ \@minus3\p@
-    \itemsep 0\p@ \@plus\p@}
+             \topsep  4\p@ \@plus\p@ \@minus2\p@
+             \parsep  0\p@ \@plus\p@
+             \itemsep 4\p@ \@plus\p@ \@minus3\p@}
 \def\@listiii{\leftmargin\leftmarginiii
-    \topsep  0\p@ \@plus\p@
-    \parsep  3\p@ \@plus\p@ \@minus3\p@
-    \itemsep 0\p@ \@plus\p@}
+             \topsep  2\p@ \@plus\p@ \@minus1\p@
+             \parsep  0\p@ \@plus\p@
+             \itemsep 2\p@ \@plus\p@ \@minus2\p@}
+% \def\@listi{\leftmargin\leftmargini
+%     \topsep  0\p@
+%     \parsep  6\p@ \@plus2\p@ \@minus4\p@
+%     \itemsep 0\p@}
+% \let\@listI\@listi
+% \def\@listii{\leftmargin\leftmarginii
+%     \topsep  0\p@ \@plus\p@
+%     \parsep  4\p@ \@plus\p@ \@minus3\p@
+%     \itemsep 0\p@ \@plus\p@}
+% \def\@listiii{\leftmargin\leftmarginiii
+%     \topsep  0\p@ \@plus\p@
+%     \parsep  3\p@ \@plus\p@ \@minus3\p@
+%     \itemsep 0\p@ \@plus\p@}
 
 % Beamer frame formatting
 \setbeamertemplate{frametitle continuation}[from second][(\insertcontinuationcount)]
