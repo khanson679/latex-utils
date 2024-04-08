@@ -158,8 +158,9 @@
 \newcommand{\mergedot}{$\circ$\xspace}
 \newcommand{\movedot}{$\bullet$\xspace}
 \newcommand{\mglifont}{\normalfont}
-\newcommand{\mgli}[2]{{\mglifont #1 ::\ #2}}
-\newcommand{\mgfstr}[1]{{\mglifont #1}}
+\newcommand{\mgfeatfont}{\sffamily}
+\newcommand{\mgli}[2]{{\mglifont #1} ::\ \mgfstr{#2}}
+\newcommand{\mgfstr}[1]{{\mgfeatfont #1}}
 \newcommand{\mgflist}[1]{$\langle$\mgfstr{#1}$\rangle$}
 
 %\newcommand{\fsel}[1]{#1$^+$}
@@ -169,20 +170,20 @@
 
 \define@choicekey*{khlinguistics}{mgfeatures}[\val\n]{classic,pmprefix,pmsuper}[pmprefix]{%
     \ifcase\n
-        \providecommand{\fsel}[1]{$=$##1}
-        \providecommand{\fcat}[1]{##1}
-        \providecommand{\flcr}[1]{$+$##1}
-        \providecommand{\flce}[1]{$-$##1}
+        \providecommand{\fsel}[1]{$=${\mgfeatfont ##1}}
+        \providecommand{\fcat}[1]{{\mgfeatfont ##1}}
+        \providecommand{\flcr}[1]{$+${\mgfeatfont ##1}}
+        \providecommand{\flce}[1]{$-${\mgfeatfont ##1}}
     \or
-        \providecommand{\fsel}[1]{$+$##1}
-        \providecommand{\fcat}[1]{$-$##1}
-        \providecommand{\flcr}[1]{$+$##1}
-        \providecommand{\flce}[1]{$-$##1}
+        \providecommand{\fsel}[1]{$+${\mgfeatfont ##1}}
+        \providecommand{\fcat}[1]{$-${\mgfeatfont ##1}}
+        \providecommand{\flcr}[1]{$+${\mgfeatfont ##1}}
+        \providecommand{\flce}[1]{$-${\mgfeatfont ##1}}
     \or
-        \providecommand{\fsel}[1]{##1$^+$}
-        \providecommand{\fcat}[1]{##1$^-$}
-        \providecommand{\flcr}[1]{##1$^+$}
-        \providecommand{\flce}[1]{##1$^-$}
+        \providecommand{\fsel}[1]{{\mgfeatfont ##1}$^+$}
+        \providecommand{\fcat}[1]{{\mgfeatfont ##1}$^-$}
+        \providecommand{\flcr}[1]{{\mgfeatfont ##1}$^+$}
+        \providecommand{\flce}[1]{{\mgfeatfont ##1}$^-$}
     \fi
 }
 \presetkeys{khlinguistics}{mgfeatures}{}
