@@ -21,6 +21,7 @@
 \newcommand{\@keywordfmt}{\small}
 \newcommand{\@authorfmt}{\normalsize}
 \newcommand{\@emailfmt}{\small\ttfamily}
+\newcommand{\@venuefmt}{\small}
 \newcommand{\@datefmt}{\normalsize}
 \newcommand{\@titleblocksep}{0.2em}
 \newlength{\@titleblocktmargin}
@@ -48,6 +49,7 @@
         \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}
         \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}}
     \vspace*{\@titleblocksep}
+    \ifdefvoid{\@venue}{}{{\@venuefmt \@venue \par}}
     \ifdefvoid{\@date}{}{{\@datefmt \@date \par}}
     \vspace*{\@titleblocksep}
     \ifdefvoid{\@keywords}{}{{\@keywordfmt Keywords: \@keywords \par}}
