@@ -11,9 +11,12 @@
 \RequirePackage{beamerarticle}
 \RequirePackage{khbeamertools}
 \RequirePackage{adjustbox}
+\PassOptionsToPackage{colorlinks=true,allcolors=darkblue}{hyperref}
+\RequirePackage{hyperref}
 \RequirePackage{qrcode}
 
-%% implement column environment
+%% implement missing beamer elements
+
 \renewenvironment<>{beamer@columnenv}[2][]
     {\begin{minipage}{#2}}
     {\end{minipage}}
@@ -58,7 +61,7 @@
     {\par\vskip\smallskipamount{\noindent\textbf{\insertblocktitle}}\par\noindent\ignorespaces}
 \setbeamertemplate{block end}{\vskip\smallskipamount}
 
-\renewcommand{\blockheading}[1]{\textbf{#1}\par}
+\renewcommand{\blockheading}[1]{\smallskip\textbf{#1}\par}
 
 \renewenvironment{figure}
     {\smallskip\begin{center}
