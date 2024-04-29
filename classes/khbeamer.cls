@@ -112,7 +112,9 @@
 \newcommand{\insertvenue}{\ifdefvoid{\@venue}{}{\@venue}}
 
 \newcommand{\filelink}[1]{\def\@filelink{#1}}
-\newcommand{\insertqrcode}{\ifdefvoid{\@filelink}{}{\qrcode[hyperlink,height=0.75in]{\@filelink}}}
+\newcommand{\insertqrcode}{\ifdefvoid{\@filelink}{}{\qrcode[hyperlink,height=1in]{\@filelink}}}
+
+\let\affiliation\institute
 
 \setbeamertemplate{title page}{%
     \centering
@@ -130,7 +132,7 @@
     \insertdate\par
     \hfill
     \tikz[remember picture,overlay]{%
-        \node[xshift=-0.6in,yshift=0.6in] at (current page.south east)%
+        \node[xshift=-0.75in,yshift=0.75in] at (current page.south east)%
             {\insertqrcode};}
 }
 
