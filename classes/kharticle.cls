@@ -7,6 +7,9 @@
 
 %% Font size
 \newcommand{\@basefontsize}{10}
+\DeclareVoidOption{9pt}{
+    \renewcommand{\@basefontsize}{9}
+    \PassOptionsToClass{\CurrentOption}{article}}
 \DeclareVoidOption{10pt}{
     \renewcommand{\@basefontsize}{10}
     \PassOptionsToClass{\CurrentOption}{article}}
@@ -50,6 +53,7 @@
     \relax
 \else
     \switchcase{\@basefontsize}{
+        {9}{\setlength{\@hmargin}{2in}}
         {10}{\setlength{\@hmargin}{1.75in}}
         {11}{\setlength{\@hmargin}{1.5in}}
         {12}{\setlength{\@hmargin}{1.25in}}}
