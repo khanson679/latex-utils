@@ -5,17 +5,25 @@
 \RequirePackage{khlatex}
 \RequirePackage{khcolor}
 \RequirePackage{graphicx}
+%\RequirePackage{khhyperref}
 
 \PassOptionsToPackage{papersize={128mm,96mm},margin=6mm,footskip=4mm}{geometry}
 \RequirePackage{geometry}
 
+%% spacing
 \RequirePackage[skip=.5\baselineskip plus 2pt minus 2pt]{parskip}
+\renewcommand{\bigskipamount}{12pt plus 4pt minus 8pt}
+\renewcommand{\medskipamount}{6pt plus 2pt minus 4pt}
+\renewcommand{\smallskipamount}{3pt plus 1pt minus 2pt}
 
+%% sections
 \PassOptionsToPackage{small}{titlesec}
 \RequirePackage{titlesec}
 
+%% lists
 \RequirePackage{enumitem}
 \setlist{
+%    leftmargin=2em,
     partopsep=0pt,
     topsep=.25\baselineskip plus 2pt minus 2pt,
     itemsep=.25\baselineskip plus 2pt minus 2pt,
@@ -27,8 +35,10 @@
 \RequirePackage{caption}
 \captionsetup{font=small}
 
+%% TOC
 \setcounter{secnumdepth}{0}
 
+%% footer
 \RequirePackage{fancyhdr}
 \AtBeginDocument{
 %    \renewcommand{\headrulewidth}{0pt}
@@ -38,7 +48,9 @@
     \fancyfoot[r]{\tiny\thepage}
 }
 
-% Text markup
+% Colors
+
+\colorlet{theme}{darkred}
 
 \colorlet{hla}{azure!90!black}
 \colorlet{hlb}{redorange!90!black}
@@ -47,8 +59,11 @@
 \colorlet{hle}{gold!90!black}
 \colorlet{hl}{hla}
 
+% Text markup
+
 \newcommand{\semph}[1]{\textbf{#1}}
 \newcommand{\demph}[1]{\textcolor{gray}{#1}}
+\newcommand{\kw}[1]{\textcolor{hl}{\bfseries #1}}
 
 \newcommand{\hl}[1]{\textcolor{hl}{#1}}
 \newcommand{\hla}[1]{\textcolor{hla}{#1}}
@@ -62,13 +77,12 @@
 \newcommand{\@titlegraphic}{}
 \newcommand{\titlegraphic}[1]{\def\@titlegraphic{#1}}
 
-\newcommand{\@titlefmt}{\LARGE}
-\newcommand{\@pretitlefmt}{\Large}
-\newcommand{\@subtitlefmt}{\Large}
-\newcommand{\@keywordfmt}{\large}
-\newcommand{\@authorfmt}{\large}
+\newcommand{\@titlefmt}{\Large\bfseries\color{theme}}
+\newcommand{\@pretitlefmt}{\large}
+\newcommand{\@subtitlefmt}{\large}
+\newcommand{\@authorfmt}{\normalsize}
 \newcommand{\@emailfmt}{\normalsize\ttfamily}
-\newcommand{\@datefmt}{\large}
+\newcommand{\@datefmt}{\normalsize}
 
 \newlength{\@titleblocksep}
 \setlength{\@titleblocksep}{1em}
@@ -112,13 +126,13 @@
     \vspace*{0pt plus 2fill}
 }
 
-\newenvironment{slide}[1]{%
+\newenvironment{slide}[1][]{%
     \clearpage
-    {\large\bfseries #1 \par}
+    {\large\bfseries\color{theme} #1 \par}
 %    \vspace{1em}
-    \vspace*{\fill}
+    \vspace*{0cm plus 1fill}
 }{%
-    \vspace*{0pt plus 2fill} % Allocate more space to the bottom
+    \vspace*{0cm plus 2fill} % Allocate more space to the bottom
 }
 
 %% Alias beamer "frame" environment
@@ -144,3 +158,21 @@
 \hfill
 \par\medskip
 }
+
+\newcommand{\sidebyside}[3][.5]{{%
+    \def\gap{0.01}%
+    \def\lwidth{\fpeval{#1-\gap/2}\linewidth}%
+    \def\rwidth{\fpeval{1-\gap/2-#1}\linewidth}%
+    \adjustbox{minipage=\lwidth,valign=t}{#2}%
+    \hspace{\gap\linewidth}%
+    \adjustbox{minipage=\rwidth,valign=t}{#3}%
+}}
+
+\renewenvironment{figure}
+    {\bigskip\begin{center}
+        \renewcommand{\caption}[1]{\par{\centering\small##1\par}}}
+    {\end{center}\bigskip}
+\renewenvironment{table}
+    {\bigskip\begin{center}
+        \renewcommand{\caption}[1]{\par{\centering\small##1\par}}}
+    {\end{center}\bigskip}
