@@ -26,7 +26,7 @@
 \DeclareVoidOption{compact}{\setbool{compact}{true}}
 
 %% Quick setting for title size, options normal/small/tiny (default=normal)
-%\DeclareStringOption[normal]{title}
+\DeclareStringOption[normal]{title}
 
 %% Put Page/Total in footer
 \DeclareBoolOption{pagecountinfoot}
@@ -89,11 +89,11 @@
 
 %% Section headings
 \ifbool{small}{
-    \PassOptionsToPackage{small}{titlesec}
+%    \PassOptionsToPackage{small}{titlesec}
     \RequirePackage{titlesec}
 }{}
 \ifbool{tiny}{
-    \PassOptionsToPackage{tiny}{titlesec}
+%    \PassOptionsToPackage{tiny}{titlesec}
     \RequirePackage{titlesec}
 }{}
 \ifbool{compact}{
@@ -192,14 +192,14 @@
 }
 
 %% add more space below abstract environment
-\renewenvironment{abstract}{%
-    \if@twocolumn
-        \section*{\abstractname}%
-    \else
-        \small
-        \begin{center}%
-            {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
-        \end{center}%
-        \quotation
-        \fi}
-{\if@twocolumn\else\endquotation\addvspace{\@titleblockbmargin}\fi}
+%\renewenvironment{abstract}{%
+%    \if@twocolumn
+%        \section*{\abstractname}%
+%    \else
+%        \small
+%        \begin{center}%
+%            {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+%        \end{center}%
+%        \quotation
+%        \fi}
+%{\if@twocolumn\else\endquotation\addvspace{\@titleblockbmargin}\fi}
