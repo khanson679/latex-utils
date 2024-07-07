@@ -1,42 +1,45 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{khslides}
 
+\DeclareOption{43}{\PassOptionsToPackage{papersize={128mm,96mm}}{geometry}}
+\DeclareOption{1610}{\PassOptionsToPackage{papersize={160mm,90mm}}{geometry}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ExecuteOptions{11pt,43}
+\ProcessOptions\relax
+
 \LoadClass{article}
+\PassOptionsToPackage{hmargin=6mm,vmargin={4mm,6mm},footskip=1mm}{geometry}
+\RequirePackage{geometry}
 \RequirePackage{khlatex}
 \RequirePackage{khcolor}
 \RequirePackage{graphicx}
-%\RequirePackage{khhyperref}
 
-\PassOptionsToPackage{papersize={128mm,96mm},margin=6mm,footskip=4mm}{geometry}
-\RequirePackage{geometry}
+%% text formatting
 
-%% spacing
-\RequirePackage[skip=.5\baselineskip plus 2pt minus 2pt]{parskip}
+\RequirePackage[skip=.75\baselineskip plus 2pt minus 6pt]{parskip}
+
+% add more negative glue to skips
 \renewcommand{\bigskipamount}{12pt plus 4pt minus 8pt}
 \renewcommand{\medskipamount}{6pt plus 2pt minus 4pt}
 \renewcommand{\smallskipamount}{3pt plus 1pt minus 2pt}
 
-%% sections
-\PassOptionsToPackage{small}{titlesec}
-\RequirePackage{titlesec}
+\RequirePackage{caption}
+\captionsetup{font=small}
+
+\setcounter{secnumdepth}{0}
+%\setcounter{tocdepth}{1}
 
 %% lists
 \RequirePackage{enumitem}
 \setlist{
-%    leftmargin=2em,
+    leftmargin=2em,
     partopsep=0pt,
     topsep=.25\baselineskip plus 2pt minus 2pt,
     itemsep=.25\baselineskip plus 2pt minus 2pt,
     parsep=0pt
 }
 \SetEnumitemKey{compact}{noitemsep}
-%\setlist{itemsep=.25\baselineskip,parsep=.25\baselineskip plus 2pt}
 
-\RequirePackage{caption}
-\captionsetup{font=small}
-
-%% TOC
-\setcounter{secnumdepth}{0}
 
 %% footer
 \RequirePackage{fancyhdr}
@@ -62,16 +65,19 @@
 % Text markup
 
 \newcommand{\semph}[1]{\textbf{#1}}
-\newcommand{\demph}[1]{\textcolor{gray}{#1}}
+\newcommand{\demph}[1]{\textcolor{lightgray}{#1}}
 \newcommand{\kw}[1]{\textcolor{hl}{\bfseries #1}}
 
-\newcommand{\hl}[1]{\textcolor{hl}{#1}}
-\newcommand{\hla}[1]{\textcolor{hla}{#1}}
-\newcommand{\hlb}[1]{\textcolor{hlb}{#1}}
-\newcommand{\hlc}[1]{\textcolor{hlc}{#1}}
-\newcommand{\hld}[1]{\textcolor{hld}{#1}}
-\newcommand{\hle}[1]{\textcolor{hle}{#1}}
+\newcommand{\hlfont}{\bfseries\mathversion{bold}}
+\newcommand{\hl}[1]{\textcolor{hl}{\hlfont #1}}
+\newcommand{\hla}[1]{\textcolor{hla}{\hlfont #1}}
+\newcommand{\hlb}[1]{\textcolor{hlb}{\hlfont #1}}
+\newcommand{\hlc}[1]{\textcolor{hlc}{\hlfont #1}}
+\newcommand{\hld}[1]{\textcolor{hld}{\hlfont #1}}
+\newcommand{\hle}[1]{\textcolor{hle}{\hlfont #1}}
 
+\newcommand{\parheading}[1]{\textbf{\color{theme}{#1}}}
+\newcommand{\blockheading}[1]{\unskip\medskip\textbf{\color{theme}{#1}}\par}
 
 % Title page
 \newcommand{\@titlegraphic}{}
@@ -126,10 +132,9 @@
     \vspace*{0pt plus 2fill}
 }
 
-\newenvironment{slide}[1][]{%
+\newenvironment{slide}[1]{%
     \clearpage
     {\large\bfseries\color{theme} #1 \par}
-%    \vspace{1em}
     \vspace*{0cm plus 1fill}
 }{%
     \vspace*{0cm plus 2fill} % Allocate more space to the bottom
@@ -141,22 +146,22 @@
 %{\end{slide}}
 
 \newenvironment{indentblock}[1][.25in]{%
-\par\medskip
-\hfill
-\begin{minipage}{\dimexpr\textwidth-#1}
+    \par\medskip
+    \hfill
+    \begin{minipage}{\dimexpr\textwidth-#1}
 }{%
-\end{minipage}
-\par\medskip
+    \end{minipage}
+    \par\medskip
 }
 
 \newenvironment{centerblock}[1][.9]{%
-\par\medskip
-\hfill
-\begin{minipage}{#1\textwidth}
+    \par\medskip
+    \hfill
+    \begin{minipage}{#1\textwidth}
 }{%
-\end{minipage}
-\hfill
-\par\medskip
+    \end{minipage}
+    \hfill
+    \par\medskip
 }
 
 \newcommand{\sidebyside}[3][.5]{{%
