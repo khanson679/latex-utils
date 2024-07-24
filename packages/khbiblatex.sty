@@ -43,7 +43,7 @@
 \if@shortbib
     \AtEveryBibitem{%
         \clearname{editor}%
-        \clearlist{publisher}%
+%        \clearlist{publisher}%
         \clearlist{location}%
         \clearfield{venue}%
         \clearfield{isbn}%
@@ -57,11 +57,11 @@
 
 %% format undated works
 
-%% Use pubstate after name if no date.
+%% Use pubstate instead of date
 \DeclareLabeldate{%
+    \field{pubstate}   % <-- NEW
     \field{date}
     \field{year}
-    \field{pubstate}   % <-- NEW
     \literal{nodate}
 }
 
