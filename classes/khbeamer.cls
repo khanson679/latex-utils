@@ -2,6 +2,7 @@
 \ProvidesClass{khbeamer}
 \RequirePackage{etoolbox}
 \RequirePackage{qrcode}
+\RequirePackage{tikz}
 \RequirePackage{khcolor}
 
 \newbool{fancyfoot}
