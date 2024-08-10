@@ -4,9 +4,11 @@
 
 \newbool{fancyfoot}
 \newbool{titlebar}
+\newbool{qrcode}
 
 \DeclareOption{fancyfoot}{\booltrue{fancyfoot}}
 \DeclareOption{titlebar}{\booltrue{titlebar}}
+\DeclareOption{qrcode}{\booltrue{qrcode}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
 
@@ -17,8 +19,10 @@
 \RequirePackage{khlatex}
 \RequirePackage{khcolor}
 \RequirePackage{khbeamertools}
-\RequirePackage{qrcode}
-\RequirePackage{tikz}
+\ifbool{qrcode}{
+    \RequirePackage{qrcode}
+    \RequirePackage{tikz}
+}
 
 % Basic formatting
 \setlength{\parskip}{.75\baselineskip plus 2pt minus 2pt}
@@ -112,8 +116,15 @@
 \newcommand{\venue}[1]{\def\@venue{#1}}
 \newcommand{\insertvenue}{\ifdefvoid{\@venue}{}{\@venue}}
 
+\newcommand{\@filelink}{}
 \newcommand{\filelink}[1]{\def\@filelink{#1}}
-\newcommand{\insertqrcode}{\ifdefvoid{\@filelink}{}{\qrcode[hyperlink,height=1in]{\@filelink}}}
+
+\newcommand{\insertqrcode}{
+    \ifdefvoid{\@filelink}
+        {\ClassError{khbeamer}{No \textbackslash filelink given}{}}
+        {\tikz[remember picture,overlay]{%
+            \node[xshift=-0.75in,yshift=0.75in] at (current page.south east)%
+                {\qrcode[hyperlink,height=1in]{\@filelink}};}}}
 
 \let\affiliation\institute
 
@@ -131,10 +142,7 @@
     \medskip
     \insertvenue\par
     \insertdate\par
-    \hfill
-    \tikz[remember picture,overlay]{%
-        \node[xshift=-0.75in,yshift=0.75in] at (current page.south east)%
-            {\insertqrcode};}
+    \ifbool{qrcode}{\insertqrcode}{}
 }
 
 
