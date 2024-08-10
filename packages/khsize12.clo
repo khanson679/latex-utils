@@ -1,4 +1,4 @@
-\ProvidesFile{size12.clo}
+\ProvidesFile{khsize12.clo}
     [2023/07/03 v0.1 Adjustments to standard class font sizes.]
 
 %% See khfontsize.sty for details.
