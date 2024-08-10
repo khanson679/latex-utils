@@ -6,19 +6,19 @@
 %% Class options
 
 %% Font size
-\newcommand{\@basefontsize}{10}
-\DeclareVoidOption{9pt}{
-    \renewcommand{\@basefontsize}{9}
-    \PassOptionsToClass{\CurrentOption}{article}}
-\DeclareVoidOption{10pt}{
-    \renewcommand{\@basefontsize}{10}
-    \PassOptionsToClass{\CurrentOption}{article}}
-\DeclareVoidOption{11pt}{
-    \renewcommand{\@basefontsize}{11}
-    \PassOptionsToClass{\CurrentOption}{article}}
-\DeclareVoidOption{12pt}{
-    \renewcommand{\@basefontsize}{12}
-    \PassOptionsToClass{\CurrentOption}{article}}
+%\newcommand{\@basefontsize}{10}
+%\DeclareVoidOption{9pt}{
+%    \renewcommand{\@basefontsize}{9}
+%    \PassOptionsToClass{\CurrentOption}{article}}
+%\DeclareVoidOption{10pt}{
+%    \renewcommand{\@basefontsize}{10}
+%    \PassOptionsToClass{\CurrentOption}{article}}
+%\DeclareVoidOption{11pt}{
+%    \renewcommand{\@basefontsize}{11}
+%    \PassOptionsToClass{\CurrentOption}{article}}
+%\DeclareVoidOption{12pt}{
+%    \renewcommand{\@basefontsize}{12}
+%    \PassOptionsToClass{\CurrentOption}{article}}
 
 %% Quick settings for title and headings
 \newbool{small}
@@ -52,12 +52,12 @@
 \if@twocolumn
     \relax
 \else
-    \switchcase{\@basefontsize}{
+    \switchcase{\kh@ptsize}{
         {9}{\setlength{\@hmargin}{2in}}
         {10}{\setlength{\@hmargin}{1.75in}}
         {11}{\setlength{\@hmargin}{1.5in}}
         {12}{\setlength{\@hmargin}{1.25in}}}
-    [\ClassError{kharticle}{Base font size '\@basefontsize' not available.}]
+    [\ClassError{kharticle}{Base font size '\kh@ptsize' not available.}]
 \fi
 %\ifdim \textwidth < 4.5in
 %    \setlength{\@hmargin}{\dimexpr(\paperwidth-4.5in)/2\relax}

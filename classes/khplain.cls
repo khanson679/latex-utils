@@ -10,7 +10,7 @@
 \setlength{\@titleblocktmargin}{0em}
 
 %% reduce margins
-\switchcase{\@basefontsize}{
+\switchcase{\kh@ptsize}{
     {10}{\setlength{\@hmargin}{1.5in}}
     {11}{\setlength{\@hmargin}{1.25in}}
     {12}{\setlength{\@hmargin}{1in}}}
