@@ -1,9 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{khbeamer}
 \RequirePackage{etoolbox}
-\RequirePackage{qrcode}
-\RequirePackage{tikz}
-\RequirePackage{khcolor}
 
 \newbool{fancyfoot}
 \newbool{titlebar}
@@ -17,8 +14,11 @@
 \PassOptionsToClass{onlytextwidth}{beamer}
 
 \LoadClass{beamer}
-\RequirePackage{khfontsize}
+\RequirePackage{khlatex}
+\RequirePackage{khcolor}
 \RequirePackage{khbeamertools}
+\RequirePackage{qrcode}
+\RequirePackage{tikz}
 
 % Basic formatting
 \setlength{\parskip}{.75\baselineskip plus 2pt minus 2pt}

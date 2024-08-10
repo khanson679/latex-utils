@@ -12,92 +12,100 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document metadata (title, author, etc.)
+\IfClassLoadedTF{beamer}{}{
+    % Default title 'Untitled'
+    \renewcommand{\@title}{Untitled}
+    %\renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
 
-% Default title 'Untitled'
-\renewcommand{\@title}{Untitled}
-%\renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
+    \renewcommand{\@author}{}
+    %\renewcommand{\author}[1]{\def\@author{#1}}
 
-\renewcommand{\@author}{}
-%\renewcommand{\author}[1]{\def\@author{#1}}
+    % Empty date by default
+    \renewcommand{\@date}{}
+    %\renewcommand{\date}[1]{\def\@date{#1}}
 
-% Empty date by default
-\renewcommand{\@date}{}
-%\renewcommand{\date}[1]{\def\@date{#1}}
+    \newcommand{\@venue}{}
+    \newcommand{\venue}[1]{\def\@venue{#1}}
 
-\newcommand{\@venue}{}
-\newcommand{\venue}[1]{\def\@venue{#1}}
+    % Add support for affiliation
+    \newcommand{\@affiliation}{}
+    \newcommand{\affiliation}[1]{\def\@affiliation{#1}}
 
-% Add support for affiliation
-\newcommand{\@affiliation}{}
-\newcommand{\affiliation}[1]{\def\@affiliation{#1}}
+    % Add support for email address
+    \newcommand{\@email}{}
+    \newcommand{\email}[1]{\def\@email{#1}}
 
-% Add support for email address
-\newcommand{\@email}{}
-\newcommand{\email}[1]{\def\@email{#1}}
+    % Add support for "short title" for use in header/footer/etc.
+    \newcommand{\@shorttitle}{}
+    \newcommand{\shorttitle}[1]{\def\@shorttitle{#1}}
 
-% Add support for "short title" for use in header/footer/etc.
-\newcommand{\@shorttitle}{}
-\newcommand{\shorttitle}[1]{\def\@shorttitle{#1}}
+    % Add support for subtitle
+    \providecommand{\@subtitle}{}
+    \newcommand{\subtitle}[1]{\def\@subtitle{#1}}
 
-% Add support for subtitle
-\newcommand{\@subtitle}{}
-\newcommand{\subtitle}[1]{\def\@subtitle{#1}}
+    % Add support for "pretitle", which appears before title
+    \newcommand{\@pretitle}{}
+    \newcommand{\pretitle}[1]{\def\@pretitle{#1}}
 
-% Add support for "pretitle", which appears before title
-\newcommand{\@pretitle}{}
-\newcommand{\pretitle}[1]{\def\@pretitle{#1}}
+    % Add support for keywords
+    \newcommand{\@keywords}{}
+    \newcommand{\keywords}[1]{\def\@keywords{#1}}
 
-% Add support for keywords
-\newcommand{\@keywords}{}
-\newcommand{\keywords}[1]{\def\@keywords{#1}}
-
-% Access commands
-\newcommand{\thetitle}{%
-    \ifdefvoid{\@title}
-    {\PackageError{khlatex}{No \textbackslash title given.}{}}
-    {\@title}}
-\newcommand{\thepretitle}{%
-    \ifdefvoid{\@pretitle}
-    {\PackageError{khlatex}{No \textbackslash pretitle given.}{}}
-    {\@pretitle}}
-\newcommand{\thesubtitle}{%
-    \ifdefvoid{\@subtitle}
-    {\PackageError{khlatex}{No \textbackslash subtitle given.}{}}
-    {\@subtitle}}
-\newcommand{\theauthor}{%
-    \ifdefvoid{\@author}
-    {\PackageError{khlatex}{No \textbackslash author given.}{}}
-    {\@author}}
-\newcommand{\theaffiliation}{%
-    \ifdefvoid{\@affiliation}
-    {\PackageError{khlatex}{No \textbackslash affiliation given.}{}}
-    {\@affiliation}}
-\newcommand{\theemail}{%
-    \ifdefvoid{\@email}
-    {\PackageError{khlatex}{No \textbackslash email given.}{}}
-    {\@email}}
-\newcommand{\thevenue}{%
-    \ifdefvoid{\@venue}
-    {\PackageError{khlatex}{No \textbackslash venue given.}{}}
-    {\@venue}}
-\newcommand{\thedate}{%
-    \ifdefvoid{\@date}
-    {\PackageError{khlatex}{No \textbackslash date given.}{}}
-    {\@date}}
-\newcommand{\theshorttitle}{%
-    \ifdefvoid{\@shorttitle}
-    {\PackageError{khlatex}{No \textbackslash shorttitle given.}{}}
-    {\@shorttitle}}
+    % Access commands
+    \newcommand{\thetitle}{%
+        \ifdefvoid{\@title}
+        {\PackageError{khlatex}{No \textbackslash title given.}{}}
+        {\@title}}
+    \newcommand{\thepretitle}{%
+        \ifdefvoid{\@pretitle}
+        {\PackageError{khlatex}{No \textbackslash pretitle given.}{}}
+        {\@pretitle}}
+    \newcommand{\thesubtitle}{%
+        \ifdefvoid{\@subtitle}
+        {\PackageError{khlatex}{No \textbackslash subtitle given.}{}}
+        {\@subtitle}}
+    \newcommand{\theauthor}{%
+        \ifdefvoid{\@author}
+        {\PackageError{khlatex}{No \textbackslash author given.}{}}
+        {\@author}}
+    \newcommand{\theaffiliation}{%
+        \ifdefvoid{\@affiliation}
+        {\PackageError{khlatex}{No \textbackslash affiliation given.}{}}
+        {\@affiliation}}
+    \newcommand{\theemail}{%
+        \ifdefvoid{\@email}
+        {\PackageError{khlatex}{No \textbackslash email given.}{}}
+        {\@email}}
+    \newcommand{\thevenue}{%
+        \ifdefvoid{\@venue}
+        {\PackageError{khlatex}{No \textbackslash venue given.}{}}
+        {\@venue}}
+    \newcommand{\thedate}{%
+        \ifdefvoid{\@date}
+        {\PackageError{khlatex}{No \textbackslash date given.}{}}
+        {\@date}}
+    \newcommand{\theshorttitle}{%
+        \ifdefvoid{\@shorttitle}
+        {\PackageError{khlatex}{No \textbackslash shorttitle given.}{}}
+        {\@shorttitle}}
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font sizes
+\newcommand{\kh@ptsize}{10}
+\DeclareOption{9pt}{\renewcommand{\kh@ptsize}{9}}
+\DeclareOption{10pt}{\renewcommand{\kh@ptsize}{10}}
+\DeclareOption{11pt}{\renewcommand{\kh@ptsize}{11}}
+\DeclareOption{12pt}{\renewcommand{\kh@ptsize}{12}}
+\ProcessOptions\relax
+\def\kh@fontsizefile{khsize\kh@ptsize.clo}
+\IfFileExists{\kh@fontsizefile}
+    {\input{\kh@fontsizefile}}
+    {\PackageWarning{khlatex}{File \kh@fontsizefile cannot be found. Using standard font sizes.}}
+
 \newcommand{\xsmall}{\footnotesize}
 \newcommand{\xxsmall}{\scriptsize}
-\IfFileExists{khfontsize.sty}
-    {\RequirePackage{khfontsize}}
-    {\PackageWarning{khfontsize}{File khfontsize.sty cannot be found. Using standard font sizes.}}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Misc. adjustments
