@@ -1,0 +1,53 @@
+\documentclass[a5paper]{kharticle}
+\geometry{margin=1cm}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{xcolor}
+\colorlet{hl}{green}
+
+%% linguistic example markup
+\newcommand{\tzmark}[2]{%
+    \tikz[remember picture,baseline] \node[anchor=base,inner sep=0pt](#1){\tzstrut #2};}
+\newcommand{\tzstrut}{\rule[-0.3em]{0pt}{1.1em}}
+\newlength{\deparrowheight}
+\setlength{\deparrowheight}{.7em}
+\newlength{\deparrowspace}
+\setlength{\deparrowspace}{.8em}
+\newcommand{\deparrowsign}{}
+\newcommand{\deparrowcolor}{hl}
+\newcommand{\deparrowlabel}{}
+
+\tikzset{lingdeparrow/.style={->,semithick}}
+%\tikzset{underarrow/.style={lingdeparrow,}}
+
+%\newcommand{\lingdeppad}{\rule[-\deparrowspace]{0pt}{\deparrowspace}}
+\newcommand{\drawdeparrow}[3][lingdeparrow]{{%
+    \tikz[remember picture,overlay]
+        \draw[remember picture,overlay,color=\deparrowcolor,#1]
+        (#2.\anchor) -- +(0,\deparrowsign\deparrowheight)
+        -- ($(#3.\anchor) + (0,\deparrowsign\deparrowheight)$) node [midway] {\deparrowlabel}
+        -- (#3.\anchor);
+}}
+
+\newcommand{\overarrow}[3][lingdeparrow]{%
+    \def\deparrowsign{}%
+    \def\anchor{north}%
+    \rule[1em]{0pt}{\deparrowspace}{}%
+    \drawdeparrow[#1]{#2}{#3}}
+\newcommand{\underarrow}[3][lingdeparrow]{
+    \def\deparrowsign{-}%
+    \def\anchor{south}%
+    \rule[\dimeval{-0.3em-\deparrowspace\relax}]{0pt}{\deparrowspace}{}%
+    \drawdeparrow[#1]{#2}{#3}}
+
+\begin{document}
+Hello
+
+There \tzmark{v}{seems} to be a \tzmark{dp}{ghost} in the attic
+\overarrow{v}{dp}
+
+And there \tzmark{v}{seem} to be some \tzmark{dp}{goblins} in the garden
+\underarrow{v}{dp}
+
+Goodbye
+\end{document}
