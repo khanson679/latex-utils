@@ -1,0 +1,34 @@
+\documentclass[a5paper]{kharticle}
+\geometry{margin=1cm}
+\usepackage{lingdeparrow}
+\usepackage{khcolor}
+
+\lingdeparrowset{
+    goodlink/.style={azure},
+    badlink/.style={redorange,midwayx}
+}
+
+\begin{document}
+Hello
+
+There \lingdepmark{v}{seems} to be a \lingdepmark{dp}{ghost} in the attic
+\overlink{v}{dp}
+
+There \lingdepmark{v}{seems} to be a \lingdepmark{dp}{ghost} in the attic
+\overarrow{v}{dp}
+
+\bigskip
+
+And there \lingdepmark{v}{seem} to be some \lingdepmark{dp}{goblins} in the garden
+\underarrow[goodlink]{v}{dp}
+
+And there \lingdepmark{v}{seems} to be some \lingdepmark{dp}{mermaids} in the lake
+\underarrow[badlink]{v}{dp}
+
+\bigskip
+\lingdepmark{wh}{What} happens \lingdepmark{gap}{\rule{3em}{.5pt}} when we use the default arrow?
+\lingdeparrow{gap}{wh}
+
+Goodbye
+\end{document}
+

@@ -1,0 +1,97 @@
+\ProvidesPackage{lingdeparrow}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings}
+%\usepackage{xcolor}
+%\colorlet{hl}{green}
+
+%% settings
+
+\newlength{\deptextheight}
+\setlength{\deptextheight}{.9em}
+\newlength{\deptextdepth}
+\setlength{\deptextdepth}{.3em}
+\newcommand{\textheightdepth}{\dimeval{\deptextheight+\deptextdepth\relax}}
+
+\newlength{\deparrowheight}
+\setlength{\deparrowheight}{.7em}
+\newlength{\deparrowspace}
+\setlength{\deparrowspace}{.8em}
+
+\newcommand{\deparrowsign}{\PackageError{lingdeparrow}{\noexpand\deparrowsign not defined.}{}}
+\newcommand{\deparrowanchor}{\PackageError{lingdeparrow}{\noexpand\deparrowanchor not defined.}{}}
+\newcommand{\deparrowspacer}{\PackageError{lingdeparrow}{\noexpand\deparrowspacer not defined.}{}}
+
+\newcommand{\lingdeparrowset}[1]{\pgfkeys{/lingdeparrow/.cd,#1}}
+
+\lingdeparrowset{
+    .search also=/tikz,
+    over/.code={
+        \renewcommand{\deparrowsign}{}
+        \renewcommand{\deparrowanchor}{north}
+        \renewcommand{\deparrowspacer}{\rule[\deptextheight]{0pt}{\deparrowspace}}},
+    under/.code={
+        \renewcommand{\deparrowsign}{-}
+        \renewcommand{\deparrowanchor}{south}
+        \renewcommand{\deparrowspacer}{\rule[-\textheightdepth]{0pt}{\deparrowspace}}},
+    arrow/.style={->,>={Straight Barb[scale=0.8]}},
+    circles/.style={<->,>={Circle[scale=0.8]}},
+    midwayx/.style={
+        postaction={decorate},
+        decoration={markings, mark=at position .5 with {
+            \draw[-] % ensure no arrowhead (decorations inherit draw style)
+                (-2pt,-2pt) -- (2pt,2pt)
+                (2pt,-2pt) -- (-2pt,2pt);
+    }}},
+    defaultstyle/.style={semithick,arrow}
+}
+
+\lingdeparrowset{under}
+
+%% code to draw the arrow/link
+
+\newcommand{\drawdeparrow}[3][]{{%
+    \tikz[remember picture,overlay]
+        \draw [/lingdeparrow/.cd,defaultstyle,.search also=/tikz,#1]
+            (#2.\deparrowanchor)
+            -- +(0,\deparrowsign\deparrowheight)
+%            -- ($(#3.\deparrowanchor) + (0,\deparrowsign\deparrowheight)$)
+%            node [midway] {\deparrowlabel}
+            -| (#3.\deparrowanchor);
+}}
+
+
+%% interface
+
+
+%\pgfkeys{
+%    /lingdeparrow/.cd,
+%    over/.code={
+%        \renewcommand{\deparrowsign}{}
+%        \renewcommand{\deparrowanchor}{north}
+%        \let\deparrowspacer\deppadover},
+%    under/.code={
+%        \renewcommand{\deparrowsign}{-}
+%        \renewcommand{\deparrowanchor}{south}
+%        \let\deparrowspacer\deppadunder},
+%}
+
+%% wrap text in indivisible node, padded to equalize height/depth
+\newcommand{\lingdepmark}[2]{%
+    \tikz[remember picture,baseline]
+        \node[anchor=base, inner sep=0pt,
+            text height=\deptextheight, text depth=\deptextdepth] (#1) {#2};}
+
+%% draw arrow from first to second argument
+%% #1: tikz formatting
+%% #2: first node name
+%% #3: second node name
+\newcommand{\lingdeparrow}[3][]{%
+    \deparrowspacer%
+    \drawdeparrow[#1]{#2}{#3}
+}
+
+%% shortcuts
+\newcommand{\overarrow}[3][]{{\lingdeparrowset{over}\lingdeparrow[arrow,#1]{#2}{#3}}}
+\newcommand{\underarrow}[3][]{{\lingdeparrowset{under}\lingdeparrow[arrow,#1]{#2}{#3}}}
+\newcommand{\overlink}[3][]{{\lingdeparrowset{over}\lingdeparrow[circles,#1]{#2}{#3}}}
+\newcommand{\underlink}[3][]{{\lingdeparrowset{under}\lingdeparrow[circles,#1]{#2}{#3}}}
