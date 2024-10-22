@@ -3,10 +3,12 @@
 \newif{\if@useampersand}
 \newif{\if@shortbib}
 \newif{\if@inlinebib}
+\newif{\if@pubstatelabel}
 
 \DeclareOption{ampersand}{\@useampersandtrue}
 \DeclareOption{shortbib}{\@shortbibtrue}
 \DeclareOption{inlinebib}{\@inlinebibtrue\PassOptionsToPackage{dashed=false}{biblatex}}
+\DeclareOption{pubstatelabel}{\@pubstatelabeltrue}
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{biblatex}}
 \ProcessOptions\relax
 
@@ -58,12 +60,15 @@
 %% format undated works
 
 %% Use pubstate instead of date
+\if@pubstatelabel
 \DeclareLabeldate{%
     \field{pubstate}   % <-- NEW
     \field{date}
     \field{year}
     \literal{nodate}
 }
+\else
+\fi
 
 %% Don't print pubstate at end.
 \renewbibmacro*{addendum+pubstate}{}
@@ -79,14 +84,14 @@
 \defbibenvironment{bibliography}{%
     \newtoggle{firstentry}
     \toggletrue{firstentry}
-    \newcommand{\bibentry}{%
-        \iftoggle{firstentry}
-        {\global\togglefalse{firstentry}}
-        {\space\textbullet\space}}
+%    \newcommand{\bibentry}{%
+%        \iftoggle{firstentry}
+%        {\global\togglefalse{firstentry}}
+%        {\space\textbullet\space}}
 }{\endgraf}{
     \iftoggle{firstentry}
     {\global\togglefalse{firstentry}}
-    {\textbullet\space}}
+    {\space\textbullet\space}}
 \else
 \fi
 
