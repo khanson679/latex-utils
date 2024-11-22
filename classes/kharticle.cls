@@ -134,13 +134,13 @@
     \renewcommand{\@titlefmt}{\Large}
     \renewcommand{\@pretitlefmt}{\large}
     \renewcommand{\@subtitlefmt}{\large}
-    \renewcommand{\@keywordfmt}{\normalsize}
-    \renewcommand{\@authorfmt}{\normalsize}
-    \renewcommand{\@affiliationfmt}{\normalsize}
-    \renewcommand{\@emailfmt}{\small\ttfamily}
-    \renewcommand{\@venuefmt}{\normalsize}
-    \renewcommand{\@datefmt}{\normalsize}
-    \setlength{\@titleblocksep}{.6em}
+    \renewcommand{\@keywordfmt}{\large}
+    \renewcommand{\@authorfmt}{\large}
+    \renewcommand{\@affiliationfmt}{\large}
+    \renewcommand{\@emailfmt}{\normalsize\ttfamily}
+    \renewcommand{\@venuefmt}{\large}
+    \renewcommand{\@datefmt}{\large}
+%    \setlength{\@titleblocksep}{.6em}
 }{}
 \ifbool{tiny}{
     \renewcommand{\@titlefmt}{\large}
@@ -152,7 +152,7 @@
     \renewcommand{\@emailfmt}{\small\ttfamily}
     \renewcommand{\@venuefmt}{\normalsize}
     \renewcommand{\@datefmt}{\normalsize}
-    \setlength{\@titleblocksep}{.6em}
+%    \setlength{\@titleblocksep}{.6em}
 }{}
 \ifbool{compact}{
     \setlength{\@titleblocksep}{0.5\@titleblocksep}
@@ -165,7 +165,7 @@
     \begingroup%
     \setlength{\parskip}{0pt}%
     \setlength{\topskip}{0pt}%
-    \newpage%
+%    \newpage%
     \vspace*{0pt}%
     \addvspace{\@titleblocktmargin}%
     \begin{center}%
