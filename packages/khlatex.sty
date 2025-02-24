@@ -35,6 +35,10 @@
     \newcommand{\@email}{}
     \newcommand{\email}[1]{\def\@email{#1}}
 
+    % Add support for website
+    \newcommand{\@website}{}
+    \newcommand{\website}[1]{\def\@website{#1}}
+
     % Add support for "short title" for use in header/footer/etc.
     \newcommand{\@shorttitle}{}
     \newcommand{\shorttitle}[1]{\def\@shorttitle{#1}}
@@ -76,6 +80,10 @@
         \ifdefvoid{\@email}
         {\PackageError{khlatex}{No \textbackslash email given}{}}
         {\@email}}
+    \newcommand{\thewebsite}{%
+        \ifdefvoid{\@website}
+        {\PackageError{khlatex}{No \textbackslash website given}{}}
+        {\@website}}
     \newcommand{\thevenue}{%
         \ifdefvoid{\@venue}
         {\PackageError{khlatex}{No \textbackslash venue given}{}}
