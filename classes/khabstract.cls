@@ -20,6 +20,7 @@
 \newcommand{\@titlefmt}{\normalsize\bfseries}
 \newcommand{\@keywordfmt}{\small}
 \newcommand{\@authorfmt}{\normalsize}
+\newcommand{\@affiliationfmt}{\normalsize}
 \newcommand{\@emailfmt}{\small\ttfamily}
 \newcommand{\@venuefmt}{\small}
 \newcommand{\@datefmt}{\normalsize}
@@ -47,6 +48,7 @@
     \vspace*{\@titleblocksep}
     \ifbool{anonymous}{}{
         \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}
+        \ifdefvoid{\@affiliation}{}{{\@affiliationfmt \@affiliation \par}}
         \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}}
     \vspace*{\@titleblocksep}
     \ifdefvoid{\@venue}{}{{\@venuefmt \@venue \par}}
