@@ -117,8 +117,9 @@
 \newcommand{\@subtitlefmt}{\Large}
 \newcommand{\@keywordfmt}{\large}
 \newcommand{\@authorfmt}{\large}
-\newcommand{\@affiliationfmt}{\large}
+\newcommand{\@affiliationfmt}{\normalsize}
 \newcommand{\@emailfmt}{\normalsize\ttfamily}
+\newcommand{\@websitefmt}{\normalsize\ttfamily}
 \newcommand{\@venuefmt}{\large}
 \newcommand{\@datefmt}{\large}
 
@@ -138,6 +139,7 @@
     \renewcommand{\@authorfmt}{\large}
     \renewcommand{\@affiliationfmt}{\large}
     \renewcommand{\@emailfmt}{\normalsize\ttfamily}
+%    \renewcommand{\@websitefmt}{\normalsize\ttfamily}
     \renewcommand{\@venuefmt}{\large}
     \renewcommand{\@datefmt}{\large}
 %    \setlength{\@titleblocksep}{.6em}
@@ -150,6 +152,7 @@
     \renewcommand{\@authorfmt}{\normalsize}
     \renewcommand{\@affiliationfmt}{\normalsize}
     \renewcommand{\@emailfmt}{\small\ttfamily}
+%    \renewcommand{\@websitefmt}{\small\ttfamily}
     \renewcommand{\@venuefmt}{\normalsize}
     \renewcommand{\@datefmt}{\normalsize}
 %    \setlength{\@titleblocksep}{.6em}
@@ -177,6 +180,7 @@
         \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}%
         \ifdefvoid{\@affiliation}{}{{\@affiliationfmt \@affiliation \par}}%
         \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}%
+%        \ifdefvoid{\@website}{}{{\@websitefmt \@website \par}}%
         \addvspace{\@titleblocksep}
         \ifdefvoid{\@venue}{}{{\@venuefmt \@venue \par}}%
         \ifdefvoid{\@date}{}{{\@datefmt \@date \par}}%
