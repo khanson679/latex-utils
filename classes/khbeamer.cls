@@ -74,7 +74,7 @@
 % Beamer frame formatting
 \setbeamertemplate{frametitle continuation}[from second][(\insertcontinuationcount)]
 \setbeamertemplate{navigation symbols}{}
-%\setbeamersize{text margin left=1cm, text margin right=1cm}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
 
 % titlebar -- light text on dark background
 \ifbool{titlebar}
