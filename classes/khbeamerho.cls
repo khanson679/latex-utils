@@ -61,7 +61,7 @@
     {\par\vskip\smallskipamount{\noindent\textbf{\insertblocktitle}}\par\noindent\ignorespaces}
 \setbeamertemplate{block end}{\vskip\smallskipamount}
 
-\renewcommand{\blockheading}[1]{\medskip\textbf{#1}\par}
+\renewcommand{\blockheading}[1]{\medskip\textbf{#1}\par\nopagebreak}
 
 \renewenvironment{figure}
     {\smallskip\begin{center}
