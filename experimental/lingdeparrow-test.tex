@@ -1,17 +1,23 @@
 \documentclass{khplain}
 \usepackage{lingdeparrow}
-\usepackage{khcolor}
+%\usepackage{khcolor}
 \usepackage{parskip}
 
-\lingdeparrowset{
-    goodlink/.style={azure},
-    badlink/.style={redorange,midwayx}
-}
+%\lingdeparrowset{
+%    goodlink/.style={azure},
+%    badlink/.style={redorange,midwayx}
+%}
+%\tikzset{
+%    goodlink/.style={azure},
+%    badlink/.style={redorange,midwayx}
+%}
 
 \begin{document}
 Hello
 
-There \lingdepmark{v}{seems} to be a \lingdepmark{dp}{ghost} in the attic
+\bigskip
+
+There \lingdepmark{v}{seems} to be a \lingdepmark{dp}{GHOST} in the attic
 \overlink{v}{dp}
 
 There \lingdepmark{v}{seems} to be a \lingdepmark{dp}{ghost} in the attic
@@ -20,13 +26,17 @@ There \lingdepmark{v}{seems} to be a \lingdepmark{dp}{ghost} in the attic
 \bigskip
 
 And there \lingdepmark{v}{seem} to be some \lingdepmark{dp}{goblins} in the garden
-\underarrow[goodlink]{v}{dp}
+\underarrow[good]{v}{dp}
 
 And there \lingdepmark{v}{seems} to be some \lingdepmark{dp}{mermaids} in the lake
-\underarrow[badlink]{v}{dp}
+\underarrow[bad]{v}{dp}
+
+\bigskip
 
 \lingdepmark{wh}{What} happens \lingdepmark{gap}{\rule{3em}{.5pt}} when we use the default arrow?
-\lingdeparrow{gap}{wh}
+\lingdeparrow{under}{gap}{wh}
+
+\bigskip
 
 Goodbye
 \end{document}
