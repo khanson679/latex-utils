@@ -1,21 +1,37 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{khutil}
 
+\usepackage{pgffor}
 \usepackage{adjustbox}
 
+%% combine multiple lines into a box whose size exactly fits its contents
 \newcommand{\fitbox}[2][l]{\begin{tabular}{#1}#2\end{tabular}}
 
+%% pad the given text, so that following text is indented to simulate columns
+%% intended for use within lists
 \newcommand{\pad}[2]{\makebox[#1][l]{#2}}
 
+%% make a note indented to a given horizontal position of the text area
 \newcommand{\rhsnote}[2][0.5]{\hfill\makebox[#1\linewidth][l]{#2}}
 
+%% split current text area into two columns, each a minipage
 \newcommand{\sidebyside}[3][.5]{{%
-	\def\gap{0.01}
-	\def\lwidth{\fpeval{#1-\gap/2}\linewidth}%
-	\def\rwidth{\fpeval{1-\gap/2-#1}\linewidth}%
-	\adjustbox{minipage=\lwidth,valign=t}{#2}%
-	\hspace{\gap\linewidth}
-	\adjustbox{minipage=\rwidth,valign=t}{#3}%
+    \def\gap{0.01}
+    \def\lwidth{\fpeval{#1-\gap/2}\linewidth}%
+    \def\rwidth{\fpeval{1-\gap/2-#1}\linewidth}%
+    \adjustbox{minipage=\lwidth,valign=t}{#2}%
+    \hspace{\gap\linewidth}
+    \adjustbox{minipage=\rwidth,valign=t}{#3}%
 }}
 
 %\newcommand\thefontsize[1]{{#1 The current font size is: \f@size pt\par}}
+
+%% ensure proper spacing in comma-separated list
+\newcommand*{\commalist}[1]{\foreach \x [count=\i] in {#1} {\ifnum\i=1 \x{}\else ,\space\x{}\fi}}
+
+%% wrap every instance of command1 as the sole argument of command2
+%% intended to temporarily modify zero-place commands
+\newcommand{\wrapcmd}[2]{%
+   \expandafter\let\csname old@\string#1\endcsname=#1%
+   \renewcommand{#1}{#2{\csname old@\string#1\endcsname}}%
+}
