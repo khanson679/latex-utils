@@ -31,7 +31,8 @@
 %% Quick setting for title size, options normal/small/tiny (default=normal)
 \DeclareStringOption[normal]{title}
 
-%% Put Page/Total in footer
+%% Header/footer aoptions
+\DeclareBoolOption{contactinhead}
 \DeclareBoolOption{pagecountinfoot}
 
 %% Forward other options to 'article' class
@@ -65,19 +66,46 @@
 \PassOptionsToPackage{hmargin=\@hmargin,vmargin=\@vmargin}{geometry}
 \RequirePackage{geometry}
 
+%% header and footer
+
+\RequirePackage{fancyhdr}
+\AtBeginDocument{\pagestyle{fancy}} % Ensure header/footer set after page layout
+
+%% default settings
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyfoot[c]{\thepage}
 
 %% Show page number and count in footer
 \ifkharticle@pagecountinfoot
-    \RequirePackage{fancyhdr}
     \RequirePackage{lastpage}
-    % Ensure header/footer set after page layout
-    \AtBeginDocument{%
-        \renewcommand{\headrulewidth}{0pt}
-        \pagestyle{fancy}
-        \fancyhead{}
-        \fancyfoot{}
-        \fancyfoot[c]{\thepage/\pageref{LastPage}}
+    \fancyfoot[c]{\thepage/\pageref*{LastPage}}
+\fi
+
+\ifkharticle@contactinhead
+%    \setbool{showemail}{false}
+%    \setbool{showwebsiteintitle}{false}
+%    \RequirePackage{titleps}
+    \RequirePackage{hyperref}
+    \RequirePackage{fontawesome5}
+    \faStyle{regular}
+    \newcommand{\makecontactheader}{
+        \begingroup
+        \hypersetup{hidelinks}%
+        \footnotesize
+        \noindent
+        \faLink\thickspace
+        \href{https://\@website}{\@website}%
+        \hspace{.5em}|\hspace{.5em}%
+        \faEnvelope\thickspace
+        \href{mailto:\@email}{\@email}%
+        \endgroup
     }
+%    \geometry{headsep=.25in}
+    \fancypagestyle{first}[fancy]{
+        \fancyhead[r]{\makecontactheader}
+    }
+    \thispagestyle{first}
 \fi
 
 % Show document title or short title in footer
@@ -179,8 +207,11 @@
         \addvspace{\@titleblocksep}
         \ifdefvoid{\@author}{}{{\@authorfmt \@author \par}}%
         \ifdefvoid{\@affiliation}{}{{\@affiliationfmt \@affiliation \par}}%
-        \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}%
-%        \ifdefvoid{\@website}{}{{\@websitefmt \@website \par}}%
+        \ifkharticle@contactinhead
+        \else
+            \ifdefvoid{\@email}{}{{\@emailfmt \@email \par}}%
+            \ifdefvoid{\@website}{}{{\@websitefmt \@website \par}}%
+        \fi
         \addvspace{\@titleblocksep}
         \ifdefvoid{\@venue}{}{{\@venuefmt \@venue \par}}%
         \ifdefvoid{\@date}{}{{\@datefmt \@date \par}}%
