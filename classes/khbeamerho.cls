@@ -14,6 +14,7 @@
 \PassOptionsToPackage{colorlinks=true,allcolors=darkblue}{hyperref}
 \RequirePackage{hyperref}
 \RequirePackage{qrcode}
+\RequirePackage{parskip}
 
 %% implement missing beamer elements
 
@@ -28,12 +29,13 @@
 %% show small frame numbers
 \newcommand{\textsquarebullet}{\raisebox{1pt}{\rule{.4em}{.4em}}}
 \renewcommand{\frametitle}[1]{%
-    \subsection*{\ifbool{framenumbers}%
+    \subsubsection*{\ifbool{framenumbers}%
         {{\xsmall[\insertframenumber]}\space#1}
         {\textsquarebullet\space#1\space\textsquarebullet}}}
 
 
 %% title stuff
+
 %\newcommand{\venue}[1]{\def\@venue{#1}}
 \newcommand{\insertvenue}{\ifdefvoid{\@venue}{}{\@venue}}
 
@@ -63,6 +65,7 @@
 
 \renewcommand{\blockheading}[1]{\medskip\textbf{#1}\par\nopagebreak}
 
+%% keep figures and tables inline with text
 \renewenvironment{figure}
     {\smallskip\begin{center}
         \renewcommand{\caption}[1]{\par{\centering\small##1\par}}}
