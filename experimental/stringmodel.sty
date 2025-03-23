@@ -1,0 +1,220 @@
+\ProvidesPackage{stringmodel}
+\usepackage{tikz}
+
+%% tikz settings
+\usetikzlibrary{positioning,arrows.meta,graphs.standard,bbox}
+
+\colorlet{hlcolor}{blue!80!green}
+
+\tikzset{element/.style={
+    draw, semithick, rectangle, rounded corners,
+    ontier/.style={},
+    active/.style={font=\bfseries, thick, text=hlcolor, draw=hlcolor, fill=hlcolor!25},
+    invis/.style={text=gray,draw=gray,fill=white},
+}}
+\tikzset{text element/.style={
+    element,
+    anchor=base, text height=1.5ex, text depth=.3ex, minimum width=1.5em,
+}}
+%\tikzset{empty element/.style={
+%    element,
+%    anchor=base, text height=1.5ex, text depth=.3ex, minimum width=1.5em,
+%    draw, semithick, rectangle, rounded corners,
+%}}
+\tikzset{arc/.style={
+    draw, semithick, ->, >={Latex[scale=0.7]},
+}}
+\tikzset{tierarc/.style={arc,bend left}}
+\tikzset{actarc/.style={draw=hlcolor,thick}}
+\tikzset{invarc/.style={gray,densely dotted}}
+\tikzset{window/.style={draw=hlcolor,thick,rounded corners=.5ex,inner sep=1em}}
+
+%\tikzset{tsl/.style={graphs/every graph/.append style={edges={invarc}}}}
+
+\tikzset{model base/.style={
+    bezier bounding box,
+    graphs/local tier/.style={edges=invarc},
+    graphs/main tier/.style={edges=tierarc, use existing nodes},
+}}
+
+\tikzset{string model/.style={
+    model base,
+    node distance=3em, on grid,
+    every node/.style={text element},
+    every edge/.style={arc},
+    graphs/every graph/.style={
+        grow right=3em,
+        nodes=text element,
+        edges=arc,
+    },
+}}
+
+\tikzset{string doodle/.style={
+    model base,
+    graphs/every graph/.style={
+        empty nodes,
+        grow right=3em,
+        nodes={element, circle, minimum size=1em},
+        edges={arc}}
+}}
+
+%\tikzset{string model/.style={
+%    bezier bounding box,
+%    >={Latex[scale=0.7]},
+%    node distance=1.5em,
+%    every node/.style={element},
+%    every edge/.style={arc},
+%}}
+
+\tikzset{string factor/.style={
+    string model, inner sep=2pt, node distance=1em}}
+
+
+%% helper commands
+
+\ExplSyntaxOn
+\NewDocumentCommand \IfStringInList {mmmm}
+    { \clist_if_in:nVTF {#2} {#1} {#3} {#4} }
+\NewDocumentCommand \CountInlineItems {m}
+    { \clist_count:n {#1} }
+%\NewDocumentCommand \FilterList {mm}
+%    { \clist_map_inline:nn {#1}{\clist_if_in:nVTF {#2} {#1} {#3} {#4}} }
+\ExplSyntaxOff
+
+
+%
+% tikz drawing helper commands
+%
+
+% #1 -- first node index
+% #2 -- last node index
+\newcommand{\DrawWindow}[2]{
+    \node[window,fit=(#1.north west)(#2.south east)] {};
+}
+
+% #1 -- list of node labels
+% #2 -- style to apply to nodes
+\newcommand{\DrawNodes}[2][]{
+    \foreach \x [count=\i, remember=\i as \prev] in {#2} {
+        \ifnum\i=1
+            \node [element,#1] (\i) {\x};
+        \else
+            \node [element,#1] (\i) [right=of \prev] {\x};
+        \fi
+    }
+}
+
+% #1 -- list of pairs of node labels/style
+\newcommand{\DrawNodesWithStyles}[1]{
+    \foreach \x\style [count=\i, remember=\i as \prev] in {#1} {
+        \ifnum\i=1
+            \node [element,\style] (\i) {\x};
+        \else
+            \node [element,\style] (\i) [right=of \prev] {\x};
+        \fi
+    }
+}
+
+
+% #1 -- list of node labels
+% #2 -- node indices with ``special'' style
+% #3 -- the special style
+% #4 -- the default style
+\newcommand{\DrawNodesTwoStyles}[4]{
+    \foreach \x [count=\i, remember=\i as \prev] in {#1} {
+        \IfStringInList{\i}{#2}{\def\style{#3}}{\def\style{#4}}
+        \ifnum\i=1
+            \node[element,\style] (\i) {\x};
+        \else
+            \node[element,\style] (\i) [right=of \prev] {\x};
+        \fi
+    }
+}
+
+
+% #1 -- list of node indices (edges wil be drawn between each pair)
+% #2 -- style to apply to all edges
+\newcommand{\DrawEdges}[2][]{
+    \foreach \i [remember=\i as \prev initially 0] in {#2} {
+        \ifnum\prev>0
+            \draw (\prev) edge[arc,#1] (\i);
+        \fi
+    }
+}
+
+
+% #1 -- style for arcs
+% #2 -- number of nodes
+\newcommand{\DrawImedPrecRelation}[2][arc]{
+    \foreach \i [remember=\i as \prev initially 0] in {1,...,#2} {
+        \ifnum\prev>0
+            \draw[#1] (\prev) edge (\i);
+        \fi
+    }
+}
+
+
+% #1 -- number of nodes
+% #2 -- style for each edge
+\newcommand{\DrawTransClosure}[2][]{
+    \foreach \i in {1,...,#2}
+        \foreach \j in {1,...,\i} {
+            \ifnum\i<\numexpr\j+2
+                \relax
+            \else
+                \ifodd\inteval{\i-\j}
+                    \draw[arc,#1] (\j) edge[bend right] (\i);
+                \else
+                    \draw[arc,#1] (\j) edge[bend left] (\i);
+                \fi
+            \fi
+        }
+}
+
+
+%% #1 -- list of tier node indices
+%\newcommand{\DrawTierEdges}[1]{
+%    \foreach \i [remember=\i as \prev initially 0] in {#1} {
+%        \ifnum\prev>0
+%            \draw[tierarc] (\prev) edge[bend left] (\i);
+%        \fi
+%    }
+%}
+
+%
+% automatic graph structures for string models
+%
+
+% #1 -- list of ``active'' (highlighted) node indices
+% #2 -- list of node labels
+\newcommand{\DrawImedPrecModel}[2][]{
+    \DrawNodesTwoStyles{#2}{#1}{active}{}
+    \DrawImedPrecRelation{\CountInlineItems{#2}}
+}
+
+
+% #1 -- list of ``active'' (highlighted) node indices
+% #2 -- list of node labels
+\newcommand{\DrawGenPrecModel}[2][]{
+%    \DrawImedPrecModel[#1]{#2}
+    \DrawNodesTwoStyles{#2}{#1}{active}{}
+    \DrawImedPrecRelation{\CountInlineItems{#2}}
+    \DrawTransClosure{\CountInlineItems{#2}}
+}
+
+
+% #1 -- list of (all) node labels
+% #2 -- list of tier node indices
+\newcommand{\DrawTierPrecModel}[2]{
+    \DrawNodesTwoStyles{#1}{#2}{}{invis}
+    \DrawImedPrecRelation[invarc]{\CountInlineItems{#1}}
+    \DrawEdges[tierarc]{#2}
+}
+
+
+%% wrapers with enclosing tikz command
+
+\newcommand{\ImedPrecModel}[2][]{\tikz[string model]{\DrawImedPrecModel[#1]{#2}}}
+\newcommand{\GenPrecModel}[2][]{\tikz[string model]{\DrawGenPrecModel[#1]{#2}}}
+\newcommand{\TierPrecModel}[2]{\tikz[string model]{\DrawTierPrecModel{#1}{#2}}}
+\newcommand{\StringFactor}[1]{\tikz[string factor]{\DrawImedPrecModel{#1}}}

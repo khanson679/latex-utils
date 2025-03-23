@@ -1,0 +1,101 @@
+% !TEX program = xelatex
+\documentclass{khplain}
+\usepackage{khlinguistics,khcolor}
+\usepackage{newtx}
+\usepackage{parskip}
+\usepackage{stringmodel}
+
+\ifxetex
+\defaultfontfeatures{} % fix for newtx conflict with fontspec
+\newfontfamily{\ipafont}{Noto Serif}[Scale=MatchLowercase]
+\newcommand{\sh}{{\ipafont ʃ}}
+\else
+%% NOTE: current string model code doesn't work with TIPA
+\usepackage{tipa}
+\DeclareFontSubstitution{T3}{ptm}{m}{n} % change default TIPA font to Times
+\newcommand{\sh}{\textipa{S}}
+\fi
+
+
+\title{Test document for `stringmodel.sty'}
+
+\begin{document}
+\maketitle
+
+
+\section{String ``doodles''}
+
+\textbf{Immediate Precedence (Strict Adjacency)}\par
+\begin{tikzpicture}[string doodle]
+\graph{1 -> 2 -> 3[active] -> 4[active] -> 5 -> 6 -> 7};
+\end{tikzpicture}
+
+\textbf{General Precedence (Global Adjacency)}\par
+\begin{tikzpicture}[string doodle]
+\graph{1 -> 2 -> 3[active] -> 4 -> 5 -> 6[active] -> 7};
+\DrawTransClosure{7}
+\end{tikzpicture}
+
+\textbf{Tier Precedence (Relativized Adjacency)}\par
+\begin{tikzpicture}[string doodle]
+\graph[local tier]{1 -> 2[invis] -> 3[active] -> 4[invis] -> 5[invis] -> 6[active] -> 7};
+\DrawEdges[tierarc]{1,3,6,7}
+\end{tikzpicture}
+
+
+\section{Manual string models for concrete words}
+
+\textbf{Immediate Precedence (Strict Adjacency)}\par
+\begin{tikzpicture}[string model]
+\graph{1/s -> 2/a -> 3/s[active] ->[actarc] 4/a[active] -> 5/\sh -> 6/a};
+\end{tikzpicture}
+
+\textbf{General Precedence (Global Adjacency)}\par
+\begin{tikzpicture}[string model]
+\graph{1/s -> 2/a -> 3/s[active] -> 4/a -> 5/\sh[active] -> 6/a};
+\DrawTransClosure{6}
+\end{tikzpicture}
+
+\textbf{Tier Precedence (Relativized Adjacency)}\par
+\begin{tikzpicture}[string model]
+\graph[local tier]{1/s[ontier] -> 2/a[invis] -> 3/s[active] -> 4/a[invis] -> 5/\sh[active] -> 6/a[invis]};
+\graph[main tier]{1 -> 3 ->[actarc] 5};
+\end{tikzpicture}
+
+
+\section{Semi-automatic string models for concrete words}
+
+\textbf{Immediate Precedence (Strict Adjacency)}\par
+\begin{tikzpicture}[string model]
+\DrawNodesWithStyles{s/,a/,s/active,a/active,\sh/,a/}
+\DrawEdges{1,2,3,4,5,6}
+\end{tikzpicture}
+
+\textbf{General Precedence (Global Adjacency)}\par
+\begin{tikzpicture}[string model]
+\DrawNodesWithStyles{s/,a/,s/active,a/,\sh/active,a/}
+\DrawEdges{1,2,3,4,5,6}
+\DrawTransClosure{6}
+\end{tikzpicture}
+
+\textbf{Tier Precedence (Relativized Adjacency)}\par
+\begin{tikzpicture}[string model]
+\DrawNodesWithStyles{s/ontier,a/invis,s/active,a/invis,\sh/active,a/invis}
+\DrawEdges[invarc]{1,2,3,4,5,6}
+\DrawEdges[tierarc]{1,3,5}
+\end{tikzpicture}
+
+
+\section{Automatic string models for concrete words}
+
+\textbf{Immediate Precedence (Strict Adjacency)}\par
+\ImedPrecModel{s,a,s,a,\sh,a}
+
+\textbf{General Precedence (Global Adjacency)}\par
+\GenPrecModel{s,a,s,a,\sh,a}
+
+\textbf{Tier Precedence (Relativized Adjacency)}\par
+\TierPrecModel{s,a,s,a,\sh,a}{1,3,5}
+
+
+\end{document}
