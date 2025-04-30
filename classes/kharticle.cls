@@ -167,7 +167,7 @@
     \renewcommand{\@authorfmt}{\large}
     \renewcommand{\@affiliationfmt}{\large}
     \renewcommand{\@emailfmt}{\normalsize\ttfamily}
-%    \renewcommand{\@websitefmt}{\normalsize\ttfamily}
+    \renewcommand{\@websitefmt}{\normalsize\ttfamily}
     \renewcommand{\@venuefmt}{\large}
     \renewcommand{\@datefmt}{\large}
 %    \setlength{\@titleblocksep}{.6em}
@@ -180,7 +180,7 @@
     \renewcommand{\@authorfmt}{\normalsize}
     \renewcommand{\@affiliationfmt}{\normalsize}
     \renewcommand{\@emailfmt}{\small\ttfamily}
-%    \renewcommand{\@websitefmt}{\small\ttfamily}
+    \renewcommand{\@websitefmt}{\small\ttfamily}
     \renewcommand{\@venuefmt}{\normalsize}
     \renewcommand{\@datefmt}{\normalsize}
 %    \setlength{\@titleblocksep}{.6em}
@@ -242,3 +242,10 @@
 %        \quotation
 %        \fi}
 %{\if@twocolumn\else\endquotation\addvspace{\@titleblockbmargin}\fi}
+
+%% text markup
+
+\newcommand{\keyterm}{\textsc}
+\let\kw\keyterm
+
+\newcommand{\semph}{\textbf}
