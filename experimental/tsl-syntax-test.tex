@@ -1,0 +1,65 @@
+\documentclass{khplain}
+\usepackage{khlinguistics}
+\usepackage{tsl-syntax}
+
+\usepackage{newtx}
+\usepackage{parskip}
+
+\colorlet{hla}{azure!90!black}
+\colorlet{hlb}{redorange!90!black}
+\colorlet{hlc}{green}
+\colorlet{hld}{purple}
+\colorlet{hle}{gold!90!black}
+\colorlet{hl}{hla}
+\newcommand{\hl}[1]{\textcolor{hl}{\bfseries\boldmath #1}}
+\newcommand{\hla}[1]{\textcolor{hla}{\bfseries\boldmath #1}}
+\newcommand{\hlb}[1]{\textcolor{hlb}{\bfseries\boldmath #1}}
+\newcommand{\hlc}[1]{\textcolor{hlc}{\bfseries\boldmath #1}}
+
+\begin{document}
+Tree and tier
+\begin{figure}[h]
+\drawtreeandtier
+    {\Forest{
+        [\hl{T\feat{\pphi}},name=T [\lv,name=lv [\hl{the\feat{\mphi}},name=Dsbj [cat]]
+        [chase,name=V [\ontier{the},name=Dobj [rats,name=Nobj]]]]]
+        \draw[cstr] (T.west) to[bend right] (lv);
+        \draw[cstr] (lv) to[bend right] (Dsbj);
+        \draw[cstr] (Dsbj) to[bend right] (V);
+        \draw[cstr] (V) to[bend left] (Dobj.east);
+        \draw[cstr] (Dobj) to[bend left] (Nobj.east);}}
+    {\Forest{
+        [\hl{T\feat{\pphi}},name=T
+            [\hl{the\feat{\mphi}},name=Dsbj]
+            [\ontier{the},name=Dobj]]}}
+\end{figure}
+
+Tree and path
+\begin{figure}[h]
+\drawtreeandpath
+    {\Forest{
+        [\hl{T\feat{\pphi}},name=T [\lv,name=lv [\hl{the\feat{\mphi}},name=Dsbj [cat]]
+        [chase,name=V [\ontier{the},name=Dobj [rats,name=Nobj]]]]]
+        \draw[cstr] (T.west) to[bend right] (lv);
+        \draw[cstr] (lv) to[bend right] (Dsbj);
+        \draw[cstr] (Dsbj) to[bend right] (V);
+        \draw[cstr] (V) to[bend left] (Dobj.east);
+        \draw[cstr] (Dobj) to[bend left] (Nobj.east);}}
+    {\pathstring{\hl{T\feat{\pphi}}, \inv{\lv}, \hl{the\feat{\mphi}}, \inv{chase}, \ontier{the}, \inv{rats}}}
+\end{figure}
+
+Tree, path, and tier
+\begin{figure}[h]
+\drawtreepathtier
+    {\Forest{
+        [\hl{T\feat{\pphi}},name=T [\lv,name=lv [\hl{the\feat{\mphi}},name=Dsbj [cat]]
+        [chase,name=V [\ontier{the},name=Dobj [rats,name=Nobj]]]]]
+        \draw[cstr] (T.west) to[bend right] (lv);
+        \draw[cstr] (lv) to[bend right] (Dsbj);
+        \draw[cstr] (Dsbj) to[bend right] (V);
+        \draw[cstr] (V) to[bend left] (Dobj.east);
+        \draw[cstr] (Dobj) to[bend left] (Nobj.east);}}
+    {\pathstring{\hl{T\feat{\pphi}}, \inv{\lv}, \hl{the\feat{\mphi}}, \inv{chase}, \ontier{the}, \inv{rats}}}
+    {\pathstring{\hl{T\feat{\pphi}}, \hl{the\feat{\mphi}}, \ontier{the}}}
+\end{figure}
+\end{document}

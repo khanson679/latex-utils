@@ -1,0 +1,344 @@
+\ProvidesPackage{tsl-syntax}
+
+\newif\if@mgfeatures
+\@mgfeaturestrue
+
+\DeclareOption{mgfeatures}{\@mgfeaturestrue}
+\DeclareOption{minimalistfeatures}{\@mgfeaturesfalse}
+\ProcessOptions\relax
+
+%
+% packages
+%
+
+%% standard packages
+\usepackage{amsmath} % bmatrix, Bmatrix
+\usepackage{relsize} % \textsmaller
+\renewcommand{\RSsmallest}{6pt}
+\usepackage[normalem]{ulem}
+\usepackage{tikz}
+\usepackage[linguistics]{forest}
+\usepackage{adjustbox}
+\usepackage{xspace}
+\xspaceaddexceptions{] \} \textsmaller}
+%\let\xspace\relax
+
+%% custom packages
+\usepackage{khutil}
+\usepackage{khcolor}
+\usepackage{khlinguistics}
+\usepackage{forestpath}
+
+%
+% Utility commands
+%
+
+%% put Forest in adjustbox, mainly for easy vertical alignment
+\newcommand{\Forestbox}[2]{\adjustbox{#1}{\Forest{#2}}}
+
+
+%
+% Colors
+%
+
+%\colorlet{hla}{azure!90!black}
+%\colorlet{hlb}{redorange!90!black}
+%\colorlet{hlc}{green}
+%\colorlet{hld}{purple}
+%\colorlet{hle}{gold!90!black}
+%\colorlet{hl}{hla}
+
+\colorlet{good}{green}
+\colorlet{bad}{redorange!90!black}
+
+\colorlet{active}{azure!90!black}
+\colorlet{ontier}{black}
+\colorlet{blocker}{redorange}
+\colorlet{inv}{gray!75}
+
+\colorlet{nom}{blue}
+\colorlet{acc}{red}
+\colorlet{dat}{green}
+\colorlet{erg}{orange}
+\colorlet{gen}{purple}
+\colorlet{ldat}{gold!90!black}
+
+
+%
+% Symbols
+%
+
+
+%
+% Text markup
+%
+
+%% visual emphasis
+%\newcommand{\hl}[1]{\textcolor{hl}{\bfseries\boldmath #1}}
+%\newcommand{\hla}[1]{\textcolor{hla}{\bfseries\boldmath #1}}
+%\newcommand{\hlb}[1]{\textcolor{hlb}{\bfseries\boldmath #1}}
+%\newcommand{\hlc}[1]{\textcolor{hlc}{\bfseries\boldmath #1}}
+\newcommand{\ul}[1]{{\renewcommand{\ULthickness}{.5pt}\setlength{\ULdepth}{3.5pt}\uline{#1}}}
+
+
+%
+% Linguistics
+%
+
+%% IPA symbols
+\ifxetex
+    \defaultfontfeatures{} % fix for newtx conflict with fontspec
+    \newfontfamily{\ipafont}{Noto Serif}[Scale=MatchLowercase]
+    \newcommand{\sh}{{\ipafont ʃ}}
+\else
+    %% NOTE: current string model code doesn't work with TIPA
+    \usepackage{tipa}
+    \DeclareFontSubstitution{T3}{ptm}{m}{n} % change default TIPA font to Times
+    \newcommand{\sh}{\textesh}
+\fi
+
+\newcommand{\flist}[1]{[\commalist{#1}]}
+\newcommand{\feat}[1]{\textsmaller[2]{\flist{#1}}}
+
+\newcommand{\head}[1]{\textbf{#1}}
+\newcommand{\dependent}[1]{\ul{#1}}
+
+%% features
+
+%% MG-style Move/Agree features
+\newcommand{\UseMGStyleDiacritics}{
+    \DeclareDocumentCommand{\pF}{}{$+$F\xspace}
+    \DeclareDocumentCommand{\mF}{}{$-$F\xspace}
+    \DeclareDocumentCommand{\pmF}{}{$\pm$F\xspace}
+    \DeclareDocumentCommand{\pepp}{}{$+$EPP\xspace}
+    \DeclareDocumentCommand{\mepp}{}{$-$EPP\xspace}
+    \DeclareDocumentCommand{\pmepp}{}{$\pm$EPP\xspace}
+    \DeclareDocumentCommand{\pwh}{}{$+$Wh\xspace}
+    \DeclareDocumentCommand{\mwh}{}{$-$Wh\xspace}
+    \DeclareDocumentCommand{\pmwh}{}{$\pm$Wh\xspace}
+    \DeclareDocumentCommand{\pabar}{}{$+$A$'$\xspace}
+    \DeclareDocumentCommand{\mabar}{}{$-$A$'$\xspace}
+    \DeclareDocumentCommand{\pmabar}{}{$\pm$A$'$\xspace}
+    \DeclareDocumentCommand{\pphi}{}{$+\phi$\xspace}
+    \DeclareDocumentCommand{\mphi}{}{$-\phi$\xspace}
+    \DeclareDocumentCommand{\pmphi}{}{$\pm\phi$\xspace}
+}
+
+%% pseudo-Minimalist-style features
+\newcommand{\UseMinimalistStyleDiacritics}{
+    \DeclareDocumentCommand{\pF}{}{\textit{p}F\xspace}
+    \DeclareDocumentCommand{\gF}{}{\textit{g}F\xspace}
+    \DeclareDocumentCommand{\nF}{}{F\xspace}
+    \DeclareDocumentCommand{\pphi}{}{\textit{p}$\phi$\xspace}
+    \DeclareDocumentCommand{\gphi}{}{\textit{g}$\phi$\xspace}
+    %\DeclareDocumentCommand{\iphi}{}{\textit{i}$\phi$\xspace}
+    %\DeclareDocumentCommand{\sphi}{}{\textit{s}$\phi$\xspace}
+    \DeclareDocumentCommand{\nphi}{}{$\phi$\xspace}
+%    \DeclareDocumentCommand{\pcase}{}{\textit{p}Case\xspace}
+%    \DeclareDocumentCommand{\gcase}{}{\textit{g}Case\xspace}
+%    \DeclareDocumentCommand{\ncase}{}{Case\xspace}
+    \DeclareDocumentCommand{\pepp}{}{\textit{p}EPP\xspace}
+    \DeclareDocumentCommand{\gepp}{}{\textit{g}EPP\xspace}
+    \DeclareDocumentCommand{\nepp}{}{EPP\xspace}
+}
+
+\if@mgfeatures
+    \UseMGStyleDiacritics
+\else
+    \UseMinimalistStyleDiacritics
+\fi
+
+%% case features
+
+\newcommand{\nom}{\textsc{\color{nom}nom}\xspace}
+\newcommand{\acc}{\textsc{\color{acc}acc}\xspace}
+\newcommand{\dat}{\textsc{\color{dat}dat}\xspace}
+\newcommand{\erg}{\textsc{\color{orange}erg}\xspace}
+\newcommand{\gen}{\textsc{\color{gen}gen}\xspace}
+\newcommand{\ldat}{\textsc{\color{ldat}ldat}\xspace}
+
+\newcommand{\ga}{\textcolor{nom}{ga}\xspace}
+\newcommand{\wo}{\textcolor{acc}{o}\xspace}
+\renewcommand{\ni}{\textcolor{dat}{ni}\xspace}
+\newcommand{\no}{\textcolor{gen}{no}\xspace}
+
+\newcommand{\ganom}{\ga{}\textsubscript{\nom}\xspace}
+\newcommand{\oacc}{\wo{}\textsubscript{\acc}\xspace}
+\newcommand{\nidat}{\ni{}\textsubscript{\dat}\xspace}
+\newcommand{\nogen}{\no{}\textsubscript{\gen}\xspace}
+
+
+%
+% Mathling
+%
+
+%% general markup
+
+
+%% relations
+\DeclareMathOperator{\dcom}{\text{d-com}}
+
+
+%
+% grammars, tiers and path strings
+%
+
+\newcommand{\good}[1]{\textcolor{good}{#1}}
+\newcommand{\bad}[1]{\textcolor{bad}{#1}}
+\newcommand{\ontier}[1]{\textcolor{ontier}{\bfseries #1}}
+\newcommand{\inv}[1]{\textcolor{inv}{#1}}
+\newcommand{\blocker}[1]{\textcolor{blocker}{\bfseries #1}}
+
+\newcommand{\pstrfont}{\normalfont}
+\newcommand{\pstrsep}{\mbox{\hspace{.15em plus .05em minus .05em}}}
+\newcommand{\pstrdot}{\pstrsep\textperiodcentered\pstrsep}
+\newcommand{\pathstring}[1]{{\pstrfont%
+    \foreach \x [count=\i] in {#1} {\ifnum\i=1 \x{}\else\pstrdot\x{}\fi}}}
+\let\pstr\pathstring
+
+\newcommand{\removed}[1]{\textbf{\sout{#1}}}
+
+\newcommand{\constr}[1]{*\thinspace #1}
+
+%
+% TikZ and forest
+%
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,graphs,bbox,arrows.meta}
+
+\tikzset{daughter/.style={->,>={Triangle[scale=0.7]}}}
+\tikzset{sister/.style={->,>={Triangle[scale=0.8,open]}}}
+\tikzset{deparrow/.style={->,>={Latex[scale=0.7]},active,densely dotted}}
+\tikzset{cstr/.style={->,>={Latex[scale=0.7]},active,densely dashed}}
+
+\tikzset{string doodle/.style={
+    doodlearrow/.style={>=Latex,arrows={[scale=0.7]},semithick},
+    doodlearrow, % use for \draw and graph edges
+    active/.style={thick, draw=active, fill=active!50, arrows={[color=active,scale width=0.8]}
+    },
+    deleted/.style={draw=inv,fill=white},
+    graphs/every graph/.style={
+        nodes={draw,thick,circle,minimum size=1em, inner sep=2pt},
+        edges={doodlearrow}, empty nodes},
+    sp/.style={graphs/every graph/.append style={edges={bend angle=45}}},
+    tsl/.style={graphs/every graph/.append style={edges={inv,densely dotted}}},
+}}
+
+\usepackage[linguistics]{forest}
+\forestset{
+    default preamble={for tree={
+        l=.75em, l sep=.75em, s sep=1em, inner sep=1pt}},
+    compact/.style={for tree={l=.5em, l sep=.5em}},
+    horizontal/.style={for tree={grow=east}},
+}
+
+%\forestset{pstree/.style={for tree={s sep=1em}}}
+%\forestset{autocstr/.style={
+%    for ancestors={
+%        if={n()==2}
+%            {tikz={\draw[cstr] () to[bend left] (!1.0);}}
+%            {tikz={\draw[cstr] (.200) to[bend right] (!1.135);}}},
+%    for current and ancestors={
+%        for preceding siblings={tikz+={\draw[cstr] () to[bend right] (!n.base west);}}}
+%}}
+
+
+
+%
+% Figures
+%
+
+\tikzset{labelarrow/.style={->,>={Latex[scale=0.7]},semithick,font=\footnotesize}}
+\newcommand{\labelarrow}[3][]{%
+    \tikz{\draw[labelarrow] (0,0) to [align=center,edge label=#1] +(#2,#3)}}
+\newcommand{\labelrarrow}[1][]{\labelarrow{2em}{0}{#1}}
+\newcommand{\labeldarrow}[1][]{\labelarrow{0}{-1.5em}{#1}}
+
+\newcommand{\drawtreeandtier}[2]{%
+    \begin{adjustbox}{valign=t}
+%    \smallskip
+    \adjustbox{valign=M}{#1} % tree
+    \quad\labelrarrow\quad
+    \adjustbox{valign=M}{#2} % tree tier
+%    \par\smallskip
+    \end{adjustbox}}
+
+\newcommand{\drawtreeandpath}[2]{%
+    \begin{adjustbox}{valign=t}
+%    \smallskip
+    \adjustbox{valign=M}{#1} % tree
+    \quad\labelrarrow\quad
+    #2 % path
+%    \par\smallskip
+    \end{adjustbox}}
+
+\newlength{\cslength}
+\newcommand{\drawtreepathtier}[3]{%
+%    \settowidth{\cslength}{#2}
+    \adjustbox{valign=M}{#1} % tree
+    \quad\labelarrow{2em}{0em}\quad
+    \begin{tabular}[t]{c}
+        #2\medskip\\ % path
+        \labeldarrow\medskip\\
+        #3 % tier
+    \end{tabular}
+%    \begin{minipage}[t]{\cslength}%
+%        \setlength{\parskip}{1em}%
+%        \centering
+%        #2\par % path
+%        \labeldarrow\par
+%        #3 % tier
+%    \end{minipage}
+}
+%\usepackage{includes/lingdeparrow}
+
+
+%
+% Text overlays
+%
+
+%\newcommand{\tzmark}[2]{%
+%    \tikz[remember picture,baseline]
+%        \node[anchor=base, text height=.9em, text depth=.3em, inner sep=0pt] (#1) {#2};}
+%
+%\usetikzlibrary{decorations.pathreplacing}
+%\newcommand{\tikzunderbrace}[3][]{
+%    \draw [decorate,decoration={brace,mirror}]
+%        (#2.south west) -- (#3.south east)
+%        node [midway,below,yshift=-3pt,font=\tiny] {#1};}
+
+%%% linguistic example markup
+%\newlength{\arrowheight}
+%\setlength{\arrowheight}{2.5ex}
+%\newlength{\arrowspace}
+%\setlength{\arrowspace}{2.5ex}
+%\newcommand{\arrowsign}{}
+%\newcommand{\arrowcolor}{hl}
+%\newcommand{\arrowlabel}{}
+%
+%\tikzset{lingdeparrow/.style={
+%    remember picture,overlay,shorten >=3pt,shorten <=4pt,
+%}}
+%
+%%\newcommand{\lingdeppad}{\rule[-\arrowspace]{0pt}{\arrowspace}}
+%\newcommand{\lingdeparrow}[4][]{{%
+%    \ifstrequal{#1}{good}{}{}%
+%    \ifstrequal{#1}{bad}{%
+%        \renewcommand{\arrowcolor}{bad}%
+%        \renewcommand{\arrowlabel}{$\boldsymbol{\times}$}}{}%
+%    \ifstrequal{#2}{over}{%
+%        \def\sign{}\def\anchor{north}
+%        \rule[1em]{0pt}{\arrowspace}}{}%
+%    \ifstrequal{#2}{under}{%
+%        \def\sign{-}\def\anchor{base}
+%        \rule[-\arrowspace]{0pt}{\arrowspace}}{}%
+%    \tikz[remember picture,overlay,shorten >=3pt,shorten <=4pt]
+%        \draw[->,thick,color=\arrowcolor]
+%        (#3.\anchor) -- +(0,\sign\arrowheight)
+%        -- ($(#4.\anchor) + (0,\sign\arrowheight)$) node [midway] {\arrowlabel}
+%        -- (#4.\anchor);
+%}}
+%
+%\newcommand{\overarrow}[3][]{\lingdeparrow[#1]{over}{#2}{#3}}
+%\newcommand{\underarrow}[3][]{\lingdeparrow[#1]{under}{#2}{#3}}
