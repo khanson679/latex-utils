@@ -23,11 +23,13 @@
 %}}
 \tikzset{arc/.style={
     draw, semithick, ->, >={Latex[scale=0.7]},
+    tierarc/.style={bend left},
+    actarc/.style={draw=hlcolor,thick},
+    invarc/.style={draw=gray,densely dotted}
 }}
-\tikzset{tierarc/.style={arc,bend left}}
-\tikzset{actarc/.style={arc,draw=hlcolor,thick}}
-\tikzset{invarc/.style={arc,draw=gray,densely dotted}}
+
 \tikzset{window/.style={draw=hlcolor,thick,rounded corners=.5ex,inner sep=1em}}
+
 
 %\tikzset{tsl/.style={graphs/every graph/.append style={edges={invarc}}}}
 
@@ -148,7 +150,7 @@
 \newcommand{\DrawImedPrecRelation}[2][arc]{
     \foreach \i [remember=\i as \prev initially 0] in {1,...,#2} {
         \ifnum\prev>0
-            \draw[#1] (\prev) edge (\i);
+            \draw (\prev) edge[arc,#1] (\i);
         \fi
     }
 }
