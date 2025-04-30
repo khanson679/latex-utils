@@ -1,0 +1,35 @@
+\usetikzlibrary{arrows.meta}
+\tikzset{
+    depstr/.style={->,>={Latex[scale=0.6]},bend angle=30,blue,densely dotted},
+    depa/.style={bend angle=25},
+    depb/.style={bend angle=35,red,densely dashed},
+    depc/.style={bend angle=45,green,dash dot},
+}
+
+\forestset{autoastr/.style={
+    for current and ancestors={
+        if level=0 { % skip root
+        }{
+            if n=1
+                {tikz+={\draw[depstr,#1,shorten >=-1pt] (.160) to[bend left] (!u.190);}}
+                {tikz+={\draw[depstr,#1,shorten >=-1pt] (.60) to[bend right] (!u.340);}}}}}}
+
+\forestset{autocstr/.style={
+    for ancestors={
+        if={n()>1}
+            {tikz+={\draw[depstr,#1] (!1.0) to[bend right] (.east);}}
+            {tikz+={\draw[depstr,#1] (!1.135) to[bend left] (.200);}}},
+    for current and ancestors={
+        for preceding siblings={
+            tikz+={\draw[depstr,#1,shorten >=-3pt,shorten <=-3pt]
+                (!n.south west) to[bend left] (.south east);}}}}}
+
+\forestset{autospine/.style={
+    for ancestors={
+        if={n()>1}
+            {tikz+={\draw[depstr,#1] () to[bend left] (!1.0);}}
+            {tikz+={\draw[depstr,#1] (.200) to[bend right] (!1.135);}}},
+    for current and ancestors={
+        for preceding siblings={
+            tikz+={\draw[depstr,#1,shorten >=-3pt,shorten <=-3pt]
+                (.south east) to[bend right] (!n.south west);}}}}}

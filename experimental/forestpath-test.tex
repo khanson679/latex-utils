@@ -1,0 +1,42 @@
+\documentclass{khplain}
+\usepackage{khlinguistics,khcolor}
+\usepackage{newtx}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage[linguistics]{forest}
+\forestset{default preamble={for tree={inner ysep=1pt}}}
+\usepackage{forestpath}
+
+\title{Test document for `forestpath.sty'}
+
+\begin{document}
+\maketitle
+
+One c-string
+\Forest{
+    [T [\lv,s sep=2em
+        [that [T [not [was [the [boy]] [hungry]]]]]
+        [made [\lv [us] [believe
+            [that [T [\lv [he] [ate [the [cookies,autocstr]]]]]]]]]]]}
+
+Two c-strings
+\Forest{
+    [T [\lv,s sep=2em
+        [that [T [not [was [the [boy]] [hungry,autocstr=depb]]]]]
+        [made [\lv [us] [believe
+            [that [T [\lv [he] [ate [the [cookies,autocstr=depa]]]]]]]]]]]}
+
+Two a-strings
+\Forest{
+    [T [\lv,s sep=2em
+        [that [T [not [was [the [boy]] [hungry,autoastr=depb]]]]]
+        [made [\lv [us] [believe
+            [that [T [\lv [he] [ate [the [cookies,autoastr=depa]]]]]]]]]]]}
+
+Two spines
+\Forest{
+    [T [\lv,s sep=2em
+        [that [T [not [was [the [boy]] [hungry,autospine=depb]]]]]
+        [made [\lv [us] [believe
+            [that [T [\lv [he] [ate [the [cookies,autospine=depa]]]]]]]]]]]}
+\end{document}
