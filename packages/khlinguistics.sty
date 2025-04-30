@@ -1,9 +1,10 @@
-% khling.sty
+% khlinguistics.sty
 % Macros for linguistics
 %
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{khlinguistics}
+    [2025/03/21 Shortcuts and symbols for linguistics and mathling.]
 
 \RequirePackage{etoolbox}
 \RequirePackage{xspace}
@@ -19,6 +20,7 @@
 
 %% load amssym only if needed -- other packages may provide these symbols
 \@ifundefined{varnothing}{\RequirePackage{amssymb}}{}
+\@ifundefined{vartriangleleft}{\RequirePackage{amssymb}}{}
 
 %% load just \{l,r,u,d}times from mathdesign
 \DeclareFontEncoding{MDA}{}{}
@@ -47,7 +49,7 @@
 
 %% math symbols
 \renewcommand{\emptyset}{\varnothing}
-
+\newcommand*{\defeq}{\stackrel{\mathsmaller{\mathrm{def}}}{=}}
 
 %
 % Brackets
@@ -87,11 +89,19 @@
 
 
 %
+% Linguistic markup
+%
+
+\newcommand{\exword}[1]{\textit{#1}}
+\newcommand{\exsent}[1]{\textit{#1}}
+
+%
 % Phonology
 %
 
 \newcommand{\ur}[1]{/#1/}
 \newcommand{\sr}[1]{[#1]}
+\let\phon\ur
 
 %
 % Syntax
@@ -109,6 +119,12 @@
 \newcommand{\Tinf}{T$_{\textsc{inf}}$\xspace}
 \newcommand{\Tpast}{T$_{\textsc{past}}$\xspace}
 \newcommand{\Tpres}{T$_{\textsc{pres}}$\xspace}
+\newcommand{\Cdecl}{C\textsubscript{\textsc{decl}}\xspace}
+\newcommand{\Cint}{C\textsubscript{\textsc{int}}\xspace}
+\newcommand{\Cwh}{C\textsubscript{\textsc{wh}}\xspace}
+\newcommand{\Crel}{C\textsubscript{\textsc{rel}}\xspace}
+\newcommand{\Dnom}{D\textsubscript{\textsc{nom}}\xspace}
+\newcommand{\Dacc}{D\textsubscript{\textsc{acc}}\xspace}
 
 %% PS brackets with optional labels
 \newcommand{\psbr}[2][]{%
@@ -120,7 +136,11 @@
 %% Properly formatted trace with an optional index
 \newcommand*{\tr}[1][]{\textit{\rmfamily t}\textsubscript{#1}\xspace}
 
-\newcommand{\del}[1]{\anglebr{#1}}
+%% misc
+\newcommand*{\wh}{\textit{wh}}
+\newcommand*{\abar}{A$'$\xspace}
+\newcommand*{\deleted}[1]{\anglebr{#1}}
+
 
 %
 % Semantics
@@ -138,6 +158,11 @@
 % Mathling
 %
 
+%% formal language theory
+
+\newcommand{\exstr}[1]{$#1$}
+\newcommand{\strset}[1]{\setof{\ensuremath{\commalist{#1}}}}
+
 %% special elements
 \newcommand{\ledge}{\ensuremath{\rtimes}}
 \newcommand{\redge}{\ensuremath{\ltimes}}
@@ -145,16 +170,16 @@
 \newcommand{\bedge}{\ensuremath{\utimes}}
 \newcommand{\slot}{\ensuremath{\Box}}
 
-%% relations
-\newcommand{\scsr}{\triangleleft}
+%% logical relations
+\newcommand{\scsr}{\vartriangleleft}
 \newcommand{\tscsr}{\scsr_T}
-\newcommand{\tprec}{\prec_T}
+\newcommand{\gprec}{<}
 
-\newcommand{\idom}{\triangleleft}
-\newcommand{\pdom}{\triangleleft^+}
+\newcommand{\idom}{\scsr}
+\newcommand{\pdom}{\scsr^+}
 \let\dom\pdom
-\newcommand{\rdom}{\triangleleft^*}
-\newcommand{\tdom}{\triangleleft_T}
+\newcommand{\rdom}{\scsr^*}
+\newcommand{\tdom}{\scsr_T}
 
 \newcommand{\ilsib}{\prec}
 \newcommand{\plsib}{\prec^+}
@@ -164,8 +189,10 @@
 
 
 %% MGs
-\newcommand{\mergenode}{$\circ$\xspace}
-\newcommand{\movenode}{$\bullet$\xspace}
+\newcommand{\mergedot}{$\circ$\xspace}
+\newcommand{\movedot}{$\bullet$\xspace}
+\newcommand{\mergenode}{\mergedot}
+\newcommand{\movenode}{\movedot}
 \newcommand{\adjoinnode}{\textasciitilde\xspace}
 \newcommand{\mglifont}{\normalfont}
 \newcommand{\mgfeatfont}{\sffamily}
@@ -178,25 +205,37 @@
 %\newcommand{\flcr}[1]{#1$^+$}
 %\newcommand{\flce}[1]{#1$^-$}
 
+\newcommand{\UseClassicMGFeatures}{
+    \DeclareDocumentCommand{\fsel}{m}{$=${\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\fcat}{m}{{\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\flcr}{m}{$+${\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\flce}{m}{$-${\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\fadj}{m}{$\approx${\mgfeatfont ##1}}
+}
+
+\newcommand{\UsePrefixMGFeatures}{
+    \DeclareDocumentCommand{\fsel}{m}{$+${\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\fcat}{m}{$-${\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\flcr}{m}{$+${\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\flce}{m}{$-${\mgfeatfont ##1}}
+    \DeclareDocumentCommand{\fadj}{m}{$\approx${\mgfeatfont ##1}}
+}
+
+\newcommand{\UseSuperscriptMGFeatures}{
+    \DeclareDocumentCommand{\fsel}{m}{{\mgfeatfont ##1}$^+$}
+    \DeclareDocumentCommand{\fcat}{m}{{\mgfeatfont ##1}$^-$}
+    \DeclareDocumentCommand{\flcr}{m}{{\mgfeatfont ##1}$^+$}
+    \DeclareDocumentCommand{\flce}{m}{{\mgfeatfont ##1}$^-$}
+    \DeclareDocumentCommand{\fadj}{m}{{\mgfeatfont ##1}$^\approx$}
+}
+
 \define@choicekey*{khlinguistics}{mgfeatures}[\val\n]{classic,pmprefix,pmsuper}[pmprefix]{%
     \ifcase\n
-        \providecommand{\fsel}[1]{$=${\mgfeatfont ##1}}
-        \providecommand{\fcat}[1]{{\mgfeatfont ##1}}
-        \providecommand{\flcr}[1]{$+${\mgfeatfont ##1}}
-        \providecommand{\flce}[1]{$-${\mgfeatfont ##1}}
-        \providecommand{\fadj}[1]{$\approx${\mgfeatfont ##1}}
+        \UseClassicMGFeatures
     \or
-        \providecommand{\fsel}[1]{$+${\mgfeatfont ##1}}
-        \providecommand{\fcat}[1]{$-${\mgfeatfont ##1}}
-        \providecommand{\flcr}[1]{$+${\mgfeatfont ##1}}
-        \providecommand{\flce}[1]{$-${\mgfeatfont ##1}}
-        \providecommand{\fadj}[1]{$\approx${\mgfeatfont ##1}}
+        \UsePrefixMGFeatures
     \or
-        \providecommand{\fsel}[1]{{\mgfeatfont ##1}$^+$}
-        \providecommand{\fcat}[1]{{\mgfeatfont ##1}$^-$}
-        \providecommand{\flcr}[1]{{\mgfeatfont ##1}$^+$}
-        \providecommand{\flce}[1]{{\mgfeatfont ##1}$^-$}
-        \providecommand{\fadj}[1]{{\mgfeatfont ##1}$^\approx$}
+        \UseSuperscriptMGFeatures
     \fi
 }
 \presetkeys{khlinguistics}{mgfeatures}{}
