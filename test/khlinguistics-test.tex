@@ -32,17 +32,24 @@ A B \gap D \par
 \end{examplebox}
 
 
-\section{Brackets}
+\section{Brackets, arrays}
 
 \begin{examplebox}
-\anglebr{cat} \par
+\curlybr{abcd} \par
+\anglebr{abcd} \par
+\sqbr{abcd} \par
+\dblsqbr{abcd} \par
 \setof{a,b,c} \par
 \tuple{1,2,3} \par
 \end{examplebox}
 
 \begin{examplebox}
-\bigsqbr{aaa,bbb,ccc}
-\bigcurlybr{aaa,bbb,ccc}
+\bigset{aaa,bbb,ccc}
+\bigarray{aaa,bbb,ccc}
+\end{examplebox}
+
+\begin{examplebox}
+\tabset[ll]{aaa\\bbb\\ccc}
 \end{examplebox}
 
 
@@ -103,7 +110,7 @@ A B \gap D \par
 x \scsr y \\
 x \tscsr y \\
 x \prec y \\
-x \tprec y \\
+x \gprec y \\
 x \idom y \\
 x \pdom y \\
 x \rdom y \\
@@ -118,8 +125,8 @@ x \tlsib y
 \begin{examplebox}
 \mgli{the}{\fsel{N} \fcat{D}} \par
 \mgflist{\fsel{N} \fcat{D}} \par
-X \mergenode Y \par
-X \movenode Y \par
+X \mergedot Y \par
+X \movedot Y \par
 \end{examplebox}
 
 \end{document}
