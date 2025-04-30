@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{newtx}
+\usepackage{enumitem}
+\usepackage{gb4e-fixed}
+
+\title{Test document for \texttt{gb4e-fixed.sty}}
+\author{Kenneth Hanson}
+
+\begin{document}
+
+\maketitle
+
+Hello
+
+\begin{exe}
+    \ex Japanese
+    \gll Kore wa pen desu.\\
+        this TOP pen is\\
+    \glt This is a pen.
+
+    \ex Triple gloss
+    \glll words of line 1\\
+        words of line 2\\
+        words of line 3\\
+    \glt translation
+
+    \ex look more sentences
+        \begin{xlist}
+        \ex this is a pen\par
+            new par
+        \ex ah even more
+        \ex even even more
+        \end{xlist}
+
+    \ex gloss in an xlist
+        \begin{xlist}
+        \ex Japanese
+        \gll Kore wa pen desu.\\
+            this TOP pen is\\
+        \glt This is a pen.
+        \end{xlist}
+
+    \ex name of table\par
+        \begin{flushleft}
+        \begin{tabular}{ll}
+        \hline
+        a & b \\\hline
+        c & d \\
+        e & f \\
+        \hline
+        \end{tabular}
+        \end{flushleft}
+
+    \ex name of list
+        \begin{itemize}
+        \item a
+        \item b
+        \item c
+        \end{itemize}
+\end{exe}
+
+goodbye
+
+\end{document}

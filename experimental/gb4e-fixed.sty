@@ -1,0 +1,36 @@
+\ProvidesPackage{gb4e-fixed}[Quick fixes to gb4e]
+\RequirePackage{etoolbox}
+
+%\def\new@fontshape{}  % this was necessary at one point but seems not to be now
+\RequirePackage{gb4e}
+\noautomath % do not modify math macros
+
+%% set all spacing parameters (including partopsep) and add missing glue
+\def\@subex#1#2{%
+    \settowidth{\labelwidth}{#1}%
+    \itemindent\z@
+    \labelsep#2%
+    \ifnum\the\@xnumdepth=1
+        \topsep 7\p@ plus 2\p@ minus 3\p@
+        \itemsep 3\p@ plus 2\p@ minus 1\p@
+    \else
+        \topsep 1.5\p@ plus \p@ minus .5\p@
+        \itemsep 1.5\p@ plus \p@ minus .5\p@
+    \fi
+    \parsep 1\p@ plus .5\p@ minus.5\p@
+    \partopsep \z@
+    \leftmargin\labelwidth
+    \advance\leftmargin#2
+    \relax}
+
+%% reset topsep to avoid massive space around gloss, which occurs
+%% only in top level list due to the flushleft environment
+%% instead, always add a little extra space before and after
+%% (gb4e only adds space after)
+\preto{\gll}{\begingroup \topsep .17\baselineskip}
+\preto{\glll}{\begingroup \topsep .17\baselineskip}
+\appto{\gl@stop}{\endgroup}
+\def\glt{}
+%\newcommand{\glskip}{.17\baselineskip}
+%\preto{\gll}{\topsep 0pt \vskip\glskip}
+%\def\glt{\vskip\glskip}
