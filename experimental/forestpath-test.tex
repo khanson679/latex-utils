@@ -2,10 +2,20 @@
 \usepackage{khlinguistics,khcolor}
 \usepackage{newtx}
 \usepackage{parskip}
+
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\tikzset{
+    depa/.style={bend angle=25},
+    depb/.style={bend angle=35,red,densely dashed},
+    depc/.style={bend angle=45,green,dash dot},
+}
+
 \usepackage[linguistics]{forest}
 \forestset{default preamble={for tree={inner ysep=1pt}}}
+
 \usepackage{forestpath}
+
 
 \title{Test document for `forestpath.sty'}
 
