@@ -1,6 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{khbeamertools}
 \RequirePackage{khcolor}
+\mode<presentation>{\PassOptionsToPackage{symbol,norule,hang,flushmargin}{footmisc}}
+\usepackage{footmisc}
 
 \colorlet{hla}{azure!90!black}
 \colorlet{hlb}{redorange!90!black}
@@ -13,6 +15,20 @@
 \newcommand<>{\demph}[1]{\textcolor#2{gray}{#1}}
 \newcommand{\parheading}[1]{\textbf{\structure{#1}}}
 \newcommand{\blockheading}[1]{\unskip\medskip\textbf{\structure{#1}}\par}
+
+\newcommand{\bottomnote}[1]{%
+    \mode<presentation>{\plainfootnote{#1}}%
+    \mode<article>{\par\smallskip\tinynote{#1}\par}}
+\newcommand{\tinynote}[1]{{\xsmall #1\par}}
+\mode<presentation>{%
+    \newcommand{\plainfootnote}[1]{%
+        \bgroup
+        \renewcommand\thefootnote{\fnsymbol{footnote}}%
+        \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}%
+        \footnotetext[0]{#1}%
+        \egroup
+    }}
+\mode<article>{\let\plainfootnote\footnote}
 
 \newcommand{\hlfont}{\normalfont}
 \newcommand<>{\hl}[1]{\alt#2{\textcolor{hl}{\hlfont #1}}{#1}}
