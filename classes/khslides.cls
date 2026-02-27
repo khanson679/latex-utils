@@ -38,6 +38,7 @@
     itemsep=.25\baselineskip plus 2pt minus 2pt,
     parsep=0pt
 }
+\setlist[itemize]{leftmargin=1.5em}
 \SetEnumitemKey{compact}{noitemsep}
 
 
